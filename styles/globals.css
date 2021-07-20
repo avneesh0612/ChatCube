@@ -12,3 +12,11 @@
   width: 4rem !important;
   height: 4rem !important;
 }
+
+.hidescrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hidescrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

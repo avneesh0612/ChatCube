@@ -1,5 +1,5 @@
 import { Avatar, IconButton } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { db } from "../firebase";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { useRouter } from "next/router";
@@ -12,29 +12,16 @@ import Head from "next/head";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Users() {
+function Users({ users }) {
   const router = useRouter();
-  const [users, setUsers] = useState([]);
+  console.log(users);
   const user = window.Clerk.user;
   const [colorTheme, setTheme] = useDarkMode();
 
   const userChatsRef = db
     .collection("chats")
     .where("users", "array-contains", user.primaryEmailAddress.emailAddress);
-  const [chatsSnapshot, loading] = useCollection(userChatsRef);
-
-  useEffect(() => {
-    db.collection("users")
-      .orderBy("name")
-      .onSnapshot((snapshot) =>
-        setUsers(
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            data: doc.data(),
-          }))
-        )
-      );
-  }, []);
+  const [chatsSnapshot] = useCollection(userChatsRef);
 
   const createChat = (input) => {
     if (!input) return;
@@ -88,13 +75,13 @@ function Users() {
           )}
         </IconButton>
       </div>
-      {users.map(({ data: { name, email, photoURL } }) => (
+      {users.map(({ id, name, email, photoURL }) => (
         <div
           className="cursor-pointer"
           onClick={(e) => {
-            e.preventDefault();
             createChat(email);
             toast.success("Chat created successfully");
+            router.push(`/`);
           }}
         >
           {email === user.primaryEmailAddress.emailAddress ? (
@@ -105,12 +92,7 @@ function Users() {
                 className="cursor-pointer hover:opacity-80"
                 src={photoURL}
               />
-              <div
-                className="flex cursor-pointer break-words flex-col ml-3"
-                onClick={() => {
-                  router.push("/");
-                }}
-              >
+              <div className="flex cursor-pointer break-words flex-col ml-3">
                 <p>{name}</p>
               </div>
             </div>
@@ -122,3 +104,17 @@ function Users() {
 }
 
 export default Users;
+
+export async function getServerSideProps() {
+  const allusers = await db.collection("users").get();
+
+  const users = allusers.docs.map((user) => ({
+    id: user.id,
+    ...user.data(),
+    lastSeen: null,
+  }));
+
+  return {
+    props: { users },
+  };
+}

@@ -13,6 +13,7 @@ import Router from "next/router";
 import { useEffect } from "react";
 import { db } from "../firebase";
 import firebase from "firebase";
+import { ToastContainer } from "react-toastify";
 
 const clerkFrontendApi = process.env.NEXT_PUBLIC_CLERK_FRONTEND_API;
 
@@ -45,6 +46,7 @@ const MyApp = ({ Component, pageProps }) => {
       frontendApi={clerkFrontendApi}
       navigate={(to) => router.push(to)}
     >
+      <ToastContainer />
       {publicPages.includes(router.pathname) ? (
         <Component {...pageProps} />
       ) : (

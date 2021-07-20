@@ -81,13 +81,13 @@
 
 @media (prefers-color-scheme: dark) {
   #nprogress .spinner-icon {
-    border-top-color: #ffc849;
-    border-left-color: #ffc849;
+    border-top-color: #4338ca;
+    border-left-color: #4338ca;
   }
   #nprogress .peg {
-    box-shadow: 0 0 10px #ffc849, 0 0 5px #ffc849;
+    box-shadow: 0 0 10px #4338ca, 0 0 5px #4338ca;
   }
   #nprogress .bar {
-    background: #ffc849;
+    background: #4338ca;
   }
 }
