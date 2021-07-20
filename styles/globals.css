@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  body {
+    @apply dark:bg-gray-900 bg-indigo-300;
+  }
+}
+
+.cl-component.cl-user-button {
+  width: 4rem !important;
+  height: 4rem !important;
+}
