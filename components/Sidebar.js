@@ -56,10 +56,10 @@ function Sidebar() {
         />
 
         <div>
-          <DonutLargeRoundedIcon className="text-black focus:outline-none  dark:text-gray-50" />
+          <DonutLargeRoundedIcon className="text-black focus:outline-none  dark:text-gray-50  p-2 cursor-pointer hover:bg-opacity-60" />
           <PersonOutline
             onClick={() => router.push("/users")}
-            className="text-black focus:outline-none dark:text-gray-50"
+            className="text-black focus:outline-none dark:text-gray-50 p-2 cursor-pointer hover:bg-opacity-60"
           />
         </div>
       </div>

@@ -97,13 +97,6 @@ function ChatScreen({ chat, messages }) {
         { merge: true }
       );
 
-    db.collection("chats").doc(router.query.id).add(
-      {
-        lastMessage: firebase.firestore.FieldValue.serverTimestamp(),
-      },
-      { merge: true }
-    );
-
     db.collection("chats")
       .doc(router.query.id)
       .collection("messages")
@@ -181,16 +174,16 @@ function ChatScreen({ chat, messages }) {
           <Image
             width={56}
             height={56}
-            className="m-1 mr-4 z-0 rounded-full"
+            className="z-0 m-1 mr-4 rounded-full"
             src={recipient?.photoURL}
           />
         ) : (
-          <p className="text-center flex items-center justify-center z-0 w-14 h-14 rounded-full bg-gray-300 text-black text-xl capitalize">
+          <p className="z-0 flex items-center justify-center text-xl text-center text-black capitalize bg-gray-300 rounded-full w-14 h-14">
             {recipientEmail[0]}
           </p>
         )}
 
-        <div className="ml-4 flex-1">
+        <div className="flex-1 ml-4">
           <h3 className="mb-1 dark:text-white">
             {recipient?.userName ? (
               <p>{recipient?.userName}</p>
@@ -199,7 +192,7 @@ function ChatScreen({ chat, messages }) {
             )}
           </h3>
           {recipientSnapshot ? (
-            <p className="text-gray-500 text-sm">
+            <p className="text-sm text-gray-500">
               Last active:{` `}
               {recipient?.lastSeen?.toDate() ? (
                 <TimeAgo datetime={recipient?.lastSeen?.toDate()} />
@@ -232,7 +225,7 @@ function ChatScreen({ chat, messages }) {
           />
         </div>
         <input
-          className="border-none outline-none rounded-lg backdrop-filter backdrop-blur-2xl bg-white bg-opacity-10 p-5 mx-4 w-full dark:text-white"
+          className="w-full p-5 mx-4 bg-white border-none rounded-lg outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 dark:text-white"
           ref={inputRef}
           type="text"
         />
@@ -244,10 +237,10 @@ function ChatScreen({ chat, messages }) {
         {imageToPost && (
           <div
             onClick={removeImage}
-            className="flex flex-col filter hover:brightness-110 transition duration-150 transform hover:scale-105 cursor-pointer"
+            className="flex flex-col transition duration-150 transform cursor-pointer filter hover:brightness-110 hover:scale-105"
           >
-            <img className="h-10 object-contain " src={imageToPost} alt="" />
-            <p className="text-xs text-red-500 text-center">Remove</p>
+            <img className="object-contain h-10 " src={imageToPost} alt="" />
+            <p className="text-xs text-center text-red-500">Remove</p>
           </div>
         )}
       </form>
