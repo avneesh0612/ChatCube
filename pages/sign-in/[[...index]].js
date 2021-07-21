@@ -1,4 +1,11 @@
 import { SignIn } from "@clerk/clerk-react";
+import Header from "../../components/Header";
+
 export default function SignInPage() {
-  return <SignIn path="/sign-in" routing="path" />;
+  return (
+    <div className="dark:bg-gray-900 bg-indigo-300">
+      <Header />
+      <SignIn path="/sign-in" routing="path" />
+    </div>
+  );
 }

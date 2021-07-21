@@ -1,6 +1,6 @@
 import { Avatar } from "@material-ui/core";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../firebase";
 import getRecipientEmail from "../utils/getRecipientEmail";
@@ -18,6 +18,7 @@ function Chat({ id, users }) {
 
   const recipient = recipientSnapshot?.docs?.[0]?.data();
   const recipientEmail = getRecipientEmail(users, user);
+  console.log(recipient);
 
   return (
     <div
@@ -29,7 +30,11 @@ function Chat({ id, users }) {
       ) : (
         <Avatar className="m-1 mr-4 z-0">{recipientEmail[0]}</Avatar>
       )}
-      <p>{recipientEmail.slice(0, 25)}</p>
+      {recipient?.userName ? (
+        <p>{recipient?.userName}</p>
+      ) : (
+        <p>{recipient?.name}</p>
+      )}
     </div>
   );
 }

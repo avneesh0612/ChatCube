@@ -29,6 +29,8 @@ function ChatScreen({ chat, messages }) {
       .where("email", "==", getRecipientEmail(chat.users, user))
   );
 
+  const recipient = recipientSnapshot?.docs?.[0]?.data();
+
   const showMessages = () => {
     if (messagesSnapshot) {
       return messagesSnapshot.docs.map((message) => (
@@ -77,7 +79,6 @@ function ChatScreen({ chat, messages }) {
     ScrollToBottom();
   };
 
-  const recipient = recipientSnapshot?.docs?.[0]?.data();
   const recipientEmail = getRecipientEmail(chat.users, user);
   return (
     <div className="flex flex-col min-w-[60vw] h-[90vh] m-10 rounded-xl dark:bg-bgdarkSecondary bg-indigo-300">
@@ -95,7 +96,13 @@ function ChatScreen({ chat, messages }) {
         )}
 
         <div className="ml-4 flex-1">
-          <h3 className="mb-1 dark:text-white">{recipientEmail}</h3>
+          <h3 className="mb-1 dark:text-white">
+            {recipient?.userName ? (
+              <p>{recipient?.userName}</p>
+            ) : (
+              <p>{recipient?.name}</p>
+            )}
+          </h3>
           {recipientSnapshot ? (
             <p className="text-gray-500 text-sm">
               Last active:{` `}

@@ -16,7 +16,26 @@
 .hidescrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .hidescrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  width: 0.8vw;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #f1f1f1 !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #dbd6d6;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8a8a8;
 }

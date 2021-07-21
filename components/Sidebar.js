@@ -8,8 +8,6 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import * as EmailValidator from "email-validator";
 import { useRouter } from "next/router";
 import { PersonOutline } from "@material-ui/icons";
-import NightsStayIcon from "@material-ui/icons/NightsStay";
-import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

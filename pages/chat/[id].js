@@ -1,23 +1,24 @@
 import React from "react";
-import { auth, db } from "../../firebase";
+import { db } from "../../firebase";
 import Sidebar from "../../components/Sidebar";
 import ChatScreen from "../../components/ChatScreen";
 import Head from "next/head";
-import getRecipientEmail from "../../utils/getRecipientEmail";
+import Header from "../../components/Header";
 
 function Chat({ chat, messages }) {
-  const user = window.Clerk.user;
-
   return (
-    <div className="flex shadow-md">
+    <div className="flex shadow-md flex-col">
       <Head>
-        <title>Chat with {getRecipientEmail(chat.users, user)}</title>
+        <title>Chat</title>
       </Head>
-      <div className="md:flex hidden">
-        <Sidebar />
-      </div>
-      <div className="overflow-scroll h-screen hidescrollbar">
-        <ChatScreen chat={chat} messages={messages} />
+      <Header />
+      <div className="flex">
+        <div className="md:flex hidden">
+          <Sidebar />
+        </div>
+        <div className="overflow-scroll h-screen hidescrollbar">
+          <ChatScreen chat={chat} messages={messages} />
+        </div>
       </div>
     </div>
   );
