@@ -5,10 +5,12 @@ import { db, storage } from "../firebase";
 import getRecipientEmail from "../utils/getRecipientEmail";
 import firebase from "firebase";
 import TimeAgo from "timeago-react";
-import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
-import MicIcon from "@material-ui/icons/Mic";
+import {
+  PaperClipIcon,
+  MicrophoneIcon,
+  ArrowLeftIcon,
+} from "@heroicons/react/outline";
 import Message from "./Message";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Image from "next/image";
 
 function ChatScreen({ chat, messages }) {
@@ -166,7 +168,7 @@ function ChatScreen({ chat, messages }) {
   return (
     <div className="flex flex-col min-w-[60vw] h-[90vh] m-10 rounded-xl  bg-indigo-700">
       <div className="sticky rounded-t-xl  bg-indigo-700 z-50 top-0 flex p-4 h-20 items-center border-[1px] border-indigo-500 dark:border-gray-700">
-        <ArrowBackIcon
+        <ArrowLeftIcon
           onClick={() => router.push("/")}
           className="md:!hidden focus:outline-none cursor-pointer text-gray-50"
         />
@@ -216,7 +218,7 @@ function ChatScreen({ chat, messages }) {
           onClick={() => filepickerRef.current.click()}
           className="inputIcon"
         >
-          <InsertEmoticonIcon className="text-black dark:text-gray-100" />
+          <PaperClipIcon className="text-black dark:text-gray-100 h-6 w-6 cursor-pointer" />
           <input
             onChange={addImageToPost}
             ref={filepickerRef}
@@ -233,7 +235,7 @@ function ChatScreen({ chat, messages }) {
         <button hidden type="submit" onClick={sendMessage}>
           Send Message
         </button>
-        <MicIcon className="text-black dark:text-gray-100" />
+        <MicrophoneIcon className="text-black dark:text-gray-100 h-6 w-6" />
         {imageToPost && (
           <div
             onClick={removeImage}

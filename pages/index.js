@@ -1,8 +1,9 @@
 import Head from "next/head";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import { db } from "../firebase";
 
-export default function Home() {
+export default function Home({ users }) {
   return (
     <div className="flex flex-col">
       <Head>
@@ -11,7 +12,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Sidebar />
+      <Sidebar users={users} />
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const allusers = await db.collection("users").get();
+
+  const users = allusers.docs.map((user) => ({
+    id: user.id,
+    ...user.data(),
+    lastSeen: null,
+  }));
+  return {
+    props: { users },
+  };
 }
