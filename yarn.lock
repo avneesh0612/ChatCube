@@ -891,17 +891,22 @@
     "@babel/helper-validator-identifier" "^7.14.5"
     to-fast-properties "^2.0.0"
 
-"@clerk/clerk-react@^1.14.0":
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/@clerk/clerk-react/-/clerk-react-1.14.0.tgz#34da6e7f2c30d93af3b6739e58d67673840aa1da"
-  integrity sha512-rgBElF5CytC3Yu6jXAddcAwIV5DhKr3AoPkjmyavakHTxZu7gVKXLVspvnoUeqP6I2G0Ejfri2Rs9CyBbqy55w==
-  dependencies:
-    "@clerk/types" "1.5.0"
+"@bradgarropy/next-seo@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@bradgarropy/next-seo/-/next-seo-1.0.0.tgz#ccabfee1117b31daac8158c7c04cae905c84eddd"
+  integrity sha512-N0fEAzZj7ww2YqcBvcoD/PHq7YtwAuxkmqEkc7Thvba6JVcdss3xilT44j4xVfGfooLJvpZ3VOpBrvpoKag8eg==
 
-"@clerk/types@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@clerk/types/-/types-1.5.0.tgz#aa5ac5a68bdb80fb9e340d29b8ee2af395000bd6"
-  integrity sha512-VhSEUtPrQ07cxwd8BPBCpqEBeqIYUv6wB3gsu+VU8XowyzmMLg5yW5mgaJyCvYfL2Zjqe6eAZPHFeZnq8w1goA==
+"@clerk/clerk-react@^1.15.0":
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/@clerk/clerk-react/-/clerk-react-1.15.0.tgz#6d4acc98bc814890de774d7ac0c60c5d77fd0700"
+  integrity sha512-fzfLYviRb3huHAOKNsOiVD24k9HoFANEXpZxYn3A0nww23cgDmx5/kcVRzZCi5W4qsVw4e9f3eDry7KgGyOO6Q==
+  dependencies:
+    "@clerk/types" "1.7.0"
+
+"@clerk/types@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@clerk/types/-/types-1.7.0.tgz#3351f64c5d60a8db32fe29b5c591cea7725ba9e8"
+  integrity sha512-BWvQ3VLylhgMmN4O8SzQm8x47Ah8b9dRWnLJtPXgQrwNsfflmECxKYE8cUloRfDcTsR4tpTcPdWQ7rxE1zdaNg==
 
 "@emotion/hash@^0.8.0":
   version "0.8.0"

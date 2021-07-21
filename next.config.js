@@ -8,7 +8,7 @@ module.exports = withPWA({
   },
 
   images: {
-    domains: ["res.cloudinary.com", "corporatebytes.in"],
+    domains: ["res.cloudinary.com", "corporatebytes.in", "images.clerk.dev"],
   },
 
   env: {

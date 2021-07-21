@@ -1,4 +1,4 @@
-import { Avatar, IconButton } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import React from "react";
 import { db } from "../firebase";
 import DonutLargeRoundedIcon from "@material-ui/icons/DonutLargeRounded";
@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { PersonOutline } from "@material-ui/icons";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Image from "next/image";
 
 function Sidebar() {
   const router = useRouter();
@@ -47,8 +48,10 @@ function Sidebar() {
   return (
     <div className="border-r-[1px] w-[30vw] border-indigo-500 dark:border-gray-700 h-[90vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
       <div className="flex sticky top-0 justify-between items-center p-4 h-20 dark:bg-bgdarkSecondary bg-indigo-300 border-b-[1px] border-indigo-500 dark:border-gray-700 z-10">
-        <Avatar
-          className="cursor-pointer hover:opacity-80"
+        <Image
+          width={50}
+          height={50}
+          className="cursor-pointer hover:opacity-80 rounded-full"
           onClick={() => router.push("/details")}
           src={user.profileImageUrl}
         />

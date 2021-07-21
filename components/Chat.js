@@ -1,9 +1,9 @@
-import { Avatar } from "@material-ui/core";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../firebase";
 import getRecipientEmail from "../utils/getRecipientEmail";
+import Image from "next/image";
 
 function Chat({ id, users }) {
   const router = useRouter();
@@ -26,15 +26,24 @@ function Chat({ id, users }) {
       onClick={enterChat}
     >
       {recipient ? (
-        <Avatar className="m-1 mr-4 z-0" src={recipient?.photoURL} />
+        <Image
+          width={50}
+          height={50}
+          className="m-1 mr-4 z-0 rounded-full"
+          src={recipient?.photoURL}
+        />
       ) : (
-        <Avatar className="m-1 mr-4 z-0">{recipientEmail[0]}</Avatar>
+        <p className="m-1 mr-4 z-0 w-5 h-5 rounded-full bg-gray-500 text-black">
+          {recipientEmail[0]}
+        </p>
       )}
-      {recipient?.userName ? (
-        <p>{recipient?.userName}</p>
-      ) : (
-        <p>{recipient?.name}</p>
-      )}
+      <div className="ml-2">
+        {recipient?.userName ? (
+          <p>{recipient?.userName}</p>
+        ) : (
+          <p>{recipient?.name}</p>
+        )}
+      </div>
     </div>
   );
 }

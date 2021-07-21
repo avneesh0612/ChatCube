@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { db } from "../firebase";
 import firebase from "firebase";
 import { ToastContainer } from "react-toastify";
+import SEO from "@bradgarropy/next-seo";
 
 const clerkFrontendApi = process.env.NEXT_PUBLIC_CLERK_FRONTEND_API;
 
@@ -48,6 +49,7 @@ const MyApp = ({ Component, pageProps }) => {
       frontendApi={clerkFrontendApi}
       navigate={(to) => router.push(to)}
     >
+      <SEO title="Chat app" description="A chat app" icon="/favicon.ico" />
       <ToastContainer />
       {publicPages.includes(router.pathname) ? (
         <Component {...pageProps} />

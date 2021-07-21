@@ -5,11 +5,12 @@ import { db } from "../firebase";
 import getRecipientEmail from "../utils/getRecipientEmail";
 import firebase from "firebase";
 import TimeAgo from "timeago-react";
-import { Avatar, IconButton } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 import Message from "./Message";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import Image from "next/image";
 
 function ChatScreen({ chat, messages }) {
   const user = window.Clerk.user;
@@ -90,9 +91,16 @@ function ChatScreen({ chat, messages }) {
           <ArrowBackIcon className="md:!hidden text-gray-50" />
         </IconButton>
         {recipient ? (
-          <Avatar src={recipient?.photoURL} />
+          <Image
+            width={50}
+            height={50}
+            className="m-1 mr-4 z-0 rounded-full"
+            src={recipient?.photoURL}
+          />
         ) : (
-          <Avatar>{recipientEmail[0]}</Avatar>
+          <p className="m-1 mr-4 z-0 w-5 h-5 rounded-full bg-gray-500 text-black">
+            {recipientEmail[0]}
+          </p>
         )}
 
         <div className="ml-4 flex-1">
