@@ -49,7 +49,7 @@ const MyApp = ({ Component, pageProps }) => {
       frontendApi={clerkFrontendApi}
       navigate={(to) => router.push(to)}
     >
-      <SEO title="Chat app" description="A chat app" icon="/favicon.ico" />
+      <SEO title="ChatCube" description="A ChatCube" icon="/favicon.ico" />
       <ToastContainer />
       {publicPages.includes(router.pathname) ? (
         <Component {...pageProps} />

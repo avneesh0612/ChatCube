@@ -4,8 +4,6 @@ function Message({ message, user }) {
   const userLoggedIn = window.Clerk.user.primaryEmailAddress.emailAddress;
   const TypeOfMessage = user === userLoggedIn ? "Sender" : "Reciever";
 
-  console.log(user);
-
   return (
     <div>
       <p

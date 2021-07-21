@@ -1,14 +1,11 @@
-const withPWA = require("next-pwa");
-
-module.exports = withPWA({
-  pwa: {
-    dest: "public",
-    register: true,
-    skipWaiting: true,
-  },
-
+module.exports = {
   images: {
-    domains: ["res.cloudinary.com", "corporatebytes.in", "images.clerk.dev"],
+    domains: [
+      "res.cloudinary.com",
+      "corporatebytes.in",
+      "images.clerk.dev",
+      "firebasestorage.googleapis.com",
+    ],
   },
 
   env: {
@@ -20,4 +17,4 @@ module.exports = withPWA({
     firebase_appId: process.env.FIREBASE_APP_ID,
     firebase_measurementid: process.env.FIREBASE_MEASUREMENT_ID,
   },
-});
+};

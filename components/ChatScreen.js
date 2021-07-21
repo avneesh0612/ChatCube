@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { db } from "../firebase";
+import { db, storage } from "../firebase";
 import getRecipientEmail from "../utils/getRecipientEmail";
 import firebase from "firebase";
 import TimeAgo from "timeago-react";
@@ -15,7 +15,8 @@ function ChatScreen({ chat, messages }) {
   const user = window.Clerk.user;
   const router = useRouter();
   const endOfMessagesRef = useRef(null);
-  const [input, setInput] = useState("");
+  const inputRef = useRef(null);
+  const [imageToPost, setImageToPost] = useState(null);
   const [messagesSnapshot] = useCollection(
     db
       .collection("chats")
@@ -23,25 +24,50 @@ function ChatScreen({ chat, messages }) {
       .collection("messages")
       .orderBy("timestamp", "asc")
   );
+  const userLoggedIn = window.Clerk.user.primaryEmailAddress.emailAddress;
+
   const [recipientSnapshot] = useCollection(
     db
       .collection("users")
       .where("email", "==", getRecipientEmail(chat.users, user))
   );
+  const filepickerRef = useRef(null);
 
   const recipient = recipientSnapshot?.docs?.[0]?.data();
 
   const showMessages = () => {
     if (messagesSnapshot) {
       return messagesSnapshot.docs.map((message) => (
-        <Message
-          key={message.id}
-          user={message.data().user}
-          message={{
-            ...message.data(),
-            timestamp: message.data().timestamp?.toDate().getTime(),
-          }}
-        />
+        <div key={message.id}>
+          {message.data().image ? (
+            <div
+              className={`
+              w-[340px] h-[340px] flex
+               object-contain rounded-xl justify-center items-center
+               ${
+                 message.data().user === userLoggedIn
+                   ? "ml-auto bg-indigo-900"
+                   : "bg-blue-900"
+               }
+              `}
+            >
+              <img
+                className="w-80 h-80 rounded-xl"
+                src={message.data().image}
+              />
+            </div>
+          ) : (
+            <></>
+          )}
+          <Message
+            key={message.id}
+            user={message.data().user}
+            message={{
+              ...message.data(),
+              timestamp: message.data().timestamp?.toDate().getTime(),
+            }}
+          />
+        </div>
       ));
     } else {
       return JSON.parse(messages).map((message) => (
@@ -60,6 +86,8 @@ function ChatScreen({ chat, messages }) {
   const sendMessage = (e) => {
     e.preventDefault();
 
+    if (!inputRef.current.value) return;
+
     db.collection("users").doc(user.id).set(
       {
         lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
@@ -67,16 +95,76 @@ function ChatScreen({ chat, messages }) {
       { merge: true }
     );
 
-    db.collection("chats").doc(router.query.id).collection("messages").add({
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      message: input,
-      user: user.primaryEmailAddress.emailAddress,
-      photoURL: user.profileImageUrl,
-    });
+    db.collection("chats").doc(router.query.id).add(
+      {
+        lastMessage: firebase.firestore.FieldValue.serverTimestamp(),
+      },
+      { merge: true }
+    );
 
-    setInput("");
+    db.collection("chats")
+      .doc(router.query.id)
+      .collection("messages")
+      .add({
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        message: inputRef.current.value,
+        user: user.primaryEmailAddress.emailAddress,
+        photoURL: user.profileImageUrl,
+      })
+      .then((doc) => {
+        if (imageToPost) {
+          const uploadTask = storage
+            .ref(`images/${doc.id}`)
+            .putString(imageToPost, "data_url");
+
+          removeImage();
+
+          uploadTask.on(
+            "state_changed",
+            null,
+            (error) => {
+              console.log(error);
+            },
+            () => {
+              storage
+                .ref("images")
+                .child(doc.id)
+                .getDownloadURL()
+                .then((url) => {
+                  db.collection("chats")
+                    .doc(router.query.id)
+                    .collection("messages")
+                    .doc(doc.id)
+                    .set(
+                      {
+                        image: url,
+                      },
+                      { merge: true }
+                    );
+                });
+            }
+          );
+        }
+      });
+
+    inputRef.current.value = "";
 
     ScrollToBottom();
+  };
+
+  const addImageToPost = (e) => {
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
+
+    reader.onload = (readerEvent) => {
+      setImageToPost(readerEvent.target.result);
+    };
+  };
+
+  const removeImage = () => {
+    setImageToPost(null);
   };
 
   const recipientEmail = getRecipientEmail(chat.users, user);
@@ -95,7 +183,7 @@ function ChatScreen({ chat, messages }) {
             src={recipient?.photoURL}
           />
         ) : (
-          <p className="m-1 mr-4 z-0 w-14 h-14 rounded-full bg-gray-500 text-black">
+          <p className="text-center flex items-center justify-center z-0 w-14 h-14 rounded-full bg-gray-300 text-black text-xl capitalize">
             {recipientEmail[0]}
           </p>
         )}
@@ -129,18 +217,37 @@ function ChatScreen({ chat, messages }) {
       </div>
 
       <form className="flex items-center p-3 sticky rounded-b-xl border-[1px] border-indigo-500 dark:border-gray-700  bg-indigo-300 z-50">
-        <InsertEmoticonIcon className="text-black dark:text-gray-100" />
+        <div
+          onClick={() => filepickerRef.current.click()}
+          className="inputIcon"
+        >
+          <InsertEmoticonIcon className="text-black dark:text-gray-100" />
+          <input
+            onChange={addImageToPost}
+            ref={filepickerRef}
+            type="file"
+            hidden
+          />
+        </div>
         <input
           className="border-none outline-none rounded-lg backdrop-filter backdrop-blur-2xl bg-white bg-opacity-10 p-5 mx-4 w-full dark:text-white"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          ref={inputRef}
           type="text"
         />
 
-        <button hidden disabled={!input} type="submit" onClick={sendMessage}>
+        <button hidden type="submit" onClick={sendMessage}>
           Send Message
         </button>
         <MicIcon className="text-black dark:text-gray-100" />
+        {imageToPost && (
+          <div
+            onClick={removeImage}
+            className="flex flex-col filter hover:brightness-110 transition duration-150 transform hover:scale-105 cursor-pointer"
+          >
+            <img className="h-10 object-contain " src={imageToPost} alt="" />
+            <p className="text-xs text-red-500 text-center">Remove</p>
+          </div>
+        )}
       </form>
     </div>
   );

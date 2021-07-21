@@ -115,7 +115,6 @@ export async function getServerSideProps() {
     ...user.data(),
     lastSeen: null,
   }));
-  console.log(users);
   return {
     props: { users },
   };

@@ -32,7 +32,7 @@ function Chat({ id, users }) {
           src={recipient?.photoURL}
         />
       ) : (
-        <p className="m-1 mr-4 z-0  w-14 h-14 rounded-full bg-gray-500 text-black">
+        <p className="text-center flex items-center justify-center z-0 w-14 h-14 rounded-full bg-gray-300 text-black text-xl capitalize">
           {recipientEmail[0]}
         </p>
       )}
