@@ -39,3 +39,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #a8a8a8;
 }
+
+.cl-component {
+  z-index: 100;
+}
