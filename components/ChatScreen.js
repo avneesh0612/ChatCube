@@ -88,12 +88,14 @@ function ChatScreen({ chat, messages }) {
 
     if (!inputRef.current.value) return;
 
-    db.collection("users").doc(user.id).set(
-      {
-        lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
-      },
-      { merge: true }
-    );
+    db.collection("users")
+      .doc(window.Clerk.user.primaryEmailAddress.emailAddress)
+      .set(
+        {
+          lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
+        },
+        { merge: true }
+      );
 
     db.collection("chats").doc(router.query.id).add(
       {
