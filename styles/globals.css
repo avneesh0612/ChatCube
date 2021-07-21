@@ -4,7 +4,7 @@
 
 @layer components {
   body {
-    @apply dark:bg-gray-900 bg-indigo-300;
+    @apply dark:bg-gray-900 bg-indigo-700;
   }
 }
 

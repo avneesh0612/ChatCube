@@ -169,8 +169,8 @@ function ChatScreen({ chat, messages }) {
 
   const recipientEmail = getRecipientEmail(chat.users, user);
   return (
-    <div className="flex flex-col min-w-[60vw] h-[90vh] m-10 rounded-xl  bg-indigo-300">
-      <div className="sticky rounded-t-xl  bg-indigo-300 z-50 top-0 flex p-4 h-20 items-center border-[1px] border-indigo-500 dark:border-gray-700">
+    <div className="flex flex-col min-w-[60vw] h-[90vh] m-10 rounded-xl  bg-indigo-700">
+      <div className="sticky rounded-t-xl  bg-indigo-700 z-50 top-0 flex p-4 h-20 items-center border-[1px] border-indigo-500 dark:border-gray-700">
         <ArrowBackIcon
           onClick={() => router.push("/")}
           className="md:!hidden focus:outline-none cursor-pointer text-gray-50"
@@ -216,7 +216,7 @@ function ChatScreen({ chat, messages }) {
         <div className="" ref={endOfMessagesRef} />
       </div>
 
-      <form className="flex items-center p-3 sticky rounded-b-xl border-[1px] border-indigo-500 dark:border-gray-700  bg-indigo-300 z-50">
+      <form className="flex items-center p-3 sticky rounded-b-xl border-[1px] border-indigo-500 dark:border-gray-700  bg-indigo-700 z-50">
         <div
           onClick={() => filepickerRef.current.click()}
           className="inputIcon"

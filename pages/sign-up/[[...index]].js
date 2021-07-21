@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 
 export default function SignUpPage() {
   return (
-    <div className="dark:bg-gray-900 bg-indigo-300">
+    <div className="dark:bg-gray-900 bg-indigo-700">
       <Header />
       <SignUp path="/sign-up" routing="path" />
     </div>
