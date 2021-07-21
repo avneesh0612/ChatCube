@@ -7,38 +7,38 @@ import useDarkMode from "../hooks/useDarkMode";
 function Header() {
   const [colorTheme, setTheme] = useDarkMode();
   return (
-    <header className="px-5 flex justify-between items-center bg-white dark:bg-indigo-700 dark:text-gray-300 m-4 rounded-3xl">
+    <header className="flex items-center justify-between px-5 m-4 bg-white dark:bg-indigo-700 dark:text-gray-300 rounded-3xl">
       {colorTheme !== "dark" ? (
         <Image
-          src="https://res.cloudinary.com/dssvrf9oz/image/upload/v1626875709/0002-4635317732-removebg-preview_cwdgae.png"
+          src="https://res.cloudinary.com/dssvrf9oz/image/upload/v1626881694/Aman-removebg-preview_pwjggi.png"
           alt="logo"
-          width={180}
+          width={100}
           height={100}
           objectFit="contain"
         />
       ) : (
         <Image
-          src="https://res.cloudinary.com/dssvrf9oz/image/upload/v1626875530/ChatCube__1_-removebg-preview_dxm932.png"
+          src="https://res.cloudinary.com/dssvrf9oz/image/upload/v1626881465/Logo_challenge-removebg-preview_adfynp.png"
           alt="logo"
-          width={180}
+          width={100}
           height={100}
           objectFit="contain"
         />
       )}
-      <div className="flex items-center h-full w-1/3 justify-evenly">
-        <h3 className="text-lg cursor-pointer hover:text-xl hover:underline delay-75 duration-75 font-medium text-gray-900 dark:text-gray-300 ">
+      <div className="flex items-center w-1/3 h-full justify-evenly">
+        <h3 className="text-lg font-medium text-gray-900 duration-75 delay-75 cursor-pointer hover:text-xl hover:underline dark:text-gray-300 ">
           Home
         </h3>
-        <h3 className="text-lg cursor-pointer hover:text-xl hover:underline delay-75 duration-75 font-medium text-gray-900 dark:text-gray-300">
+        <h3 className="text-lg font-medium text-gray-900 duration-75 delay-75 cursor-pointer hover:text-xl hover:underline dark:text-gray-300">
           Profile
         </h3>
-        <h3 className="text-indigo-800 dark:text-gray-100 text-lg cursor-pointer hover:text-xl hover:underline delay-75 duration-75 font-medium">
+        <h3 className="text-lg font-medium text-indigo-800 duration-75 delay-75 cursor-pointer dark:text-gray-100 hover:text-xl hover:underline">
           Message
         </h3>
-        <h3 className="text-lg cursor-pointer hover:text-xl hover:underline delay-75 duration-75 font-medium text-gray-900 dark:text-gray-300">
+        <h3 className="text-lg font-medium text-gray-900 duration-75 delay-75 cursor-pointer hover:text-xl hover:underline dark:text-gray-300">
           Settings
         </h3>
-        <div className="h-6 w-6 cursor-pointer">
+        <div className="w-6 h-6 cursor-pointer">
           {colorTheme === "light" ? (
             <LightBulbIcon onClick={() => setTheme("light")} />
           ) : (

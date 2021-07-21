@@ -50,25 +50,25 @@ function Sidebar() {
         <Image
           width={56}
           height={56}
-          className="cursor-pointer hover:opacity-80 rounded-full"
+          className="rounded-full cursor-pointer hover:opacity-80"
           onClick={() => router.push("/details")}
           src={user.profileImageUrl}
         />
 
         <div>
-          <DonutLargeRoundedIcon className="text-black focus:outline-none  dark:text-gray-50  p-2 cursor-pointer hover:bg-opacity-60" />
+          <DonutLargeRoundedIcon className="w-20 h-20 rounded-full  text-black cursor-pointer focus:outline-none dark:text-gray-50 hover:bg-indigo-500" />
           <PersonOutline
             onClick={() => router.push("/users")}
-            className="text-black focus:outline-none dark:text-gray-50 p-2 cursor-pointer hover:bg-opacity-60"
+            className="w-20 h-20 text-black cursor-pointer rounded-full focus:outline-none dark:text-gray-50 hover:bg-indigo-500"
           />
         </div>
       </div>
 
       <div className="flex items-center justify-center  bg-indigo-700 p-3 border-b-[1px] border-indigo-500 dark:border-gray-700">
-        <div className="flex items-center justify-center backdrop-filter backdrop-blur-2xl bg-white bg-opacity-10 text-black rounded-xl p-3 w-80">
+        <div className="flex items-center justify-center p-3 text-black bg-white backdrop-filter backdrop-blur-2xl bg-opacity-10 rounded-xl w-80">
           <SearchIcon className="text-black dark:text-gray-50" />
           <input
-            className="outline-none border-none text-black dark:text-white flex-1 ml-3 bg-transparent"
+            className="flex-1 ml-3 text-black bg-transparent border-none outline-none dark:text-white"
             placeholder="Search in chats"
             type="text"
           />
@@ -82,7 +82,7 @@ function Sidebar() {
         Start a new chat
       </button>
 
-      <div className=" bg-indigo-700  min-h-screen">
+      <div className="min-h-screen bg-indigo-700 ">
         {chatsSnapshot?.docs.map((chat) => (
           <Chat key={chat.id} id={chat.id} users={chat.data().users} />
         ))}
