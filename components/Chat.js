@@ -21,7 +21,7 @@ function Chat({ id, users }) {
 
   return (
     <div
-      className="flex items-center cursor-pointer p-4 break-words dark:bg-bgdarkSecondary bg-indigo-300 hover:bg-indigo-400 border-b-[1px] border-indigo-500 dark:border-gray-700 dark:hover:bg-gray-900 dark:text-white"
+      className="flex items-center cursor-pointer p-4 break-words bg-indigo-300 hover:bg-indigo-400 border-b-[1px] border-indigo-500 dark:border-gray-700 dark:hover:bg-gray-900 dark:text-white"
       onClick={enterChat}
     >
       {recipient ? (
@@ -32,7 +32,7 @@ function Chat({ id, users }) {
           src={recipient?.photoURL}
         />
       ) : (
-        <p className="m-1 mr-4 z-0  w-24 h-24 rounded-full bg-gray-500 text-black">
+        <p className="m-1 mr-4 z-0  w-14 h-14 rounded-full bg-gray-500 text-black">
           {recipientEmail[0]}
         </p>
       )}

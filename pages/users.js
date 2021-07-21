@@ -11,6 +11,7 @@ import Head from "next/head";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/Header";
+import Image from "next/image";
 
 function Users({ users }) {
   const router = useRouter();
@@ -50,8 +51,8 @@ function Users({ users }) {
       </Head>
       <Header />
 
-      <div className="border-r-[1px] w-[30vw] border-indigo-500 dark:border-gray-700 h-[90vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
-        <div className="flex sticky top-0 z-50 justify-between items-center p-4 h-20 dark:bg-bgdarkSecondary bg-indigo-300 border-b-[1px] border-indigo-500 dark:border-gray-700">
+      <div className="border-[1px] w-[30vw] border-indigo-500 dark:border-gray-700 h-[90vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
+        <div className="flex sticky top-0 justify-between items-center p-4 h-20 bg-indigo-300 border-b-[1px] border-indigo-500 dark:border-gray-700 z-10">
           <ArrowBackIcon
             onClick={() => router.push("/")}
             className="h-9 focus:outline-none  dark:text-white text-black mr-2 cursor-pointer"
@@ -75,7 +76,7 @@ function Users({ users }) {
         </div>
         {users.map(({ id, name, email, photoURL }) => (
           <div
-            className="cursor-pointer"
+            key={id}
             onClick={(e) => {
               createChat(email);
               toast.success("Chat created successfully");
@@ -85,12 +86,12 @@ function Users({ users }) {
             {email === user.primaryEmailAddress.emailAddress ? (
               <div></div>
             ) : (
-              <div className="flex items-center p-5 break-words text-black dark:bg-bgdarkSecondary bg-indigo-300 dark:text-white dark:hover:bg-gray-900">
+              <div className="flex items-center cursor-pointer p-4 break-words bg-indigo-300 hover:bg-indigo-400 border-b-[1px] border-indigo-500 dark:border-gray-700 dark:hover:bg-gray-900 dark:text-white">
                 <Image
                   width={56}
                   height={56}
-                  className="cursor-pointer hover:opacity-80"
                   src={photoURL}
+                  className="cursor-pointer rounded-full hover:opacity-80"
                 />
                 <div className="flex cursor-pointer break-words flex-col ml-3">
                   <p>{name}</p>
@@ -114,7 +115,7 @@ export async function getServerSideProps() {
     ...user.data(),
     lastSeen: null,
   }));
-
+  console.log(users);
   return {
     props: { users },
   };
