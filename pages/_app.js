@@ -28,16 +28,18 @@ const MyApp = ({ Component, pageProps }) => {
 
   useEffect(() => {
     if (window.Clerk?.user) {
-      db.collection("users").doc(window.Clerk.user.id).set(
-        {
-          email: window.Clerk.user.primaryEmailAddress.emailAddress,
-          name: window.Clerk.user.fullName,
-          lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
-          photoURL: window.Clerk.user.profileImageUrl,
-          userName: window.Clerk.user.username,
-        },
-        { merge: true }
-      );
+      db.collection("users")
+        .doc(window.Clerk.user.primaryEmailAddress.emailAddress)
+        .set(
+          {
+            email: window.Clerk.user.primaryEmailAddress.emailAddress,
+            name: window.Clerk.user.fullName,
+            lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
+            photoURL: window.Clerk.user.profileImageUrl,
+            userName: window.Clerk.user.username,
+          },
+          { merge: true }
+        );
     }
   });
 
