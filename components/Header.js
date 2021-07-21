@@ -8,13 +8,23 @@ function Header() {
   const [colorTheme, setTheme] = useDarkMode();
   return (
     <header className="px-5 flex justify-between items-center bg-white dark:bg-indigo-700 dark:text-gray-300 m-4 rounded-3xl">
-      <Image
-        src="https://corporatebytes.in/wp-content/uploads/2016/11/logo-logo1.jpg"
-        alt="logo"
-        width={100}
-        height={100}
-        objectFit="contain"
-      />
+      {colorTheme !== "dark" ? (
+        <Image
+          src="https://res.cloudinary.com/dssvrf9oz/image/upload/v1626875709/0002-4635317732-removebg-preview_cwdgae.png"
+          alt="logo"
+          width={180}
+          height={100}
+          objectFit="contain"
+        />
+      ) : (
+        <Image
+          src="https://res.cloudinary.com/dssvrf9oz/image/upload/v1626875530/ChatCube__1_-removebg-preview_dxm932.png"
+          alt="logo"
+          width={180}
+          height={100}
+          objectFit="contain"
+        />
+      )}
       <div className="flex items-center h-full w-1/3 justify-evenly">
         <h3 className="text-lg cursor-pointer hover:text-xl hover:underline delay-75 duration-75 font-medium text-gray-900 dark:text-gray-300 ">
           Home
