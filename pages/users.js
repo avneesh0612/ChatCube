@@ -1,4 +1,3 @@
-import { Avatar, IconButton } from "@material-ui/core";
 import React from "react";
 import { db } from "../firebase";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -15,7 +14,6 @@ import Header from "../components/Header";
 
 function Users({ users }) {
   const router = useRouter();
-  console.log(users);
   const user = window.Clerk.user;
   const [colorTheme, setTheme] = useDarkMode();
 
@@ -54,18 +52,14 @@ function Users({ users }) {
 
       <div className="border-r-[1px] w-[30vw] border-indigo-500 dark:border-gray-700 h-[90vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
         <div className="flex sticky top-0 z-50 justify-between items-center p-4 h-20 dark:bg-bgdarkSecondary bg-indigo-300 border-b-[1px] border-indigo-500 dark:border-gray-700">
-          <IconButton
-            className="focus:outline-none"
+          <ArrowBackIcon
             onClick={() => router.push("/")}
-          >
-            <ArrowBackIcon className="h-9  dark:text-white text-black mr-2 cursor-pointer" />
-          </IconButton>
-
+            className="h-9 focus:outline-none  dark:text-white text-black mr-2 cursor-pointer"
+          />
           <p className="dark:text-gray-200">
             Click on any user to create a chat
           </p>
-
-          <IconButton className="focus:outline-none">
+          <div className="focus:outline-none">
             {colorTheme === "light" ? (
               <EmojiObjectsIcon
                 onClick={() => setTheme("light")}
@@ -77,7 +71,7 @@ function Users({ users }) {
                 className="h-9 text-black  mr-2 cursor-pointer"
               />
             )}
-          </IconButton>
+          </div>
         </div>
         {users.map(({ id, name, email, photoURL }) => (
           <div
@@ -92,7 +86,9 @@ function Users({ users }) {
               <div></div>
             ) : (
               <div className="flex items-center p-5 break-words text-black dark:bg-bgdarkSecondary bg-indigo-300 dark:text-white dark:hover:bg-gray-900">
-                <Avatar
+                <Image
+                  width={56}
+                  height={56}
                   className="cursor-pointer hover:opacity-80"
                   src={photoURL}
                 />

@@ -1,4 +1,3 @@
-import { IconButton } from "@material-ui/core";
 import React from "react";
 import { db } from "../firebase";
 import DonutLargeRoundedIcon from "@material-ui/icons/DonutLargeRounded";
@@ -46,26 +45,22 @@ function Sidebar() {
     );
 
   return (
-    <div className="border-r-[1px] w-[30vw] border-indigo-500 dark:border-gray-700 h-[90vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
+    <div className="border-[1px] w-[30vw] border-indigo-500 dark:border-gray-700 h-[90vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
       <div className="flex sticky top-0 justify-between items-center p-4 h-20 dark:bg-bgdarkSecondary bg-indigo-300 border-b-[1px] border-indigo-500 dark:border-gray-700 z-10">
         <Image
-          width={50}
-          height={50}
+          width={56}
+          height={56}
           className="cursor-pointer hover:opacity-80 rounded-full"
           onClick={() => router.push("/details")}
           src={user.profileImageUrl}
         />
 
         <div>
-          <IconButton className="focus:outline-none">
-            <DonutLargeRoundedIcon className="text-black   dark:text-gray-50" />
-          </IconButton>
-          <IconButton
-            className="focus:outline-none"
+          <DonutLargeRoundedIcon className="text-black focus:outline-none  dark:text-gray-50" />
+          <PersonOutline
             onClick={() => router.push("/users")}
-          >
-            <PersonOutline className="text-black dark:text-gray-50" />
-          </IconButton>
+            className="text-black focus:outline-none dark:text-gray-50"
+          />
         </div>
       </div>
 

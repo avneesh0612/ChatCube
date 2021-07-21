@@ -5,7 +5,6 @@ import { db } from "../firebase";
 import getRecipientEmail from "../utils/getRecipientEmail";
 import firebase from "firebase";
 import TimeAgo from "timeago-react";
-import { IconButton } from "@material-ui/core";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 import Message from "./Message";
@@ -83,22 +82,20 @@ function ChatScreen({ chat, messages }) {
   const recipientEmail = getRecipientEmail(chat.users, user);
   return (
     <div className="flex flex-col min-w-[60vw] h-[90vh] m-10 rounded-xl dark:bg-bgdarkSecondary bg-indigo-300">
-      <div className="sticky rounded-t-xl dark:bg-bgdarkSecondary bg-indigo-300 z-50 top-0 flex p-4 h-20 items-center border-b-[1px] border-indigo-500 dark:border-gray-700">
-        <IconButton
-          className="focus:outline-none cursor-pointer"
+      <div className="sticky rounded-t-xl dark:bg-bgdarkSecondary bg-indigo-300 z-50 top-0 flex p-4 h-20 items-center border-[1px] border-indigo-500 dark:border-gray-700">
+        <ArrowBackIcon
           onClick={() => router.push("/")}
-        >
-          <ArrowBackIcon className="md:!hidden text-gray-50" />
-        </IconButton>
+          className="md:!hidden focus:outline-none cursor-pointer text-gray-50"
+        />
         {recipient ? (
           <Image
-            width={50}
-            height={50}
+            width={56}
+            height={56}
             className="m-1 mr-4 z-0 rounded-full"
             src={recipient?.photoURL}
           />
         ) : (
-          <p className="m-1 mr-4 z-0 w-5 h-5 rounded-full bg-gray-500 text-black">
+          <p className="m-1 mr-4 z-0 w-24 h-24 rounded-full bg-gray-500 text-black">
             {recipientEmail[0]}
           </p>
         )}
@@ -126,12 +123,12 @@ function ChatScreen({ chat, messages }) {
         </div>
       </div>
 
-      <div className="p-8 h-[66vh] overflow-scroll hidescrollbar">
+      <div className="p-8 h-[66vh] border-[1px] border-indigo-500 overflow-scroll hidescrollbar">
         {showMessages()}
         <div className="" ref={endOfMessagesRef} />
       </div>
 
-      <form className="flex items-center p-3 sticky rounded-b-xl border-t-[1px] border-indigo-500 dark:border-gray-700 dark:bg-bgdarkSecondary bg-indigo-300 z-50">
+      <form className="flex items-center p-3 sticky rounded-b-xl border-[1px] border-indigo-500 dark:border-gray-700 dark:bg-bgdarkSecondary bg-indigo-300 z-50">
         <InsertEmoticonIcon className="text-black dark:text-gray-100" />
         <input
           className="border-none outline-none rounded-lg backdrop-filter backdrop-blur-2xl bg-white bg-opacity-10 p-5 mx-4 w-full dark:text-white"

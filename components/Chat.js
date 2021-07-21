@@ -18,7 +18,6 @@ function Chat({ id, users }) {
 
   const recipient = recipientSnapshot?.docs?.[0]?.data();
   const recipientEmail = getRecipientEmail(users, user);
-  console.log(recipient);
 
   return (
     <div
@@ -27,13 +26,13 @@ function Chat({ id, users }) {
     >
       {recipient ? (
         <Image
-          width={50}
-          height={50}
+          width={56}
+          height={56}
           className="m-1 mr-4 z-0 rounded-full"
           src={recipient?.photoURL}
         />
       ) : (
-        <p className="m-1 mr-4 z-0 w-5 h-5 rounded-full bg-gray-500 text-black">
+        <p className="m-1 mr-4 z-0  w-24 h-24 rounded-full bg-gray-500 text-black">
           {recipientEmail[0]}
         </p>
       )}
