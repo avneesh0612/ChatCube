@@ -15,7 +15,7 @@ function Message({ message, user }) {
         }`}
       >
         {message.message}
-        <p className="text-gray-400 p-2 text-xs absolute bottom-0 text-right right-0">
+        <p className="text-gray-400 p-2 text-xs absolute bottom-0 text-right right-0 mt-3">
           {message.timestamp ? moment(message.timestamp).format("LT") : "..."}
         </p>
       </p>
