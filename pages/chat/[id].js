@@ -5,7 +5,7 @@ import ChatScreen from "../../components/ChatScreen";
 import Head from "next/head";
 import Header from "../../components/Header";
 
-function Chat({ chat, messages }) {
+function Chat({ chat, messages, users }) {
   return (
     <div className="flex shadow-md flex-col">
       <Head>
@@ -14,7 +14,7 @@ function Chat({ chat, messages }) {
       <Header />
       <div className="flex">
         <div className="md:flex hidden">
-          <Sidebar />
+          <Sidebar users={users} />
         </div>
         <div className="overflow-scroll h-screen hidescrollbar">
           <ChatScreen chat={chat} messages={messages} />
@@ -28,6 +28,7 @@ export default Chat;
 
 export async function getServerSideProps(context) {
   const ref = db.collection("chats").doc(context.query.id);
+  const allusers = await db.collection("users").get();
 
   const messagesRes = await ref
     .collection("messages")
@@ -43,6 +44,11 @@ export async function getServerSideProps(context) {
       ...messages,
       timestamp: messages.timestamp.toDate().getTime(),
     }));
+  const users = allusers.docs.map((user) => ({
+    id: user.id,
+    ...user.data(),
+    lastSeen: null,
+  }));
 
   const chatRes = await ref.get();
   const chat = {
@@ -54,6 +60,7 @@ export async function getServerSideProps(context) {
     props: {
       messages: JSON.stringify(messages),
       chat: chat,
+      users,
     },
   };
 }
