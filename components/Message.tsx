@@ -1,8 +1,16 @@
 import moment from "moment";
+import React from "react";
+import { MessageType } from "../types/MessageType";
 
-function Message({ message, user }) {
-  const userLoggedIn = window.Clerk.user.primaryEmailAddress.emailAddress;
-  const TypeOfMessage = user === userLoggedIn ? "Sender" : "Reciever";
+type MessageProps = {
+  message: MessageType;
+  creatorEmail: string;
+};
+
+const Message: React.FC<MessageProps> = ({ message, creatorEmail }) => {
+  const userLoggedIn = (window as any).Clerk.user.primaryEmailAddress
+    .emailAddress;
+  const TypeOfMessage = creatorEmail === userLoggedIn ? "Sender" : "Reciever";
 
   return (
     <div className="min-w-[80px]">
@@ -21,6 +29,6 @@ function Message({ message, user }) {
       </p>
     </div>
   );
-}
+};
 
 export default Message;

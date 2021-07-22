@@ -11,7 +11,7 @@ import { Fragment, useState } from "react";
 import * as EmailValidator from "email-validator";
 import { toast } from "react-toastify";
 
-function Sidebar() {
+const Sidebar: React.FC<any> = () => {
   const router = useRouter();
   const user = window.Clerk.user;
   const [users, setUsers] = useState([]);
@@ -184,6 +184,6 @@ function Sidebar() {
       </div>
     </div>
   );
-}
+};
 
 export default Sidebar;
