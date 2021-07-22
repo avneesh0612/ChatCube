@@ -13,13 +13,18 @@ import {
 import Message from "./Message";
 import Image from "next/image";
 import { toast } from "react-toastify";
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
+import useComponentVisible from "../hooks/useComponentVisible";
 
 function ChatScreen({ chat, messages }) {
   const user = window.Clerk.user;
   const router = useRouter();
   const endOfMessagesRef = useRef(null);
-  const inputRef = useRef(null);
+  const [input, setInput] = useState("");
   const [imageToPost, setImageToPost] = useState(null);
+  const { ref, isComponentVisible, setIsComponentVisible } =
+    useComponentVisible(false);
   const [messagesSnapshot] = useCollection(
     db
       .collection("chats")
@@ -37,6 +42,14 @@ function ChatScreen({ chat, messages }) {
   const filepickerRef = useRef(null);
 
   const recipient = recipientSnapshot?.docs?.[0]?.data();
+  const addEmoji = (e) => {
+    let sym = e.unified.split("-");
+    let codesArray = [];
+    sym.forEach((el) => codesArray.push("0x" + el));
+    let emoji = String.fromCodePoint(...codesArray);
+    setInput(input + emoji);
+    setIsComponentVisible(false);
+  };
 
   const showMessages = () => {
     if (messagesSnapshot) {
@@ -89,7 +102,7 @@ function ChatScreen({ chat, messages }) {
   const sendMessage = (e) => {
     e.preventDefault();
 
-    if (!inputRef.current.value) return toast.error("Please add a text");
+    if (!input) return toast.error("Please add a text");
 
     db.collection("users")
       .doc(window.Clerk.user.primaryEmailAddress.emailAddress)
@@ -111,7 +124,7 @@ function ChatScreen({ chat, messages }) {
       .collection("messages")
       .add({
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        message: inputRef.current.value,
+        message: input,
         user: user.primaryEmailAddress.emailAddress,
         photoURL: user.profileImageUrl,
       })
@@ -151,7 +164,7 @@ function ChatScreen({ chat, messages }) {
         }
       });
 
-    inputRef.current.value = "";
+    setInput("");
 
     ScrollToBottom();
   };
@@ -233,11 +246,20 @@ function ChatScreen({ chat, messages }) {
             hidden
           />
         </div>
-        <EmojiHappyIcon className="text-black dark:text-gray-100 h-6 w-6 cursor-pointer ml-2" />
-
+        <EmojiHappyIcon
+          ref={ref}
+          onClick={() => setIsComponentVisible(!isComponentVisible)}
+          className="text-black dark:text-gray-100 h-6 w-6 cursor-pointer ml-2"
+        />
+        {isComponentVisible && (
+          <span ref={ref} className="absolute z-50 mb-[500px]">
+            <Picker onSelect={addEmoji} />
+          </span>
+        )}
         <input
           className="w-full p-5 mx-4 bg-white border-none rounded-lg outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 dark:text-white"
-          ref={inputRef}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
           type="text"
         />
 

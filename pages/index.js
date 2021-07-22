@@ -4,8 +4,11 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import { db } from "../firebase";
 import firebase from "firebase";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+
   useEffect(() => {
     if (window.Clerk?.user) {
       db.collection("users")
@@ -21,6 +24,7 @@ export default function Home() {
           { merge: true }
         );
     }
+    router.prefetch("/chat/[id]");
   });
 
   return (
