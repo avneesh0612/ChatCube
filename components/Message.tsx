@@ -16,10 +16,10 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail }) => {
     <div className="min-w-[80px]">
       <p
         style={{ width: "fit-content" }}
-        className={`p-4 rounded-lg m-3 min-w-[80px] pb-7 relative text-right break-all text-white ${
+        className={`p-4 rounded-lg m-3 min-w-[80px] pb-7 relative text-center break-all text-white ${
           TypeOfMessage === "Sender"
             ? "ml-auto bg-indigo-900 "
-            : "bg-blue-900 text-left"
+            : "bg-blue-900 text-center"
         }`}
       >
         {message.message}
