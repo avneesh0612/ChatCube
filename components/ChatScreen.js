@@ -22,6 +22,7 @@ function ChatScreen({ chat, messages }) {
   const router = useRouter();
   const endOfMessagesRef = useRef(null);
   const [input, setInput] = useState("");
+  const focusRef = useRef();
   const [imageToPost, setImageToPost] = useState(null);
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible(false);
@@ -49,6 +50,7 @@ function ChatScreen({ chat, messages }) {
     let emoji = String.fromCodePoint(...codesArray);
     setInput(input + emoji);
     setIsComponentVisible(false);
+    focusRef.current.focus();
   };
 
   const showMessages = () => {
@@ -260,6 +262,7 @@ function ChatScreen({ chat, messages }) {
           className="w-full p-5 mx-4 bg-white border-none rounded-lg outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 dark:text-white"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          ref={focusRef}
           type="text"
         />
 
