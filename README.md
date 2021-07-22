@@ -1,4 +1,4 @@
-# Let's chat (open source)
+# Chat Cube (open source)
 
 We are going to create a pr. You need to know basic git and github commands to make a pr. If you don't know about it, check my [Git and Github crash course](https://medium.com/geekculture/git-and-github-crash-course-b44f4885ff66 "Git and Github crash course")
 
