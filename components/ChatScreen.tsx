@@ -128,14 +128,6 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
         },
         { merge: true }
       );
-    db.collection("chats")
-      .doc(router.query.id as string)
-      .set(
-        {
-          lastMessage: firebase.firestore.FieldValue.serverTimestamp(),
-        },
-        { merge: true }
-      );
 
     db.collection("chats")
       .doc(router.query.id as string)
