@@ -30,7 +30,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
   const router = useRouter();
   const endOfMessagesRef = useRef(null);
   const [input, setInput] = useState("");
-  const focusRef = useRef();
+  const focusRef = useRef<HTMLInputElement>();
   const [imageToPost, setImageToPost] = useState(null);
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible();
