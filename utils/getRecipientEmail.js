@@ -1,4 +1,4 @@
 const getRecipientEmail = (users, userLoggedIn) =>
-  users?.filter((userToFilter) => userToFilter !== userLoggedIn?.email)[0];
+  users?.filter((userToFilter) => userToFilter !== userLoggedIn)[0];
 
 export default getRecipientEmail;

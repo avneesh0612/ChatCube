@@ -31,7 +31,7 @@ function ChatScreen({ chat, messages }) {
   const [recipientSnapshot] = useCollection(
     db
       .collection("users")
-      .where("email", "==", getRecipientEmail(chat.users, user))
+      .where("email", "==", getRecipientEmail(chat.users, userLoggedIn))
   );
   const filepickerRef = useRef(null);
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { db } from "../firebase";
 import Chat from "./Chat";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -11,9 +11,23 @@ import { Fragment, useState } from "react";
 import * as EmailValidator from "email-validator";
 import { toast } from "react-toastify";
 
-function Sidebar({ users }) {
+function Sidebar() {
   const router = useRouter();
   const user = window.Clerk.user;
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    db.collection("users")
+      .orderBy("name")
+      .onSnapshot((snapshot) =>
+        setUsers(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+  }, []);
 
   const userChatsRef = db
     .collection("chats")
@@ -121,7 +135,7 @@ function Sidebar({ users }) {
                   Start a chat with others
                 </Dialog.Title>
                 <div className="mt-2">
-                  {users?.map(({ id, name, email, photoURL }) => (
+                  {users?.map(({ id, data: { name, email, photoURL } }) => (
                     <div
                       key={id}
                       onClick={(e) => {

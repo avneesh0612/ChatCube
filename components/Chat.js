@@ -9,7 +9,13 @@ function Chat({ id, users }) {
   const router = useRouter();
   const user = window.Clerk.user;
   const [recipientSnapshot] = useCollection(
-    db.collection("users").where("email", "==", getRecipientEmail(users, user))
+    db
+      .collection("users")
+      .where(
+        "email",
+        "==",
+        getRecipientEmail(users, user.primaryEmailAddress.emailAddress)
+      )
   );
 
   const enterChat = () => {
@@ -17,7 +23,10 @@ function Chat({ id, users }) {
   };
 
   const recipient = recipientSnapshot?.docs?.[0]?.data();
-  const recipientEmail = getRecipientEmail(users, user);
+  const recipientEmail = getRecipientEmail(
+    users,
+    user.primaryEmailAddress.emailAddress
+  );
 
   return (
     <div

@@ -1,9 +1,28 @@
 import Head from "next/head";
+import { useEffect } from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import { db } from "../firebase";
+import firebase from "firebase";
 
-export default function Home({ users }) {
+export default function Home() {
+  useEffect(() => {
+    if (window.Clerk?.user) {
+      db.collection("users")
+        .doc(window.Clerk.user.primaryEmailAddress.emailAddress)
+        .set(
+          {
+            email: window.Clerk.user.primaryEmailAddress.emailAddress,
+            name: window.Clerk.user.fullName,
+            lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
+            photoURL: window.Clerk.user.profileImageUrl,
+            userName: window.Clerk.user.username,
+          },
+          { merge: true }
+        );
+    }
+  });
+
   return (
     <div className="flex flex-col">
       <Head>
@@ -12,20 +31,7 @@ export default function Home({ users }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Sidebar users={users} />
+      <Sidebar />
     </div>
   );
-}
-
-export async function getServerSideProps() {
-  const allusers = await db.collection("users").get();
-
-  const users = allusers.docs.map((user) => ({
-    id: user.id,
-    ...user.data(),
-    lastSeen: null,
-  }));
-  return {
-    props: { users },
-  };
 }
