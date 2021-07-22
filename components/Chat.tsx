@@ -1,13 +1,18 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../firebase";
 import getRecipientEmail from "../utils/getRecipientEmail";
-import Image from "next/image";
 
-function Chat({ id, users }) {
+type ChatProps = {
+  id: string;
+  users: [string];
+};
+
+const Chat: React.FC<ChatProps> = ({ id, users }) => {
   const router = useRouter();
-  const user = window.Clerk.user;
+  const user = (window as any).Clerk.user;
   const [recipientSnapshot] = useCollection(
     db
       .collection("users")
@@ -54,6 +59,6 @@ function Chat({ id, users }) {
       </div>
     </div>
   );
-}
+};
 
 export default Chat;

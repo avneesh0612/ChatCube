@@ -15,16 +15,20 @@ import { db } from "../firebase";
 import firebase from "firebase";
 import { ToastContainer } from "react-toastify";
 import SEO from "@bradgarropy/next-seo";
+import { AppProps } from "next/app";
+import { UrlObject } from "url";
 
 const clerkFrontendApi = process.env.NEXT_PUBLIC_CLERK_FRONTEND_API;
 
-Router.events.on("routeChangeWStart", nProgress.start);
+nProgress.configure({ showSpinner: false });
+
+Router.events.on("routeChangeStart", nProgress.start);
 Router.events.on("routeChangeComplete", nProgress.done);
 Router.events.on("routeChangeError", nProgress.done);
 
 const publicPages = ["/sign-in/[[...index]]", "/sign-up/[[...index]]"];
 
-const MyApp = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
 
   useEffect(() => {
@@ -47,7 +51,7 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <ClerkProvider
       frontendApi={clerkFrontendApi}
-      navigate={(to) => router.push(to)}
+      navigate={(to: string | UrlObject) => router.push(to)}
     >
       <SEO title="ChatCube" description="A ChatCube" icon="/favicon.ico" />
       <ToastContainer />
