@@ -43,3 +43,7 @@
 .cl-component {
   z-index: 100;
 }
+
+.emoji-mart-title-label {
+  display: none;
+}
