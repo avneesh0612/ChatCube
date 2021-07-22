@@ -1,23 +1,31 @@
-import { useRouter } from "next/router";
-import { useRef, useState } from "react";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { db, storage } from "../firebase";
-import getRecipientEmail from "../utils/getRecipientEmail";
-import firebase from "firebase";
-import TimeAgo from "timeago-react";
 import {
-  PaperClipIcon,
   ArrowLeftIcon,
   EmojiHappyIcon,
+  PaperClipIcon,
 } from "@heroicons/react/outline";
-import Message from "./Message";
-import Image from "next/image";
-import { toast } from "react-toastify";
-import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
+import "emoji-mart/css/emoji-mart.css";
+import firebase from "firebase";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import React, { useRef, useState } from "react";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { toast } from "react-toastify";
+import TimeAgo from "timeago-react";
+import { db, storage } from "../firebase";
 import useComponentVisible from "../hooks/useComponentVisible";
+import getRecipientEmail from "../utils/getRecipientEmail";
+import Message from "./Message";
 
-function ChatScreen({ chat, messages }) {
+type ChatScreenProps = {
+  chat: {
+    id: string;
+    users: [string];
+  };
+  messages: string;
+};
+
+const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
   const user = window.Clerk.user;
   const router = useRouter();
   const endOfMessagesRef = useRef(null);
@@ -25,11 +33,11 @@ function ChatScreen({ chat, messages }) {
   const focusRef = useRef();
   const [imageToPost, setImageToPost] = useState(null);
   const { ref, isComponentVisible, setIsComponentVisible } =
-    useComponentVisible(false);
+    useComponentVisible();
   const [messagesSnapshot] = useCollection(
     db
       .collection("chats")
-      .doc(router.query.id)
+      .doc(router.query.id as string)
       .collection("messages")
       .orderBy("timestamp", "asc")
   );
@@ -79,17 +87,23 @@ function ChatScreen({ chat, messages }) {
           )}
           <Message
             key={message.id}
-            user={message.data().user}
-            message={{
-              ...message.data(),
-              timestamp: message.data().timestamp?.toDate().getTime(),
-            }}
+            creatorEmail={message.data().user}
+            message={
+              {
+                ...message.data(),
+                timestamp: message.data().timestamp?.toDate().getTime(),
+              } as any
+            }
           />
         </div>
       ));
     } else {
       return JSON.parse(messages).map((message) => (
-        <Message key={message.id} user={message.user} message={message} />
+        <Message
+          key={message.id}
+          creatorEmail={message.user}
+          message={message}
+        />
       ));
     }
   };
@@ -114,15 +128,17 @@ function ChatScreen({ chat, messages }) {
         },
         { merge: true }
       );
-    db.collection("chats").doc(router.query.id).set(
-      {
-        lastMessage: firebase.firestore.FieldValue.serverTimestamp(),
-      },
-      { merge: true }
-    );
+    db.collection("chats")
+      .doc(router.query.id as string)
+      .set(
+        {
+          lastMessage: firebase.firestore.FieldValue.serverTimestamp(),
+        },
+        { merge: true }
+      );
 
     db.collection("chats")
-      .doc(router.query.id)
+      .doc(router.query.id as string)
       .collection("messages")
       .add({
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -151,7 +167,7 @@ function ChatScreen({ chat, messages }) {
                 .getDownloadURL()
                 .then((url) => {
                   db.collection("chats")
-                    .doc(router.query.id)
+                    .doc(router.query.id as string)
                     .collection("messages")
                     .doc(doc.id)
                     .set(
@@ -281,6 +297,6 @@ function ChatScreen({ chat, messages }) {
       </form>
     </div>
   );
-}
+};
 
 export default ChatScreen;

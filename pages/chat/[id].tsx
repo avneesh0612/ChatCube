@@ -42,7 +42,7 @@ export async function getServerSideProps(context) {
     }))
     .map((messages) => ({
       ...messages,
-      timestamp: messages.timestamp.toDate().getTime(),
+      timestamp: (messages as any).timestamp.toDate().getTime(),
     }));
 
   const users = allusers.docs.map((user) => ({
