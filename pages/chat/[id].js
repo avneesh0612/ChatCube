@@ -16,7 +16,7 @@ function Chat({ chat, messages, users }) {
         <div className="md:flex hidden">
           <Sidebar users={users} />
         </div>
-        <div className="overflow-scroll h-screen hidescrollbar">
+        <div className="overflow-scroll h-[90vh] hidescrollbar">
           <ChatScreen chat={chat} messages={messages} />
         </div>
       </div>
@@ -44,6 +44,7 @@ export async function getServerSideProps(context) {
       ...messages,
       timestamp: messages.timestamp.toDate().getTime(),
     }));
+
   const users = allusers.docs.map((user) => ({
     id: user.id,
     ...user.data(),

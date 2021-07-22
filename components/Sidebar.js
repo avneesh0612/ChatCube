@@ -65,7 +65,7 @@ function Sidebar() {
   }
 
   return (
-    <div className="border-[1px] w-[30vw] border-indigo-500 dark:border-gray-700 h-[90vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
+    <div className="border-[1px] w-[30vw] border-indigo-500 dark:border-gray-700 h-[80vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
       <div className="flex sticky top-0 justify-between items-center p-4 h-20 bg-indigo-700 border-b-[1px] border-indigo-500 dark:border-gray-700 z-10">
         <Image
           width={56}
@@ -96,7 +96,7 @@ function Sidebar() {
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="fixed inset-0 z-50 overflow-y-auto"
           onClose={closeModal}
         >
           <div className="min-h-screen px-4 text-center">
@@ -134,7 +134,7 @@ function Sidebar() {
                 >
                   Start a chat with others
                 </Dialog.Title>
-                <div className="mt-2">
+                <div className="mt-2 h-[200px] overflow-y-scroll">
                   {users?.map(({ id, data: { name, email, photoURL } }) => (
                     <div
                       key={id}
@@ -146,7 +146,7 @@ function Sidebar() {
                       {email === user.primaryEmailAddress.emailAddress ? (
                         <div></div>
                       ) : (
-                        <div className="flex items-center cursor-pointer p-4 break-words bg-indigo-700 hover:bg-indigo-400 border-b-[1px] border-indigo-500 dark:border-gray-700 dark:hover:bg-gray-900 dark:text-white">
+                        <div className="flex items-center cursor-pointer p-4 break-words bg-indigo-700 hover:bg-indigo-400 border-b-[1px] border-indigo-500 dark:border-gray-700 dark:hover:bg-gray-900 dark:text-white rounded-xl my-1">
                           <Image
                             width={56}
                             height={56}

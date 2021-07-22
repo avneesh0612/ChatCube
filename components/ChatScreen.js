@@ -7,11 +7,12 @@ import firebase from "firebase";
 import TimeAgo from "timeago-react";
 import {
   PaperClipIcon,
-  MicrophoneIcon,
   ArrowLeftIcon,
+  EmojiHappyIcon,
 } from "@heroicons/react/outline";
 import Message from "./Message";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 function ChatScreen({ chat, messages }) {
   const user = window.Clerk.user;
@@ -88,7 +89,7 @@ function ChatScreen({ chat, messages }) {
   const sendMessage = (e) => {
     e.preventDefault();
 
-    if (!inputRef.current.value) return;
+    if (!inputRef.current.value) return toast.error("Please add a text");
 
     db.collection("users")
       .doc(window.Clerk.user.primaryEmailAddress.emailAddress)
@@ -98,6 +99,12 @@ function ChatScreen({ chat, messages }) {
         },
         { merge: true }
       );
+    db.collection("chats").doc(router.query.id).set(
+      {
+        lastMessage: firebase.firestore.FieldValue.serverTimestamp(),
+      },
+      { merge: true }
+    );
 
     db.collection("chats")
       .doc(router.query.id)
@@ -166,11 +173,11 @@ function ChatScreen({ chat, messages }) {
 
   const recipientEmail = getRecipientEmail(chat.users, user);
   return (
-    <div className="flex flex-col min-w-[60vw] h-[90vh] m-10 rounded-xl  bg-indigo-700">
-      <div className="sticky rounded-t-xl  bg-indigo-700 z-50 top-0 flex p-4 h-20 items-center border-[1px] border-indigo-500 dark:border-gray-700">
+    <div className="flex flex-col min-w-[63vw] h-[80vh] m-10 mb-0 rounded-xl  bg-indigo-700">
+      <div className="sticky rounded-t-xl  bg-indigo-700 z-30 top-0 flex p-4 h-20 items-center border-[1px] border-indigo-500 dark:border-gray-700">
         <ArrowLeftIcon
           onClick={() => router.push("/")}
-          className="md:!hidden focus:outline-none cursor-pointer text-gray-50"
+          className="md:!hidden focus:outline-none cursor-pointer h-6 w-6 text-gray-50 mr-2"
         />
         {recipient ? (
           <Image
@@ -218,7 +225,7 @@ function ChatScreen({ chat, messages }) {
           onClick={() => filepickerRef.current.click()}
           className="inputIcon"
         >
-          <PaperClipIcon className="text-black dark:text-gray-100 h-6 w-6 cursor-pointer" />
+          <PaperClipIcon className="text-black dark:text-gray-100 h-6 w-6 cursor-pointer mr-2" />
           <input
             onChange={addImageToPost}
             ref={filepickerRef}
@@ -226,6 +233,8 @@ function ChatScreen({ chat, messages }) {
             hidden
           />
         </div>
+        <EmojiHappyIcon className="text-black dark:text-gray-100 h-6 w-6 cursor-pointer ml-2" />
+
         <input
           className="w-full p-5 mx-4 bg-white border-none rounded-lg outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 dark:text-white"
           ref={inputRef}
@@ -235,7 +244,6 @@ function ChatScreen({ chat, messages }) {
         <button hidden type="submit" onClick={sendMessage}>
           Send Message
         </button>
-        <MicrophoneIcon className="text-black dark:text-gray-100 h-6 w-6" />
         {imageToPost && (
           <div
             onClick={removeImage}
