@@ -122,7 +122,6 @@ npm run dev
 ## Adding features
 
 Now if you login then the recipients and users list will be empty.
-![app](https://res.cloudinary.com/dssvrf9oz/image/upload/v1624364859/Screenshot_2021-06-22_175710_teadne.png)
 
 You can use some accounts to test your features.
 
