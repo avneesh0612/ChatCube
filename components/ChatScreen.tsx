@@ -2,6 +2,7 @@ import {
   ArrowLeftIcon,
   EmojiHappyIcon,
   PaperClipIcon,
+  MicrophoneIcon,
 } from "@heroicons/react/outline";
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
@@ -34,6 +35,14 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
   const [imageToPost, setImageToPost] = useState(null);
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible();
+
+  const SpeechRecognition =
+    window.SpeechRecognition || (window as any).webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+
+  var final_transcript = "";
+  recognition.interimResults = true;
+
   const [messagesSnapshot] = useCollection(
     db
       .collection("chats")
@@ -68,8 +77,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
           {message.data().image ? (
             <div
               className={`
-              w-[340px] h-[340px] flex
-               object-contain rounded-xl justify-center items-center
+              w-[340px] h-auto flex p-2
+              rounded-xl justify-center items-center
                ${
                  message.data().user === userLoggedIn
                    ? "ml-auto bg-indigo-900"
@@ -78,7 +87,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
               `}
             >
               <img
-                className="w-80 h-80 rounded-xl"
+                className="w-80 rounded-xl object-contain"
                 src={message.data().image}
               />
             </div>
@@ -106,6 +115,30 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
         />
       ));
     }
+  };
+
+  const textToSpeech = () => {
+    recognition.start();
+    setInput("");
+
+    function onResult(event) {
+      var interim_transcript = "";
+      for (var i = event.resultIndex; i < event.results.length; ++i) {
+        if (event.results[i].isFinal) {
+          final_transcript += event.results[i][0].transcript;
+          setInput(final_transcript);
+        } else {
+          interim_transcript += event.results[i][0].transcript;
+          setInput(interim_transcript);
+        }
+      }
+    }
+    recognition.addEventListener("result", onResult);
+
+    recognition.addEventListener("error", function (event) {
+      console.log("Speech recognition error detected: " + event.error);
+      alert(event.error);
+    });
   };
 
   const ScrollToBottom = () => {
@@ -259,13 +292,17 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
         <EmojiHappyIcon
           ref={ref}
           onClick={() => setIsComponentVisible(!isComponentVisible)}
-          className="text-black dark:text-gray-100 h-6 w-6 cursor-pointer ml-2"
+          className="text-black dark:text-gray-100 h-6 w-6 cursor-pointer ml-2 mr-2"
         />
         {isComponentVisible && (
           <span ref={ref} className="absolute z-50 mb-[500px]">
             <Picker onSelect={addEmoji} />
           </span>
         )}
+        <MicrophoneIcon
+          onClick={textToSpeech}
+          className="text-black dark:text-white h-6 w-6 ml-2 cursor-pointer"
+        />
         <input
           className="w-full p-5 mx-4 bg-white border-none rounded-lg outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 dark:text-white"
           value={input}
