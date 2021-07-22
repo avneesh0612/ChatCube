@@ -5,6 +5,7 @@ module.exports = {
       "corporatebytes.in",
       "images.clerk.dev",
       "firebasestorage.googleapis.com",
+      "lh3.googleusercontent.com",
     ],
   },
 
