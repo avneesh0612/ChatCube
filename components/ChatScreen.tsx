@@ -35,6 +35,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
   const [imageToPost, setImageToPost] = useState(null);
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible();
+  const [hearing, setHearing] = useState(false);
 
   const SpeechRecognition =
     window.SpeechRecognition || (window as any).webkitSpeechRecognition;
@@ -118,9 +119,6 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
   };
 
   const textToSpeech = () => {
-    recognition.start();
-    setInput("");
-
     function onResult(event) {
       var interim_transcript = "";
       for (var i = event.resultIndex; i < event.results.length; ++i) {
@@ -133,12 +131,32 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
         }
       }
     }
-    recognition.addEventListener("result", onResult);
 
-    recognition.addEventListener("error", function (event) {
-      console.log("Speech recognition error detected: " + event.error);
-      alert(event.error);
-    });
+    if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
+      // speech recognition API supported
+
+      recognition.start();
+      setInput("");
+
+      recognition.addEventListener("start", () => {
+        setHearing(true);
+      });
+
+      recognition.addEventListener("result", onResult);
+
+      recognition.addEventListener("end", () => {
+        setHearing(false);
+        focusRef.current.focus();
+      });
+
+      recognition.addEventListener("error", function (event) {
+        console.log("Speech recognition error detected: " + event.error);
+        setHearing(false);
+        alert(event.error);
+      });
+    } else {
+      alert("Your browser does not support speech recognition");
+    }
   };
 
   const ScrollToBottom = () => {
@@ -301,7 +319,9 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
         )}
         <MicrophoneIcon
           onClick={textToSpeech}
-          className="text-black dark:text-white h-6 w-6 ml-2 cursor-pointer"
+          className={`${
+            hearing && "bg-red-400 rounded-full"
+          } text-black dark:text-white h-6 w-6 ml-2 cursor-pointer`}
         />
         <input
           className="w-full p-5 mx-4 bg-white border-none rounded-lg outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 dark:text-white"
