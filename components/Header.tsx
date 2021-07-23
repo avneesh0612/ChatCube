@@ -18,7 +18,7 @@ function Header() {
           {colorTheme !== "dark" ? (
             <Image
               src="https://res.cloudinary.com/dssvrf9oz/image/upload/v1626881694/Aman-removebg-preview_pwjggi.png"
-              alt="logo"
+              alt="chatCube"
               width={100}
               height={100}
               objectFit="contain"
@@ -27,7 +27,7 @@ function Header() {
           ) : (
             <Image
               src="https://res.cloudinary.com/dssvrf9oz/image/upload/v1626881465/Logo_challenge-removebg-preview_adfynp.png"
-              alt="logo"
+              alt="chatCube"
               width={100}
               height={100}
               className="cursor-pointer"

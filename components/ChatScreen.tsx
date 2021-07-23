@@ -265,6 +265,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
               width={56}
               height={56}
               className="z-0 m-1 mr-4 rounded-full"
+              alt={recipient?.name}
               src={recipient?.photoURL}
             />
           ) : (

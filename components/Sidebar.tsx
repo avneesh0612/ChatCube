@@ -73,8 +73,9 @@ const Sidebar: React.FC<any> = () => {
             width={56}
             height={56}
             className="rounded-full cursor-pointer hover:opacity-80"
-            onClick={() => router.push("/user")}
+            onClick={() => router.push("/details")}
             src={user.profileImageUrl}
+            alt={user.fullName}
           />
         </div>
 
@@ -153,6 +154,7 @@ const Sidebar: React.FC<any> = () => {
                               width={56}
                               height={56}
                               src={photoURL}
+                              alt={name}
                               className="cursor-pointer rounded-full hover:opacity-80"
                             />
                             <div className="flex cursor-pointer break-words flex-col ml-3">
