@@ -76,7 +76,7 @@ const Sidebar: React.FC<any> = () => {
         />
       </div>
 
-      <div className="flex items-center justify-center   bg-lightblue dark:bg-indigo-700 p-3 border-b-[1px] border-darkblue dark:border-gray-700">
+      <div className="flex items-center justify-center bg-lightblue dark:bg-indigo-700 p-3 border-b-[1px] border-darkblue dark:border-gray-700">
         <div className="flex items-center justify-center p-3 text-black bg-white backdrop-filter backdrop-blur-2xl bg-opacity-10 rounded-xl w-80">
           <SearchIcon className="text-black dark:text-gray-50 w-6 h-6" />
           <input

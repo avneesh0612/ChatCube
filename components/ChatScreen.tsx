@@ -279,7 +279,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
             )}
           </h3>
           {recipientSnapshot ? (
-            <p className="text-sm dark:text-gray-500">
+            <p className="text-sm dark:text-gray-100">
               Last active:{` `}
               {recipient?.lastSeen?.toDate() ? (
                 <TimeAgo datetime={recipient?.lastSeen?.toDate()} />
