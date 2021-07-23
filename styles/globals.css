@@ -33,3 +33,25 @@
 a {
   text-decoration: underline;
 }
+
+body {
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0.8vw;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #111827 !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #4338c9;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #09053b;
+}

@@ -17,6 +17,7 @@ import { db, storage } from "../firebase";
 import useComponentVisible from "../hooks/useComponentVisible";
 import getRecipientEmail from "../utils/getRecipientEmail";
 import Message from "./Message";
+import Fade from "react-reveal/Fade";
 
 type ChatScreenProps = {
   chat: {
@@ -251,104 +252,106 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
 
   const recipientEmail = getRecipientEmail(chat.users, user);
   return (
-    <div className="flex m-4 flex-col md:w-[64vw] h-[80vh] md:m-1 md:ml-16 mt-0 mb-0 rounded-xl  bg-lightblue dark:bg-indigo-700 w-[93vw]">
-      <div className="sticky rounded-t-xl  bg-lightblue dark:bg-indigo-700 z-30 top-0 flex p-4 h-20 items-center">
-        <ArrowLeftIcon
-          onClick={() => router.push("/")}
-          className="md:!hidden focus:outline-none cursor-pointer h-6 w-6 text-gray-50 mr-2"
-        />
-        {recipient ? (
-          <Image
-            width={56}
-            height={56}
-            className="z-0 m-1 mr-4 rounded-full"
-            src={recipient?.photoURL}
+    <Fade right>
+      <div className="flex m-4 flex-col md:w-[63vw] h-[80vh] md:m-1 md:ml-16 mt-0 mb-0 rounded-xl  bg-lightblue dark:bg-indigo-700 w-[93vw]">
+        <div className="sticky rounded-t-xl  bg-lightblue dark:bg-indigo-700 z-30 top-0 flex p-4 h-20 items-center">
+          <ArrowLeftIcon
+            onClick={() => router.push("/")}
+            className="md:!hidden focus:outline-none cursor-pointer h-6 w-6 text-gray-50 mr-2"
           />
-        ) : (
-          <p className="z-0 flex items-center justify-center text-xl text-center text-black capitalize bg-gray-300 rounded-full w-14 h-14">
-            {recipientEmail[0]}
-          </p>
-        )}
-
-        <div className="flex-1 ml-4">
-          <h3 className="mb-1 dark:text-white">
-            {recipient?.userName ? (
-              <p>{recipient?.userName}</p>
-            ) : (
-              <p>{recipient?.name}</p>
-            )}
-          </h3>
-          {recipientSnapshot ? (
-            <p className="text-sm dark:text-gray-100">
-              Last active:{` `}
-              {recipient?.lastSeen?.toDate() ? (
-                <TimeAgo datetime={recipient?.lastSeen?.toDate()} />
-              ) : (
-                "Unavailable"
-              )}
-            </p>
+          {recipient ? (
+            <Image
+              width={56}
+              height={56}
+              className="z-0 m-1 mr-4 rounded-full"
+              src={recipient?.photoURL}
+            />
           ) : (
-            <p className="mb-1 dark:text-white">Loading Last active...</p>
+            <p className="z-0 flex items-center justify-center text-xl text-center text-black capitalize bg-gray-300 rounded-full w-14 h-14">
+              {recipientEmail[0]}
+            </p>
           )}
-        </div>
-      </div>
 
-      <div className="p-8 h-[66vh] border-t-[1px] border-indigo-500 dark:border-gray-700 overflow-scroll hidescrollbar">
-        {showMessages()}
-        <div className="" ref={endOfMessagesRef} />
-      </div>
-
-      <form className="flex items-center p-3 sticky rounded-b-xl border-t-[1px] border-indigo-500 dark:border-gray-700  bg-lightblue dark:bg-indigo-700 z-50">
-        <div
-          onClick={() => filepickerRef.current.click()}
-          className="inputIcon"
-        >
-          <PaperClipIcon className="text-black dark:text-gray-100 h-6 w-6 cursor-pointer mr-2" />
-          <input
-            onChange={addImageToPost}
-            ref={filepickerRef}
-            type="file"
-            hidden
-          />
-        </div>
-        <EmojiHappyIcon
-          ref={ref}
-          onClick={() => setIsComponentVisible(!isComponentVisible)}
-          className="text-black dark:text-gray-100 h-7 w-7 md:h-6 md:w-6 cursor-pointer mr-2"
-        />
-        {isComponentVisible && (
-          <span ref={ref} className="absolute z-50 mb-[500px]">
-            <Picker onSelect={addEmoji} />
-          </span>
-        )}
-        <MicrophoneIcon
-          onClick={textToSpeech}
-          className={`${
-            hearing && "text-red-500"
-          } text-black dark:text-white h-7 w-7 md:h-6 md:w-6 cursor-pointer`}
-        />
-        <input
-          className="w-full p-5 md:mx-4 bg-white border-none rounded-lg outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 dark:text-white ml-2"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          ref={focusRef}
-          type="text"
-        />
-
-        <button hidden type="submit" onClick={sendMessage}>
-          Send Message
-        </button>
-        {imageToPost && (
-          <div
-            onClick={removeImage}
-            className="flex flex-col transition duration-150 transform cursor-pointer filter hover:brightness-110 hover:scale-105"
-          >
-            <img className="object-contain h-10 " src={imageToPost} alt="" />
-            <p className="text-xs text-center text-red-500">Remove</p>
+          <div className="flex-1 ml-4">
+            <h3 className="mb-1 dark:text-white">
+              {recipient?.userName ? (
+                <p>{recipient?.userName}</p>
+              ) : (
+                <p>{recipient?.name}</p>
+              )}
+            </h3>
+            {recipientSnapshot ? (
+              <p className="text-sm dark:text-gray-100">
+                Last active:{` `}
+                {recipient?.lastSeen?.toDate() ? (
+                  <TimeAgo datetime={recipient?.lastSeen?.toDate()} />
+                ) : (
+                  "Unavailable"
+                )}
+              </p>
+            ) : (
+              <p className="mb-1 dark:text-white">Loading Last active...</p>
+            )}
           </div>
-        )}
-      </form>
-    </div>
+        </div>
+
+        <div className="p-8 h-[66vh] border-t-[1px] border-indigo-500 dark:border-gray-700 overflow-scroll hidescrollbar">
+          {showMessages()}
+          <div className="" ref={endOfMessagesRef} />
+        </div>
+
+        <form className="flex items-center p-3 sticky rounded-b-xl border-t-[1px] border-indigo-500 dark:border-gray-700  bg-lightblue dark:bg-indigo-700 z-50">
+          <div
+            onClick={() => filepickerRef.current.click()}
+            className="inputIcon"
+          >
+            <PaperClipIcon className="text-black dark:text-gray-100 h-6 w-6 cursor-pointer mr-2" />
+            <input
+              onChange={addImageToPost}
+              ref={filepickerRef}
+              type="file"
+              hidden
+            />
+          </div>
+          <EmojiHappyIcon
+            ref={ref}
+            onClick={() => setIsComponentVisible(!isComponentVisible)}
+            className="text-black dark:text-gray-100 h-7 w-7 md:h-6 md:w-6 cursor-pointer mr-2"
+          />
+          {isComponentVisible && (
+            <span ref={ref} className="absolute z-50 mb-[500px]">
+              <Picker onSelect={addEmoji} />
+            </span>
+          )}
+          <MicrophoneIcon
+            onClick={textToSpeech}
+            className={`${
+              hearing && "text-red-500"
+            } text-black dark:text-white h-7 w-7 md:h-6 md:w-6 cursor-pointer`}
+          />
+          <input
+            className="w-full p-5 md:mx-4 bg-white border-none rounded-lg outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 dark:text-white ml-2"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            ref={focusRef}
+            type="text"
+          />
+
+          <button hidden type="submit" onClick={sendMessage}>
+            Send Message
+          </button>
+          {imageToPost && (
+            <div
+              onClick={removeImage}
+              className="flex flex-col transition duration-150 transform cursor-pointer filter hover:brightness-110 hover:scale-105"
+            >
+              <img className="object-contain h-10 " src={imageToPost} alt="" />
+              <p className="text-xs text-center text-red-500">Remove</p>
+            </div>
+          )}
+        </form>
+      </div>
+    </Fade>
   );
 };
 
