@@ -65,7 +65,7 @@ const Sidebar: React.FC<any> = () => {
   }
 
   return (
-    <div className="border-[1px] w-[30vw] border-indigo-500 dark:border-gray-700 h-[80vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
+    <div className="border-[0px] w-[27vw] border-indigo-500 dark:border-gray-700 h-[80vh] m-5 mt-0 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
       <div className="flex sticky top-0 justify-between items-center p-4 h-20 bg-indigo-700 border-b-[1px] border-indigo-500 dark:border-gray-700 z-10">
         <Image
           width={56}

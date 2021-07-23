@@ -247,7 +247,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
 
   const recipientEmail = getRecipientEmail(chat.users, user);
   return (
-    <div className="flex flex-col min-w-[63vw] h-[80vh] m-10 mb-0 rounded-xl  bg-indigo-700">
+    <div className="flex flex-col min-w-[63vw] h-[80vh] m-1 ml-16 mt-0 mb-0 rounded-xl  bg-indigo-700">
       <div className="sticky rounded-t-xl  bg-indigo-700 z-30 top-0 flex p-4 h-20 items-center border-[1px] border-indigo-500 dark:border-gray-700">
         <ArrowLeftIcon
           onClick={() => router.push("/")}
