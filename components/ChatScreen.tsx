@@ -327,7 +327,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
           <MicrophoneIcon
             onClick={textToSpeech}
             className={`${
-              hearing && "text-red-500"
+              hearing && "text-red-500 dark:text-red-500"
             } text-black dark:text-white h-7 w-7 md:h-6 md:w-6 cursor-pointer`}
           />
           <input
