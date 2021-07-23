@@ -252,7 +252,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
   const recipientEmail = getRecipientEmail(chat.users, user);
   return (
     <div className="flex flex-col min-w-[67vw] h-[80vh] m-1 ml-16 mt-0 mb-0 rounded-xl  bg-lightblue dark:bg-indigo-700">
-      <div className="sticky rounded-t-xl  bg-lightblue dark:bg-indigo-700 z-30 top-0 flex p-4 h-20 items-center border-[1px] border-indigo-500 dark:border-gray-700">
+      <div className="sticky rounded-t-xl  bg-lightblue dark:bg-indigo-700 z-30 top-0 flex p-4 h-20 items-center">
         <ArrowLeftIcon
           onClick={() => router.push("/")}
           className="md:!hidden focus:outline-none cursor-pointer h-6 w-6 text-gray-50 mr-2"
@@ -293,12 +293,12 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
         </div>
       </div>
 
-      <div className="p-8 h-[66vh] border-[1px] border-indigo-500 overflow-scroll hidescrollbar">
+      <div className="p-8 h-[66vh] border-t-[1px] border-indigo-500 dark:border-gray-700 overflow-scroll hidescrollbar">
         {showMessages()}
         <div className="" ref={endOfMessagesRef} />
       </div>
 
-      <form className="flex items-center p-3 sticky rounded-b-xl border-[1px] border-indigo-500 dark:border-gray-700  bg-lightblue dark:bg-indigo-700 z-50">
+      <form className="flex items-center p-3 sticky rounded-b-xl border-t-[1px] border-indigo-500 dark:border-gray-700  bg-lightblue dark:bg-indigo-700 z-50">
         <div
           onClick={() => filepickerRef.current.click()}
           className="inputIcon"

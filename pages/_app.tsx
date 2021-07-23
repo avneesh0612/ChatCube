@@ -7,9 +7,6 @@ import {
   SignedOut,
 } from "@clerk/clerk-react";
 import { useRouter } from "next/router";
-import "../styles/nprogress.css";
-import nProgress from "nprogress";
-import Router from "next/router";
 import { useEffect } from "react";
 import { db } from "../firebase";
 import firebase from "firebase";
@@ -17,14 +14,9 @@ import { ToastContainer } from "react-toastify";
 import SEO from "@bradgarropy/next-seo";
 import { AppProps } from "next/app";
 import { UrlObject } from "url";
+import NextNProgress from "nextjs-progressbar";
 
 const clerkFrontendApi = process.env.NEXT_PUBLIC_CLERK_FRONTEND_API;
-
-nProgress.configure({ showSpinner: false });
-
-Router.events.on("routeChangeStart", nProgress.start);
-Router.events.on("routeChangeComplete", nProgress.done);
-Router.events.on("routeChangeError", nProgress.done);
 
 const publicPages = ["/sign-in/[[...index]]", "/sign-up/[[...index]]"];
 
@@ -55,6 +47,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     >
       <SEO title="ChatCube" description="A ChatCube" icon="/favicon.ico" />
       <ToastContainer />
+      <NextNProgress color="#4338CA" />
+
       {publicPages.includes(router.pathname) ? (
         <Component {...pageProps} />
       ) : (
