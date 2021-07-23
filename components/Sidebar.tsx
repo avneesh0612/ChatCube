@@ -65,8 +65,8 @@ const Sidebar: React.FC<any> = () => {
   }
 
   return (
-    <div className="border-[0px] w-[27vw] border-indigo-500 dark:border-gray-700 h-[80vh] m-5 mt-0 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
-      <div className="flex sticky top-0 justify-between items-center p-4 h-20 bg-indigo-700 border-b-[1px] border-indigo-500 dark:border-gray-700 z-10">
+    <div className="border-[1px] w-[30vw] border-darkblue dark:border-gray-700 h-[80vh] m-1 ml-5 mt-0 mb-0 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
+      <div className="flex sticky top-0 justify-between items-center p-4 h-20 bg-lightblue dark:bg-indigo-700 border-b-[1px] border-darkblue dark:border-gray-700 z-10">
         <Image
           width={56}
           height={56}
@@ -76,7 +76,7 @@ const Sidebar: React.FC<any> = () => {
         />
       </div>
 
-      <div className="flex items-center justify-center  bg-indigo-700 p-3 border-b-[1px] border-indigo-500 dark:border-gray-700">
+      <div className="flex items-center justify-center   bg-lightblue dark:bg-indigo-700 p-3 border-b-[1px] border-darkblue dark:border-gray-700">
         <div className="flex items-center justify-center p-3 text-black bg-white backdrop-filter backdrop-blur-2xl bg-opacity-10 rounded-xl w-80">
           <SearchIcon className="text-black dark:text-gray-50 w-6 h-6" />
           <input
@@ -88,7 +88,7 @@ const Sidebar: React.FC<any> = () => {
       </div>
 
       <button
-        className="w-full focus:outline-none border-b-[1px] py-2 border-indigo-500 dark:border-gray-700 hover:bg-indigo-400 bg-indigo-700 dark:!text-white dark:hover:bg-gray-900"
+        className="w-full focus:outline-none border-b-[1px] py-2 border-darkblue dark:border-gray-700 hover:bg-indigo-400 bg-lightblue dark:bg-indigo-700 dark:!text-white dark:hover:bg-gray-900"
         onClick={openModal}
       >
         Start a new chat
@@ -146,7 +146,7 @@ const Sidebar: React.FC<any> = () => {
                       {email === user.primaryEmailAddress.emailAddress ? (
                         <div></div>
                       ) : (
-                        <div className="flex items-center cursor-pointer p-4 break-words bg-indigo-700 hover:bg-indigo-400 border-b-[1px] border-indigo-500 dark:border-gray-700 dark:hover:bg-gray-900 dark:text-white rounded-xl my-1">
+                        <div className="flex items-center cursor-pointer p-4 break-words bg-lightblue dark:bg-indigo-700 hover:bg-indigo-400 border-b-[1px] border-darkblue dark:border-gray-700 dark:hover:bg-gray-900 dark:text-white rounded-xl my-1">
                           <Image
                             width={56}
                             height={56}
@@ -177,7 +177,7 @@ const Sidebar: React.FC<any> = () => {
         </Dialog>
       </Transition>
 
-      <div className="min-h-screen bg-indigo-700 ">
+      <div className="min-h-screen bg-lightblue dark:bg-indigo-700 ">
         {chatsSnapshot?.docs.map((chat) => (
           <Chat key={chat.id} id={chat.id} users={chat.data().users} />
         ))}

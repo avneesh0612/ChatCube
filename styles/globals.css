@@ -4,7 +4,7 @@
 
 @layer components {
   body {
-    @apply dark:bg-gray-900 bg-indigo-700;
+    @apply dark:bg-gray-900 bg-darkblue;
   }
 }
 
@@ -20,24 +20,6 @@
 .hidescrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-::-webkit-scrollbar {
-  width: 0.8vw;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background-color: #211982 !important;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: #0b0275;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #09053b;
 }
 
 .cl-component {

@@ -20,7 +20,7 @@ function Chat({ chat, messages, users }) {
   });
 
   return (
-    <div className="flex shadow-md flex-col">
+    <div className="flex shadow-md flex-col h-screen">
       <Head>
         <title>Chat</title>
       </Head>
@@ -29,7 +29,7 @@ function Chat({ chat, messages, users }) {
         <div className="md:flex hidden">
           <Sidebar users={users} />
         </div>
-        <div className="overflow-scroll h-[90vh] hidescrollbar">
+        <div className="overflow-scroll hidescrollbar">
           <ChatScreen chat={chat} messages={messages} />
         </div>
       </div>
