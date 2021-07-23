@@ -251,7 +251,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
 
   const recipientEmail = getRecipientEmail(chat.users, user);
   return (
-    <div className="flex flex-col min-w-[67vw] h-[80vh] m-1 ml-16 mt-0 mb-0 rounded-xl  bg-lightblue dark:bg-indigo-700">
+    <div className="flex m-4 flex-col md:w-[64vw] h-[80vh] md:m-1 md:ml-16 mt-0 mb-0 rounded-xl  bg-lightblue dark:bg-indigo-700 w-[93vw]">
       <div className="sticky rounded-t-xl  bg-lightblue dark:bg-indigo-700 z-30 top-0 flex p-4 h-20 items-center">
         <ArrowLeftIcon
           onClick={() => router.push("/")}
@@ -314,7 +314,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
         <EmojiHappyIcon
           ref={ref}
           onClick={() => setIsComponentVisible(!isComponentVisible)}
-          className="text-black dark:text-gray-100 h-6 w-6 cursor-pointer ml-2 mr-2"
+          className="text-black dark:text-gray-100 h-7 w-7 md:h-6 md:w-6 cursor-pointer mr-2"
         />
         {isComponentVisible && (
           <span ref={ref} className="absolute z-50 mb-[500px]">
@@ -325,10 +325,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
           onClick={textToSpeech}
           className={`${
             hearing && "text-red-500"
-          } text-black dark:text-white h-6 w-6 ml-2 cursor-pointer`}
+          } text-black dark:text-white h-7 w-7 md:h-6 md:w-6 cursor-pointer`}
         />
         <input
-          className="w-full p-5 mx-4 bg-white border-none rounded-lg outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 dark:text-white"
+          className="w-full p-5 md:mx-4 bg-white border-none rounded-lg outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 dark:text-white ml-2"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           ref={focusRef}
