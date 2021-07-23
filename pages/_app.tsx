@@ -15,6 +15,7 @@ import SEO from "@bradgarropy/next-seo";
 import { AppProps } from "next/app";
 import { UrlObject } from "url";
 import NextNProgress from "nextjs-progressbar";
+import useDarkMode from "../hooks/useDarkMode";
 
 const clerkFrontendApi = process.env.NEXT_PUBLIC_CLERK_FRONTEND_API;
 
@@ -22,6 +23,7 @@ const publicPages = ["/sign-in/[[...index]]", "/sign-up/[[...index]]"];
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
+  const [colorTheme, setTheme] = useDarkMode();
 
   useEffect(() => {
     if (window.Clerk?.user) {
@@ -47,7 +49,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     >
       <SEO title="ChatCube" description="A ChatCube" icon="/favicon.ico" />
       <ToastContainer />
-      <NextNProgress color="#4338CA" />
+      <NextNProgress color="#FE4098" />
 
       {publicPages.includes(router.pathname) ? (
         <Component {...pageProps} />
