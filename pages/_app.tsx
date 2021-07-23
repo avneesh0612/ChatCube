@@ -47,7 +47,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       frontendApi={clerkFrontendApi}
       navigate={(to: string | UrlObject) => router.push(to)}
     >
-      <SEO title="ChatCube" description="A ChatCube" icon="/favicon.ico" />
+      <SEO title="ChatCube" description="A ChatCube" icon="/icon.png" />
       <ToastContainer />
       <NextNProgress color="#FE4098" />
 
