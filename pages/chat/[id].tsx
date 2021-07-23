@@ -4,8 +4,21 @@ import Sidebar from "../../components/Sidebar";
 import ChatScreen from "../../components/ChatScreen";
 import Head from "next/head";
 import Header from "../../components/Header";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 function Chat({ chat, messages, users }) {
+  const router = useRouter();
+  useEffect(() => {
+    if (
+      chat.users.includes(
+        window.Clerk.user.primaryEmailAddress.emailAddress
+      ) === false
+    ) {
+      router.push("/");
+    }
+  });
+
   return (
     <div className="flex shadow-md flex-col">
       <Head>
