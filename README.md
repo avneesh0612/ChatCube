@@ -130,3 +130,7 @@ You can use some accounts to test your features.
 Checkout [this](https://medium.com/weekly-webtips/how-to-contribute-to-an-open-source-project-and-make-a-pr-cc92f6c9831d) article to make a PR
 
 You have successfully created a pull request and I will review and merge it soon.
+
+[
+![Contributors](https://contrib.rocks/image?repo=avneesh0612/ChatCube)
+](https://github.com/avneesh0612/ChatCube/graphs/contributors)
