@@ -15,12 +15,7 @@ If you use yarn then run
 ```bash
 yarn install
 ```
-
-and if you use npm delete yarn.lock and run
-
-```bash
-npm install
-```
+This project is using yarn so stick to yarn
 
 ### Creating a new branch
 
