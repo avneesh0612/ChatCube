@@ -39,7 +39,7 @@ function Header() {
             className={`text-lg font-medium ${
               location === "/"
                 ? "text-indigo-800"
-                : "text-gray-900 dark:text-gray-300"
+                : "text-gray-900 dark:text-gray-100"
             } duration-75 delay-75 cursor-pointer hover:text-xl hover:underline `}
           >
             Home
@@ -47,10 +47,10 @@ function Header() {
         </Link>
         <Link href="/user">
           <p
-            className={`text-lg font-medium${
+            className={`text-lg font-medium ${
               location === "/user"
                 ? "text-indigo-800"
-                : "text-gray-900 dark:text-gray-300"
+                : "text-gray-900 dark:text-gray-100"
             } duration-75 delay-75 cursor-pointer hover:text-xl hover:underline `}
           >
             Profile

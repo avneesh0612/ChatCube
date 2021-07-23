@@ -65,8 +65,8 @@ const Sidebar: React.FC<any> = () => {
   }
 
   return (
-    <div className="border-[1px] w-[30vw] border-indigo-500 dark:border-gray-700 h-[80vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
-      <div className="flex sticky top-0 justify-between items-center p-4 h-20 bg-indigo-700 border-b-[1px] border-indigo-500 dark:border-gray-700 z-10">
+    <div className="border-[1px] w-[30vw] border-darkblue dark:border-gray-700 h-[80vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
+      <div className="flex sticky top-0 justify-between items-center p-4 h-20 bg-lightblue dark:bg-indigo-700 border-b-[1px] border-darkblue dark:border-gray-700 z-10">
         <Image
           width={56}
           height={56}
@@ -75,12 +75,11 @@ const Sidebar: React.FC<any> = () => {
           src={user.profileImageUrl}
         />
       </div>
-
-      <div className="flex items-center justify-center  bg-indigo-700 p-3 border-b-[1px] border-indigo-500 dark:border-gray-700">
+      <div className="flex items-center justify-center bg-lightblue dark:bg-indigo-700 p-3 border-b-[1px] border-darkblue dark:border-gray-700">
         <div className="flex items-center justify-center p-3 text-black bg-white backdrop-filter backdrop-blur-2xl bg-opacity-10 rounded-xl w-80">
-          <SearchIcon className="text-black dark:text-gray-50 w-6 h-6" />
+          <SearchIcon className="text-white dark:text-gray-50 w-6 h-6" />
           <input
-            className="flex-1 ml-3 text-black bg-transparent border-none outline-none dark:text-white"
+            className="flex-1 ml-3 placeholder-white text-white bg-transparent border-none outline-none dark:text-white"
             placeholder="Search in chats"
             type="text"
           />
@@ -88,7 +87,7 @@ const Sidebar: React.FC<any> = () => {
       </div>
 
       <button
-        className="w-full focus:outline-none border-b-[1px] py-2 border-indigo-500 dark:border-gray-700 hover:bg-indigo-400 bg-indigo-700 dark:!text-white dark:hover:bg-gray-900"
+        className="w-full focus:outline-none bg-lightblue dark:bg-indigo-700 border-b-[1px] py-2 border-darkblue dark:border-gray-700 text-white hover:bg-darkblue dark:!text-white dark:hover:bg-gray-900"
         onClick={openModal}
       >
         Start a new chat
@@ -134,7 +133,7 @@ const Sidebar: React.FC<any> = () => {
                 >
                   Start a chat with others
                 </Dialog.Title>
-                <div className="mt-2 h-[200px] overflow-y-scroll">
+                <div className="mt-2 h-[400px] overflow-y-scroll">
                   {users?.map(({ id, data: { name, email, photoURL } }) => (
                     <div
                       key={id}
@@ -177,7 +176,7 @@ const Sidebar: React.FC<any> = () => {
         </Dialog>
       </Transition>
 
-      <div className="min-h-screen bg-indigo-700 ">
+      <div className="min-h-screen bg-lightblue dark:bg-indigo-700 ">
         {chatsSnapshot?.docs.map((chat) => (
           <Chat key={chat.id} id={chat.id} users={chat.data().users} />
         ))}

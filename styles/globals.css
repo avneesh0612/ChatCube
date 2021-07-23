@@ -4,7 +4,7 @@
 
 @layer components {
   body {
-    @apply dark:bg-gray-900 bg-indigo-700;
+    @apply dark:bg-gray-900 bg-darkblue;
   }
 }
 
@@ -27,17 +27,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background-color: #f1f1f1 !important;
+  background-color: #111827 !important;
 }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #dbd6d6;
+  background-color: #655ce6;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #a8a8a8;
+  background-color: #60A5FA;
 }
 
 .cl-component {

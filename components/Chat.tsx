@@ -35,7 +35,7 @@ const Chat: React.FC<ChatProps> = ({ id, users }) => {
 
   return (
     <div
-      className="flex items-center cursor-pointer p-4 break-words bg-indigo-700 hover:bg-indigo-400 border-b-[1px] border-indigo-500 dark:border-gray-700 dark:hover:bg-gray-900 dark:text-white"
+      className="flex items-center cursor-pointer p-4 break-words bg-lightblue dark:bg-indigo-700 hover:bg-darkblue hover:text-white border-b-[1px] border-darkblue dark:border-gray-700 dark:hover:bg-gray-900 text-white"
       onClick={enterChat}
     >
       {recipient ? (
@@ -46,7 +46,7 @@ const Chat: React.FC<ChatProps> = ({ id, users }) => {
           src={recipient?.photoURL}
         />
       ) : (
-        <p className="text-center flex items-center justify-center z-0 w-14 h-14 rounded-full bg-gray-300 text-black text-xl capitalize">
+        <p className="text-center flex items-center justify-center z-0 w-14 h-14 rounded-full bg-gray-300 text-white text-xl capitalize">
           {recipientEmail[0]}
         </p>
       )}

@@ -7,6 +7,11 @@ module.exports = {
       width: {
         screen: "99.5vw",
       },
+      colors: {
+        lightblue: "#655ce6",
+        darkblue: "#3b30e0",
+        strongblue:"#271dc0",
+      },
     },
   },
   variants: {
