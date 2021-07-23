@@ -28,16 +28,16 @@
 
 ::-webkit-scrollbar-track {
   border-radius: 10px;
-  background-color: #f1f1f1 !important;
+  background-color: #211982 !important;
 }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #dbd6d6;
+  background-color: #0b0275;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #a8a8a8;
+  background-color: #09053b;
 }
 
 .cl-component {
