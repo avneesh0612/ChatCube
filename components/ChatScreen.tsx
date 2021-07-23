@@ -89,6 +89,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
               `}
             >
               <img
+                alt={message.data().user}
                 className="w-80 rounded-xl object-contain"
                 src={message.data().image}
               />
@@ -345,7 +346,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
               onClick={removeImage}
               className="flex flex-col transition duration-150 transform cursor-pointer filter hover:brightness-110 hover:scale-105"
             >
-              <img className="object-contain h-10 " src={imageToPost} alt="" />
+              <img
+                alt={recipient?.name}
+                className="object-contain h-10 "
+                src={imageToPost}
+              />
               <p className="text-xs text-center text-red-500">Remove</p>
             </div>
           )}
