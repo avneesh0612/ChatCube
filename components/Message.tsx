@@ -1,6 +1,7 @@
 import moment from "moment";
 import React from "react";
 import { MessageType } from "../types/MessageType";
+import Linkify from "react-linkify";
 
 type MessageProps = {
   message: MessageType;
@@ -22,7 +23,7 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail }) => {
             : "bg-blue-900 text-center"
         }`}
       >
-        {message.message}
+        <Linkify>{message.message}</Linkify>
         <p className="text-gray-400 min-w-[80px] p-2 text-xs absolute bottom-0 text-right right-0 mt-3">
           {message.timestamp ? moment(message.timestamp).format("LT") : "..."}
         </p>

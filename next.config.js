@@ -6,7 +6,7 @@ module.exports = {
       "images.clerk.dev",
       "firebasestorage.googleapis.com",
       "lh3.googleusercontent.com",
-      "lh3.googleusercontent.com",
+      "avatars.githubusercontent.com",
     ],
   },
 

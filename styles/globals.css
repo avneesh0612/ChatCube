@@ -47,3 +47,7 @@
 .emoji-mart-title-label {
   display: none;
 }
+
+a {
+  text-decoration: underline;
+}

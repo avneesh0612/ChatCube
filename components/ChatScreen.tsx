@@ -9,7 +9,7 @@ import "emoji-mart/css/emoji-mart.css";
 import firebase from "firebase";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { toast } from "react-toastify";
 import TimeAgo from "timeago-react";
@@ -244,6 +244,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
   const removeImage = () => {
     setImageToPost(null);
   };
+
+  useEffect(() => {
+    ScrollToBottom();
+  });
 
   const recipientEmail = getRecipientEmail(chat.users, user);
   return (

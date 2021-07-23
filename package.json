@@ -12,7 +12,7 @@
     "@heroicons/react": "^1.0.2",
     "email-validator": "^2.0.4",
     "emoji-mart": "^3.0.1",
-    "firebase": "^8.7.1",
+    "firebase": "^8.8.0",
     "framer-motion": "^4.1.17",
     "moment": "^2.29.1",
     "next": "latest",
@@ -20,6 +20,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-firebase-hooks": "^3.0.4",
+    "react-linkify": "^1.0.0-alpha",
     "react-toastify": "^7.0.4",
     "timeago-react": "^3.0.3"
   },
