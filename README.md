@@ -108,12 +108,6 @@ If you are using yarn then run
 yarn dev
 ```
 
-and if you using npm run
-
-```bash
-npm run dev
-```
-
 ## Adding features
 
 Now if you login then the recipients and users list will be empty.
