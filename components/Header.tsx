@@ -78,7 +78,17 @@ function Header() {
 
         <div>
           <SignedOut>
-            <Link href="/sign-in">Sign in</Link>
+            <Link href="/sign-in">
+              <p
+                className={`text-lg font-medium  ${
+                  location === "/sign-in"
+                    ? "text-indigo-800 dark:text-white underline"
+                    : " text-gray-900 dark:text-gray-300"
+                } duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl hover:underline `}
+              >
+                Sign in
+              </p>
+            </Link>
           </SignedOut>
           <SignedIn>
             <UserButton />
