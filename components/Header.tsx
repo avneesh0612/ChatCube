@@ -13,7 +13,7 @@ function Header() {
 
   return (
     <Fade top>
-      <header className="flex items-center justify-between px-5 m-4 bg-white dark:bg-indigo-700 dark:text-gray-300 rounded-3xl">
+      <header className="flex items-center justify-between px-5 m-4 bg-white dark:bg-indigo-700 dark:text-gray-300 rounded-xl">
         <Link href="/">
           {colorTheme !== "dark" ? (
             <Image

@@ -335,7 +335,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
             } text-black dark:text-white h-7 w-7 md:h-6 md:w-6 cursor-pointer`}
           />
           <input
-            className="w-full p-5 md:mx-4 bg-white border-none rounded-lg outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 dark:text-white ml-2"
+            className="w-full p-5 md:mx-4 bg-white border-none rounded-xl outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 dark:text-white ml-2"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             ref={focusRef}
