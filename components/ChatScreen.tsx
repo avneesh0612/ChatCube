@@ -344,10 +344,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
           />
 
           <button type="submit" onClick={sendMessage}>
-            <PaperAirplaneIcon
-              onClick={sendMessage}
-              className="text-black rotate-90 dark:text-gray-100 h-7 w-7 md:h-6 md:w-6 cursor-pointer mr-2"
-            />
+            <PaperAirplaneIcon className="text-black rotate-90 dark:text-gray-100 h-7 w-7 md:h-6 md:w-6 cursor-pointer mr-2" />
           </button>
           {imageToPost && (
             <div
