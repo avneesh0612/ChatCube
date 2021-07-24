@@ -99,7 +99,7 @@ const Sidebar: React.FC<any> = () => {
           <Image
             width={64}
             height={64}
-            objectFit="contain"
+            objectFit="cover"
             className="rounded-full cursor-pointer hover:opacity-80"
             onClick={() => router.push("/user")}
             src={user.profileImageUrl}
