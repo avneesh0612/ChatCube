@@ -180,7 +180,7 @@ const Sidebar: React.FC<any> = () => {
                   </Dialog.Title>
                   <input
                     ref={inputFocusRef}
-                    className="w-full p-5 text-blue-900 bg-blue-600 rounded-xl outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 focus-visible:ring-blue-500"
+                    className="w-full mt-3 p-5 text-blue-900 bg-blue-600 rounded-xl outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 focus-visible:ring-blue-500"
                     placeholder="Search for someone"
                     value={inputValue}
                     onChange={onChange}
