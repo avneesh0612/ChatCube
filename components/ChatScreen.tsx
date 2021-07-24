@@ -106,6 +106,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
                 timestamp: message.data().timestamp?.toDate().getTime(),
               } as any
             }
+            id={message.id}
           />
         </div>
       ));
@@ -115,6 +116,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
           key={message.id}
           creatorEmail={message.user}
           message={message}
+          id={message.id}
         />
       ));
     }
@@ -313,6 +315,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
               ref={filepickerRef}
               type="file"
               hidden
+              accept="image/*"
             />
           </div>
           <EmojiHappyIcon
