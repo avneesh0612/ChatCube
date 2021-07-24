@@ -2,11 +2,12 @@ import moment from "moment";
 import React, { useRef } from "react";
 import { MessageType } from "../types/MessageType";
 import Linkify from "react-linkify";
-import { PencilIcon, TrashIcon } from "@heroicons/react/outline";
+import { PencilIcon, TrashIcon, DotsVerticalIcon } from "@heroicons/react/outline";
 import { db } from "../firebase";
 import { useRouter } from "next/router";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
+import { Menu } from '@headlessui/react';
 
 type MessageProps = {
   message: MessageType;
@@ -74,16 +75,27 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
             </span>
           </Linkify>
           {TypeOfMessage === "Sender" && (
-            <div className="flex items-end justify-end w-full">
-              <PencilIcon
-                className="w-6 h-6 cursor-pointer"
-                onClick={openModal}
-              />
-              <TrashIcon
-                className="w-6 h-6 cursor-pointer"
-                onClick={deleteMessage}
-              />
-            </div>
+            <Menu>
+            <Menu.Button><DotsVerticalIcon className="w-4 h-4 cursor-pointer"/></Menu.Button>
+            <Menu.Items className="flex">
+              <Menu.Item>
+                {({ active }) => (
+                 <PencilIcon
+                 className="w-6 h-6 m-2 cursor-pointer"
+                 onClick={openModal}
+               />
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                    <TrashIcon
+                    className="w-6 h-6 m-2 cursor-pointer"
+                    onClick={deleteMessage}
+                  />
+                )}
+              </Menu.Item>
+            </Menu.Items>
+          </Menu>
           )}
         </div>
         <p className="text-gray-400 min-w-[80px] p-2 text-xs absolute bottom-0 text-right right-0 mt-3">
