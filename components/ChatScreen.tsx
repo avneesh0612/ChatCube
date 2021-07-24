@@ -3,6 +3,7 @@ import {
   EmojiHappyIcon,
   PaperClipIcon,
   MicrophoneIcon,
+  PaperAirplaneIcon,
 } from "@heroicons/react/outline";
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
@@ -342,8 +343,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
             type="text"
           />
 
-          <button hidden type="submit" onClick={sendMessage}>
-            Send Message
+          <button type="submit" onClick={sendMessage}>
+            <PaperAirplaneIcon
+              onClick={sendMessage}
+              className="text-black rotate-90 dark:text-gray-100 h-7 w-7 md:h-6 md:w-6 cursor-pointer mr-2"
+            />
           </button>
           {imageToPost && (
             <div
