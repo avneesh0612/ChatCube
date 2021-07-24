@@ -26,10 +26,12 @@ const Sidebar: React.FC<any> = () => {
   const router = useRouter();
   const user = window.Clerk.user;
   const [users, setUsers] = useState([]);
-  const [showSuggestions, setShowSuggestions] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-  console.log(showSuggestions);
+
+  useEffect(() => {
+    setFilteredSuggestions(users);
+  }, [users]);
 
   useEffect(() => {
     db.collection("users")
@@ -86,7 +88,6 @@ const Sidebar: React.FC<any> = () => {
         user.data.name?.toLowerCase().indexOf(userInput.toLowerCase()) > -1
     );
     setFilteredSuggestions(filteredSuggestions.slice(0, 10));
-    setShowSuggestions(true);
     setInputValue(e.currentTarget.value);
   };
 
