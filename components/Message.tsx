@@ -19,16 +19,16 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
     .emailAddress;
   const TypeOfMessage = creatorEmail === userLoggedIn ? "Sender" : "Reciever";
   const router = useRouter();
-  const [showModal, setshowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const editedMessage = useRef<HTMLInputElement>();
 
   function closeModal() {
-    setshowModal(false);
+    setShowModal(false);
   }
 
   function openModal() {
-    setshowModal(true);
+    setShowModal(true);
   }
 
   const editMessage = (e) => {
@@ -45,7 +45,7 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
         },
         { merge: true }
       );
-    setshowModal(false);
+    setShowModal(false);
   };
 
   const deleteMessage = () => {
@@ -58,7 +58,7 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
 
   return (
     <div className="min-w-[80px]">
-      <p
+      <div
         style={{ width: "fit-content" }}
         className={`p-4 rounded-lg m-3 min-w-[80px] pb-7 relative text-center break-all text-white ${
           TypeOfMessage === "Sender"
@@ -75,15 +75,21 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
           </Linkify>
           {TypeOfMessage === "Sender" && (
             <div className="flex items-end justify-end w-full">
-              <PencilIcon className="w-6 h-6" onClick={openModal} />
-              <TrashIcon className="w-6 h-6" onClick={deleteMessage} />
+              <PencilIcon
+                className="w-6 h-6 cursor-pointer"
+                onClick={openModal}
+              />
+              <TrashIcon
+                className="w-6 h-6 cursor-pointer"
+                onClick={deleteMessage}
+              />
             </div>
           )}
         </div>
         <p className="text-gray-400 min-w-[80px] p-2 text-xs absolute bottom-0 text-right right-0 mt-3">
           {message.timestamp ? moment(message.timestamp).format("LT") : "..."}
         </p>
-      </p>
+      </div>
       <Transition appear show={showModal} as={Fragment}>
         <Dialog
           as="div"
@@ -102,7 +108,6 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
             >
               <Dialog.Overlay className="fixed inset-0" />
             </Transition.Child>
-
             <span
               className="inline-block h-screen align-middle"
               aria-hidden="true"
@@ -146,7 +151,8 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
                   </div>
                 </form>
               </div>
-            </Transition.Child>
+            </Transition.Child>{" "}
+            cursor-pointer
           </div>
         </Dialog>
       </Transition>
