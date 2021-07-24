@@ -28,6 +28,7 @@ const Sidebar: React.FC<any> = () => {
   const [users, setUsers] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const [filteredChat, setFilteredChat] = useState([]);
 
   useEffect(() => {
     setFilteredSuggestions(users);
@@ -96,8 +97,9 @@ const Sidebar: React.FC<any> = () => {
       <div className="border-[1px] m-4 md:w-[30vw] border-darkblue dark:border-gray-700 h-[80vh] md:m-1 md:ml-5 mt-0 mb-0 min-w-[300px] overflow-y-scroll hidescrollbar rounded-xl">
         <div className="flex sticky top-0 justify-between items-center p-4 h-20 bg-lightblue dark:bg-indigo-700 border-b-[1px] border-darkblue dark:border-gray-700 z-10">
           <Image
-            width={56}
-            height={56}
+            width={64}
+            height={64}
+            objectFit="cover"
             className="rounded-full cursor-pointer hover:opacity-80"
             onClick={() => router.push("/user")}
             src={user.profileImageUrl}
@@ -156,7 +158,7 @@ const Sidebar: React.FC<any> = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-xl">
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
@@ -164,7 +166,7 @@ const Sidebar: React.FC<any> = () => {
                     Start a chat with others
                   </Dialog.Title>
                   <input
-                    className="w-full p-5 text-blue-900 bg-blue-600 rounded-lg outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 focus-visible:ring-blue-500"
+                    className="w-full p-5 text-blue-900 bg-blue-600 rounded-xl outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 focus-visible:ring-blue-500"
                     placeholder="Search for someone"
                     value={inputValue}
                     onChange={onChange}
@@ -204,7 +206,7 @@ const Sidebar: React.FC<any> = () => {
                   <div className="mt-4">
                     <button
                       type="button"
-                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-xl hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                       onClick={closeModal}
                     >
                       I will chat later!
