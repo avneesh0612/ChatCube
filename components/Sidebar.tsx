@@ -28,6 +28,7 @@ const Sidebar: React.FC<any> = () => {
   const [users, setUsers] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const [filteredChat, setFilteredChat] = useState([]);
 
   useEffect(() => {
     setFilteredSuggestions(users);
