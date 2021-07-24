@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useEffect } from "react";
+import React, { ChangeEventHandler, useEffect, useRef } from "react";
 import { db } from "../firebase";
 import Chat from "./Chat";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -11,6 +11,7 @@ import { Fragment, useState } from "react";
 import * as EmailValidator from "email-validator";
 import { toast } from "react-toastify";
 import Fade from "react-reveal/Fade";
+import { useKeyPress } from "../hooks/useKeyPress";
 
 interface User {
   id: string;
@@ -28,7 +29,18 @@ const Sidebar: React.FC<any> = () => {
   const [users, setUsers] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-  const [filteredChat, setFilteredChat] = useState([]);
+
+  const slashpress = useKeyPress("/");
+  const escpress = useKeyPress("Escape");
+  const inputFocusRef = useRef<HTMLInputElement>();
+
+  useEffect(() => {
+    slashpress && inputFocusRef.current.focus();
+  }, [slashpress]);
+
+  useEffect(() => {
+    escpress && inputFocusRef.current.blur();
+  }, [escpress]);
 
   useEffect(() => {
     setFilteredSuggestions(users);
@@ -72,7 +84,7 @@ const Sidebar: React.FC<any> = () => {
         chat.data().users.find((user) => user === recipientEmail)?.length > 0
     );
 
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   function openModal() {
     setIsOpen(true);
@@ -111,7 +123,8 @@ const Sidebar: React.FC<any> = () => {
           <div className="flex items-center justify-center p-3 text-black bg-white backdrop-filter backdrop-blur-2xl bg-opacity-10 rounded-xl w-80">
             <SearchIcon className="text-black dark:text-gray-50 w-6 h-6" />
             <input
-              className="flex-1 ml-3 text-black bg-transparent border-none outline-none dark:text-white"
+              ref={inputFocusRef}
+              className="flex-1 ml-3 text-black placeholder-black dark:placeholder-white bg-transparent border-none outline-none dark:text-white"
               placeholder="Search in chats"
               type="text"
             />
@@ -119,7 +132,7 @@ const Sidebar: React.FC<any> = () => {
         </div>
 
         <button
-          className="w-full focus:outline-none border-b-[1px] py-2 border-darkblue dark:border-gray-700 hover:bg-indigo-400 bg-lightblue dark:bg-indigo-700 dark:!text-white dark:hover:bg-gray-900"
+          className="w-full focus:outline-none border-b-[1px] py-2 border-darkblue dark:border-gray-700 hover:bg-darkblue bg-lightblue dark:bg-indigo-700 dark:!text-white dark:hover:bg-gray-900"
           onClick={openModal}
         >
           Start a new chat
@@ -166,6 +179,7 @@ const Sidebar: React.FC<any> = () => {
                     Start a chat with others
                   </Dialog.Title>
                   <input
+                    ref={inputFocusRef}
                     className="w-full p-5 text-blue-900 bg-blue-600 rounded-xl outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 focus-visible:ring-blue-500"
                     placeholder="Search for someone"
                     value={inputValue}
