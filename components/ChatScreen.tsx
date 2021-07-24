@@ -154,7 +154,6 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
       });
 
       recognition.addEventListener("error", function (event) {
-        console.log("Speech recognition error detected: " + event.error);
         setHearing(false);
         alert(event.error);
       });
@@ -206,7 +205,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
             "state_changed",
             null,
             (error) => {
-              console.log(error);
+              toast.error(error);
             },
             () => {
               storage

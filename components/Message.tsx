@@ -31,8 +31,6 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
     setshowModal(true);
   }
 
-  console.log(id);
-
   const editMessage = (e) => {
     e.preventDefault();
 
@@ -64,8 +62,8 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
         style={{ width: "fit-content" }}
         className={`p-4 rounded-lg m-3 min-w-[80px] pb-7 relative text-center break-all text-white ${
           TypeOfMessage === "Sender"
-            ? "ml-auto bg-indigo-900 "
-            : "bg-blue-900 text-center"
+            ? "ml-auto bg-indigo-900 text-left"
+            : "bg-blue-900 text-left"
         }`}
       >
         <div>
@@ -76,7 +74,7 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
             </span>
           </Linkify>
           {TypeOfMessage === "Sender" && (
-            <div className="flex">
+            <div className="flex items-end justify-end w-full">
               <PencilIcon className="w-6 h-6" onClick={openModal} />
               <TrashIcon className="w-6 h-6" onClick={deleteMessage} />
             </div>
