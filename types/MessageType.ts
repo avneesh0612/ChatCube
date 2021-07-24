@@ -4,4 +4,5 @@ export type MessageType = {
   photoURL: string;
   image?: string;
   message: string;
+  edited?: boolean;
 };

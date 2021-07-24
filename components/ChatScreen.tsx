@@ -192,6 +192,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
         message: input,
         user: user.primaryEmailAddress.emailAddress,
         photoURL: user.profileImageUrl,
+        edited: false,
       })
       .then((doc) => {
         if (imageToPost) {

@@ -43,6 +43,7 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
       .set(
         {
           message: editedMessage.current.value,
+          edited: true,
         },
         { merge: true }
       );
@@ -68,7 +69,12 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
         }`}
       >
         <div>
-          <Linkify>{message.message}</Linkify>
+          <Linkify>
+            {message.message}{" "}
+            <span className="text-gray-400 text-sm">
+              {message.edited && "(edited)"}
+            </span>
+          </Linkify>
           {TypeOfMessage === "Sender" && (
             <div className="flex">
               <PencilIcon className="w-6 h-6" onClick={openModal} />
