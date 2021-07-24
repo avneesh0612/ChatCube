@@ -49,20 +49,21 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     >
       <SEO
         title="ChatCube"
-        description="A ChatCube"
+        description="This is a 1:1 chatting app"
+        keywords={["chatting", "chat", "message"]}
         icon="/Icon.png"
-        keywords={["website", "blog", "portfolio"]}
         facebook={{
-          image: "/facebook.png",
-          url: "https://website.com",
+          image: "/Logo.png",
+          url: "https://www.chatcube.me/",
           type: "website",
         }}
         twitter={{
-          image: "/twitter.png",
-          site: "@bradgarropy",
+          image: "/Logo.png",
+          site: "@AvneeshAgarwa12",
           card: "summary",
         }}
       />
+
       <ToastContainer />
       <NextNProgress color="#FE4098" />
 
