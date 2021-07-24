@@ -164,7 +164,7 @@ const Sidebar: React.FC<any> = () => {
                   </Dialog.Title>
                   <input
                     className="w-full p-5 text-blue-900 bg-blue-600 rounded-lg outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 focus-visible:ring-blue-500"
-                    placeholder="Your edited message"
+                    placeholder="Search for someone"
                     value={inputValue}
                     onChange={onChange}
                   />
