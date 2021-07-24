@@ -14,7 +14,7 @@ function Header() {
   return (
     <Fade top>
       <header className="flex items-center justify-between px-5 m-4 bg-white dark:bg-indigo-700 dark:text-gray-300 rounded-xl">
-        <Link href="/">
+        <Link passHref href="/">
           {colorTheme !== "dark" ? (
             <Image
               src="https://res.cloudinary.com/dssvrf9oz/image/upload/v1626881694/Aman-removebg-preview_pwjggi.png"
@@ -36,37 +36,37 @@ function Header() {
           )}
         </Link>
         <div className="flex items-center w-1/3 h-full justify-evenly">
-          <Link href="/">
-            <p
+          <Link passHref href="/">
+            <a
               className={`text-lg font-medium  ${
                 location === "/"
                   ? "text-indigo-800 dark:text-white underline"
                   : " text-gray-900 dark:text-gray-300"
-              } duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl hover:underline `}
+              } duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl no-underline hover:underline `}
             >
               Home
-            </p>
+            </a>
           </Link>
-          <Link href="/user">
-            <p
+          <Link passHref href="/user">
+            <a
               className={`text-lg font-medium  ${
                 location === "/user"
                   ? "text-indigo-800 dark:text-white underline"
                   : " text-gray-900 dark:text-gray-300"
-              } duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl hover:underline `}
+              } duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl no-underline hover:underline `}
             >
               Profile
-            </p>
+            </a>
           </Link>
-          <h3
+          <a
             className={`text-lg font-medium  ${
               location === "/chat"
                 ? "text-indigo-800 dark:text-white underline"
                 : " text-gray-900 dark:text-gray-300"
-            } duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl hover:underline `}
+            } duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl no-underline hover:underline `}
           >
             Message
-          </h3>
+          </a>
           <div className="w-8 h-8 hover:w-9 hover:h-9 duration-75 delay-75 dark:hover:text-white cursor-pointer flex items-center justify-center">
             {colorTheme === "light" ? (
               <LightBulbIcon onClick={() => setTheme("light")} />
@@ -78,16 +78,16 @@ function Header() {
 
         <div>
           <SignedOut>
-            <Link href="/sign-in">
-              <p
+            <Link passHref href="/sign-in">
+              <a
                 className={`text-lg font-medium  ${
                   location === "/sign-in"
                     ? "text-indigo-800 dark:text-white underline"
                     : " text-gray-900 dark:text-gray-300"
-                } duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl hover:underline `}
+                } duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl no-underline hover:underline `}
               >
                 Sign in
-              </p>
+              </a>
             </Link>
           </SignedOut>
           <SignedIn>

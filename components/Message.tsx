@@ -87,7 +87,7 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
                 <Menu.Item>
                   {({ active }) => (
                     <PencilIcon
-                      className="w-5 h-5 m-1 cursor-pointer"
+                      className="w-5 h-5 m-1 cursor-pointer focus:outline-none"
                       onClick={openModal}
                     />
                   )}
@@ -95,7 +95,7 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
                 <Menu.Item>
                   {({ active }) => (
                     <TrashIcon
-                      className="w-5 h-5 m-1 cursor-pointer"
+                      className="w-5 h-5 m-1 cursor-pointer focus:outline-none"
                       onClick={deleteMessage}
                     />
                   )}
