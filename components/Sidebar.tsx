@@ -104,6 +104,35 @@ const Sidebar: React.FC<any> = () => {
     setInputValue(e.currentTarget.value);
   };
 
+  const filterChats = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let sidebarChat = document.getElementsByClassName("sidebarChat");
+
+    let inputValLowerCase = e.target.value.toLowerCase();
+
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    let inputValCaps = capitalizeFirstLetter(e.target.value);
+
+    Array.from(sidebarChat).forEach((element) => {
+      let NameHd =
+        element.getElementsByClassName("recipientName")[0].textContent;
+
+      if (
+        NameHd.includes(inputValLowerCase) ||
+        NameHd.includes(inputValCaps) ||
+        NameHd.includes(e.target.value.toUpperCase())
+      ) {
+        element.classList.add("flex");
+        element.classList.remove("hidden");
+      } else {
+        element.classList.add("hidden");
+        element.classList.remove("flex");
+      }
+    });
+  };
+
   return (
     <Fade left>
       <div className="border-[1px] m-4 md:w-[30vw] border-darkblue dark:border-gray-700 h-[80vh] md:m-1 md:ml-5 mt-0 mb-0 min-w-[300px] overflow-y-scroll hidescrollbar rounded-xl">
@@ -127,6 +156,7 @@ const Sidebar: React.FC<any> = () => {
               className="flex-1 ml-3 text-black placeholder-black dark:placeholder-white bg-transparent border-none outline-none dark:text-white"
               placeholder="Search in chats"
               type="text"
+              onChange={filterChats}
             />
           </div>
         </div>
