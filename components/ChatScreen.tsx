@@ -20,6 +20,7 @@ import getRecipientEmail from "../utils/getRecipientEmail";
 import Message from "./Message";
 import Fade from "react-reveal/Fade";
 import Head from "next/head";
+import SEO from "@bradgarropy/next-seo";
 
 type ChatScreenProps = {
   chat: {
@@ -258,13 +259,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
   const recipientEmail = getRecipientEmail(chat.users, user);
   return (
     <Fade right>
-      <Head>
-        {recipient?.userName ? (
-          <title>Chat with {recipient?.userName}</title>
-        ) : (
-          <title> Chat with {recipient?.name}</title>
-        )}
-      </Head>
+      {recipient?.userName ? (
+        <SEO title={`Chat with ${recipient?.userName}`} />
+      ) : (
+        <SEO title={`Chat with ${recipient?.name}`} />
+      )}
       <div className="flex m-4 flex-col md:w-[63vw] h-[80vh] md:m-1 md:ml-16 mt-0 mb-0 rounded-xl  bg-lightblue dark:bg-indigo-700 w-[93vw]">
         <div className="sticky rounded-t-xl  bg-lightblue dark:bg-indigo-700 z-30 top-0 flex p-4 h-20 items-center">
           <ArrowLeftIcon
