@@ -36,10 +36,10 @@ export default function Home() {
         <link rel="icon" href="/Icon.png" />
       </Head>
       <Header />
-      <div className="flex">
+      <div className="flex w-full">
         <Sidebar />
         <Fade right>
-          <div className="flex m-4 flex-col md:w-[63vw] h-[80vh] md:m-1 md:ml-16 mt-0 mb-0 rounded-xl  bg-lightblue dark:bg-indigo-700 w-[93vw] items-center justify-center text-center dark:text-gray-100 text-black">
+          <div className="md:flex m-4 flex-col md:w-[63vw] hidden h-[80vh] md:m-1 md:ml-16 mt-0 mb-0 rounded-xl  bg-lightblue dark:bg-indigo-700 w-[93vw] items-center justify-center text-center dark:text-gray-100 text-black">
             <div className="w-[280px] ">
               <h2 className="text-2xl font-semibold">
                 Click on a chat or create a new chat

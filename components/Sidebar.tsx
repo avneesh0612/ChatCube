@@ -135,7 +135,7 @@ const Sidebar: React.FC<any> = () => {
 
   return (
     <Fade left>
-      <div className="border-[1px] m-4 md:w-[30vw] border-darkblue dark:border-gray-700 h-[80vh] md:m-1 md:ml-5 mt-0 mb-0 min-w-[300px] overflow-y-scroll hidescrollbar rounded-xl">
+      <div className="border-[1px] w-full m-4 md:w-[30vw] border-darkblue dark:border-gray-700 h-[80vh] md:m-1 md:ml-5 mt-0 mb-0 min-w-[300px] overflow-y-scroll hidescrollbar rounded-xl">
         <div className="flex sticky top-0 justify-between items-center p-4 h-20 bg-lightblue dark:bg-indigo-700 border-b-[1px] border-darkblue dark:border-gray-700 z-10">
           <Image
             width={64}
