@@ -21,9 +21,6 @@ function Chat({ chat, messages, users }) {
 
   return (
     <div className="flex shadow-md flex-col h-screen">
-      <Head>
-        <title>Chat</title>
-      </Head>
       <Header />
       <div className="flex">
         <div className="md:flex hidden">
