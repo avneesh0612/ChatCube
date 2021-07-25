@@ -41,7 +41,7 @@ function Header() {
               className={`text-lg font-medium  ${
                 location === "/"
                   ? "text-indigo-800 dark:text-white underline"
-                  : " text-gray-900 dark:text-gray-300"
+                  : " text-gray-900 dark:text-gray-300 sm:inline-flex hidden"
               } duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl no-underline hover:underline `}
             >
               Home
@@ -52,7 +52,7 @@ function Header() {
               className={`text-lg font-medium  ${
                 location === "/user"
                   ? "text-indigo-800 dark:text-white underline"
-                  : " text-gray-900 dark:text-gray-300"
+                  : " text-gray-900 dark:text-gray-300 sm:inline-flex hidden"
               } duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl no-underline hover:underline `}
             >
               Profile
@@ -62,7 +62,7 @@ function Header() {
             className={`text-lg font-medium  ${
               location === "/chat"
                 ? "text-indigo-800 dark:text-white underline"
-                : " text-gray-900 dark:text-gray-300"
+                : " text-gray-900 dark:text-gray-300 sm:inline-flex hidden"
             } duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl no-underline hover:underline `}
           >
             Message
@@ -83,7 +83,7 @@ function Header() {
                 className={`text-lg font-medium  ${
                   location === "/sign-in"
                     ? "text-indigo-800 dark:text-white underline"
-                    : " text-gray-900 dark:text-gray-300"
+                    : " text-gray-900 dark:text-gray-300 sm:inline-flex hidden"
                 } duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl no-underline hover:underline `}
               >
                 Sign in
