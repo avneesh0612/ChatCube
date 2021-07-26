@@ -107,6 +107,9 @@ If you are using yarn then run
 ```bash
 yarn dev
 ```
+## 🛡️ License
+
+This project is licensed under the MIT License - see the [`LICENSE`](LICENSE) file for details.
 
 ## Adding features
 
