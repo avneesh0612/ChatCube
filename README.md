@@ -70,14 +70,13 @@ After this is done click on the web app with the name you gave and then click on
 
 - Create a file .env.local and add this
   ![Env](https://res.cloudinary.com/dssvrf9oz/image/upload/v1624364193/carbon_1_h0keul.png)
-  FIREBASE_CONFIG_API_KEY=AIzaSyDWsDYYrSxJ8xcH_DZPRZp7zIk1Hlgr-tE
-  
-  FIREBASE_AUTH_DOMAIN=chat-app-489ee.firebaseapp.com
-  FIREBASE_PROJECT_ID=chat-app-489ee
-  FIREBASE_STORAGE_BUCKET=chat-app-489ee.appspot.com
-  FIREBASE_MESSAGEING_SENDER_ID=620872866119
-  FIREBASE_APP_ID=1:620872866119:web:a02c63f5db95893b9f5462
-
+```FIREBASE_CONFIG_API_KEY=AIzaSyDWsDYYrSxJ8xcH_DZPRZp7zIk1Hlgr-tE
+FIREBASE_AUTH_DOMAIN=chat-app-489ee.firebaseapp.com
+FIREBASE_PROJECT_ID=chat-app-489ee
+FIREBASE_STORAGE_BUCKET=chat-app-489ee.appspot.com
+FIREBASE_MESSAGEING_SENDER_ID=620872866119
+FIREBASE_APP_ID=1:620872866119:web:a02c63f5db95893b9f5462
+```
 - Scroll down to config and
 
 - Replace the env variables with your keys as named.
