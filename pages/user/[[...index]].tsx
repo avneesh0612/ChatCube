@@ -1,6 +1,7 @@
 import SEO from "@bradgarropy/next-seo";
 import { UserProfile } from "@clerk/clerk-react";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export default function UserProfilePage() {
   return (
@@ -8,6 +9,7 @@ export default function UserProfilePage() {
       <SEO title="Your profile" />
       <Header />
       <UserProfile path="/user" routing="path" />;
+      <Footer />
     </div>
   );
 }

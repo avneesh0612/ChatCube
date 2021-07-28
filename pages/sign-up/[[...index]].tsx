@@ -2,6 +2,7 @@ import SEO from "@bradgarropy/next-seo";
 import { SignUp } from "@clerk/clerk-react";
 import Head from "next/head";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export default function SignUpPage() {
   return (
@@ -9,6 +10,7 @@ export default function SignUpPage() {
       <SEO title="Sign up to ChatCube" />
       <Header />
       <SignUp path="/sign-up" routing="path" />
+      <Footer />
     </div>
   );
 }

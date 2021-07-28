@@ -1,6 +1,7 @@
 import SEO from "@bradgarropy/next-seo";
 import { SignIn } from "@clerk/clerk-react";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export default function SignInPage() {
   return (
@@ -9,6 +10,7 @@ export default function SignInPage() {
 
       <Header />
       <SignIn path="/sign-in" routing="path" />
+      <Footer />
     </div>
   );
 }

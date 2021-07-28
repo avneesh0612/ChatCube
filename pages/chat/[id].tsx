@@ -6,6 +6,7 @@ import Head from "next/head";
 import Header from "../../components/Header";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import Footer from "../../components/Footer";
 
 function Chat({ chat, messages, users }) {
   const router = useRouter();
@@ -30,6 +31,7 @@ function Chat({ chat, messages, users }) {
           <ChatScreen chat={chat} messages={messages} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
