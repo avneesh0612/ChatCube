@@ -9,7 +9,6 @@ export default function UserProfilePage() {
       <SEO title="Your profile" />
       <Header />
       <UserProfile path="/user" routing="path" />;
-      <Footer />
     </div>
   );
 }

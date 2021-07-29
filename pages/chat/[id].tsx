@@ -31,7 +31,6 @@ function Chat({ chat, messages, users }) {
           <ChatScreen chat={chat} messages={messages} />
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
