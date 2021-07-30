@@ -81,21 +81,27 @@ FIREBASE_APP_ID=1:620872866119:web:a02c63f5db95893b9f5462
 
 - Replace the env variables with your keys as named.
 
-### Enable Authentication
-
-- Go to the authentication tab in the sidebar
-- Click on get started
-- Enable google sign in.
-
-![auth](https://res.cloudinary.com/dssvrf9oz/image/upload/v1624364219/Screenshot_2021-06-22_174644_gypuit.png)
-
-- Click save
 
 ### Setting up db
 
 - Go to firestore db tab in the sidebar
 - Click on create database and then click on test mode.
   ![db](https://res.cloudinary.com/dssvrf9oz/image/upload/v1624366539/Screenshot_2021-06-22_175144_gcfvyi.png)
+
+### Setting up storage
+- Go to stiarge tab in the sidebar
+- and change the rules to allow read and write
+```
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write;
+    }
+  }
+}
+```
+
 
 ## Restart the server
 
