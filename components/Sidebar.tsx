@@ -13,16 +13,6 @@ import { toast } from "react-toastify";
 import Fade from "react-reveal/Fade";
 import { useKeyPress } from "../hooks/useKeyPress";
 
-interface User {
-  id: string;
-  data: any;
-  email: string;
-  lastSeen: any;
-  name: string;
-  photoURL: string;
-  username: string | null;
-}
-
 const Sidebar: React.FC<any> = () => {
   const router = useRouter();
   const user = window.Clerk.user;

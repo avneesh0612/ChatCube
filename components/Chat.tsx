@@ -52,8 +52,8 @@ const Chat: React.FC<ChatProps> = ({ id, users }) => {
         </p>
       )}
       <div className="ml-2">
-        {recipient?.userName ? (
-          <p className="recipientName">{recipient?.userName}</p>
+        {recipient?.firstname ? (
+          <p className="recipientName">{recipient?.firstname}</p>
         ) : (
           <p className="recipientName">{recipient?.name}</p>
         )}

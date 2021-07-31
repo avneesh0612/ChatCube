@@ -35,11 +35,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             name: window.Clerk.user.fullName,
             lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
             photoURL: window.Clerk.user.profileImageUrl,
-            userName: window.Clerk.user.username,
+            firstName: window.Clerk.user.firstName,
           },
           { merge: true }
         );
     }
+    console.log(window.Clerk?.user);
   });
 
   return (

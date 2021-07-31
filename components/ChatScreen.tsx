@@ -259,10 +259,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
   const recipientEmail = getRecipientEmail(chat.users, user);
   return (
     <Fade right>
-      {recipient?.userName ? (
-        <SEO title={`Chat with ${recipient?.userName}`} />
-      ) : (
+      {recipient?.name ? (
         <SEO title={`Chat with ${recipient?.name}`} />
+      ) : (
+        <SEO title={`Chat with ${recipient?.firstName}`} />
       )}
       <div className="flex m-4 flex-col md:w-[63vw] h-[80vh] md:m-1 md:ml-16 mt-0 mb-0 rounded-xl  bg-lightblue dark:bg-indigo-700 w-[93vw]">
         <div className="sticky rounded-t-xl  bg-lightblue dark:bg-indigo-700 z-30 top-0 flex p-4 h-20 items-center">
@@ -286,10 +286,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
 
           <div className="flex-1 ml-4">
             <h3 className="mb-1 dark:text-white">
-              {recipient?.userName ? (
-                <p>{recipient?.userName}</p>
-              ) : (
+              {recipient?.name ? (
                 <p>{recipient?.name}</p>
+              ) : (
+                <p>{recipient?.firstName}</p>
               )}
             </h3>
             {recipientSnapshot ? (
