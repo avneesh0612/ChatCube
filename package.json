@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@bradgarropy/next-seo": "^1.0.0",
-    "@clerk/clerk-react": "^1.15.0",
+    "@clerk/clerk-react": "^1.16.0",
     "@headlessui/react": "^1.4.0",
     "@heroicons/react": "^1.0.3",
     "email-validator": "^2.0.4",
