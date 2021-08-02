@@ -25,26 +25,54 @@ git checkout -b new-feature
 
 ### Starting server
 
-If you are using yarn then run
-
 ```bash
 yarn dev
 ```
 
-and if you using npm run
 
-```bash
-npm run dev
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`NEXT_PUBLIC_CLERK_FRONTEND_API`
+
+`FIREBASE_CONFIG_API_KEY`
+
+`FIREBASE_AUTH_DOMAIN`
+
+`FIREBASE_PROJECT_ID`
+
+`FIREBASE_STORAGE_BUCKET`
+
+`FIREBASE_MESSAGEING_SENDER_ID`
+
+`FIREBASE_APP_ID`
+
+`FIREBASE_MEASUREMENT_ID`
+
+## 1. You can use these development credentials for new features
+
+```
+NEXT_PUBLIC_CLERK_FRONTEND_API=clerk.vws38.ep6hq.lcl.dev
+FIREBASE_CONFIG_API_KEY=AIzaSyDWsDYYrSxJ8xcH_DZPRZp7zIk1Hlgr-tE 
+FIREBASE_AUTH_DOMAIN=chat-app-489ee.firebaseapp.com
+FIREBASE_PROJECT_ID=chat-app-489ee
+FIREBASE_STORAGE_BUCKET=chat-app-489ee.appspot.com
+FIREBASE_MESSAGEING_SENDER_ID=620872866119
+FIREBASE_APP_ID=1:620872866119:web:a02c63f5db95893b9f5462
+FIREBASE_MEASUREMENT_ID=G-10TQ6211LD
 ```
 
+## 2. If you want to configure the credentials follow the steps given below 
 
-## Configuring Clerk
+  
+### Configuring Clerk
 
 Checkout [this](https://medium.com/geekculture/mastering-clerk-authentication-with-the-next-js-standard-setup-c66b97bac724) article to configure Clerk
 
-## Setting up firebase
+### Setting up firebase
 
-### Creating a project
+#### Creating a project
 
 Go to [Firebase](https://console.firebase.google.com/ "Firebase")
 
@@ -106,8 +134,6 @@ service firebase.storage {
 ## Restart the server
 
 - Kill the current server and start a new server
-
-If you are using yarn then run
 
 ```bash
 yarn dev
