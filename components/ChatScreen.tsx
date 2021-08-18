@@ -358,9 +358,9 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
             <PaperAirplaneIcon
               className={`${
                 !input || input[0] === " "
-                  ? "text-gray-500"
-                  : "text-black dark:text-gray-100"
-              } rotate-90 h-7 w-7 md:h-6 md:w-6 cursor-pointer mr-2`}
+                  ? "text-gray-500 cursor-not-allowed"
+                  : "text-black dark:text-gray-100 cursor-pointer"
+              } rotate-90 h-7 w-7 md:h-6 md:w-6 mr-2`}
             />
           </button>
           {imageToPost && (
