@@ -175,7 +175,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
   const sendMessage = (e) => {
     e.preventDefault();
 
-    if (!input) return toast.error("Please add a text");
+    if (!input || input[0] === " ") return toast.error("Please add a text");
 
     db.collection("users")
       .doc(window.Clerk.user.primaryEmailAddress.emailAddress)
@@ -350,8 +350,18 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
             type="text"
           />
 
-          <button type="submit" onClick={sendMessage}>
-            <PaperAirplaneIcon className="text-black rotate-90 dark:text-gray-100 h-7 w-7 md:h-6 md:w-6 cursor-pointer mr-2" />
+          <button
+            type="submit"
+            onClick={sendMessage}
+            disabled={!input || input[0] === " "}
+          >
+            <PaperAirplaneIcon
+              className={`${
+                !input || input[0] === " "
+                  ? "text-gray-500"
+                  : "text-black dark:text-gray-100"
+              } rotate-90 h-7 w-7 md:h-6 md:w-6 cursor-pointer mr-2`}
+            />
           </button>
           {imageToPost && (
             <div

@@ -25,10 +25,18 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
 # vercel
 .vercel
+
+package-lock.json
+
+# PWA files
+**/public/workbox-*.js
+**/public/sw.js
+**/public/workbox-*.js.map
+**/public/sw.js.map
+**/publ
