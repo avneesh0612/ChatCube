@@ -1,4 +1,4 @@
-import SEO from "@bradgarropy/next-seo";
+import { NextSeo } from "next-seo";
 import {
   ArrowLeftIcon,
   EmojiHappyIcon,
@@ -253,9 +253,9 @@ const ChatScreen = ({ chat, messages }) => {
   return (
     <Fade right>
       {recipient?.name ? (
-        <SEO title={`Chat with ${recipient?.name}`} />
+        <NextSeo title={`Chat with ${recipient?.name}`} />
       ) : (
-        <SEO title={`Chat with ${recipient?.firstName}`} />
+        <NextSeo title={`Chat with ${recipient?.firstName}`} />
       )}
       <div className="flex m-4 flex-col md:w-[63vw] h-[80vh] md:m-1 md:ml-16 mt-0 mb-0 rounded-xl  bg-lightblue dark:bg-indigo-700 w-[93vw]">
         <div className="sticky rounded-t-xl  bg-lightblue dark:bg-indigo-700 z-30 top-0 flex p-4 h-20 items-center">

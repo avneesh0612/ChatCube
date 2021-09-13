@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { db } from "../firebase";
 import firebase from "firebase";
 import { ToastContainer } from "react-toastify";
-import SEO from "@bradgarropy/next-seo";
+import { NextSeo } from "next-seo";
 import { AppProps } from "next/app";
 import { UrlObject } from "url";
 import NextNProgress from "nextjs-progressbar";
@@ -46,20 +46,28 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       frontendApi={clerkFrontendApi}
       navigate={(to: string | UrlObject) => router.push(to)}
     >
-      <SEO
+      <NextSeo
         title="ChatCube"
-        description="This is a 1:1 chatting app"
-        keywords={["chatting", "chat", "message"]}
-        icon="/Icon.png"
-        facebook={{
-          image: "/Logo.png",
+        description="This is a 1:1 chatting app."
+        canonical="https://www.chatcube.me/"
+        openGraph={{
           url: "https://www.chatcube.me/",
-          type: "website",
+          title: "ChatCube",
+          description: "This is a 1:1 chatting app.",
+          images: [
+            {
+              url: "/Logo.png",
+              width: 500,
+              height: 500,
+              alt: "ChatCube",
+            },
+          ],
+          site_name: "ChatCube",
         }}
         twitter={{
-          image: "/Logo.png",
-          site: "@AvneeshAgarwa12",
-          card: "summary",
+          handle: "@avneesh0612",
+          site: "@avneesh0612",
+          cardType: "summary_large_image",
         }}
       />
 

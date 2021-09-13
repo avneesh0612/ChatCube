@@ -43,7 +43,7 @@ const Chat: React.FC<ChatProps> = ({ id, users }) => {
           width={56}
           height={56}
           className="m-1 mr-4 z-0 rounded-full"
-          alt={recipient?.name}
+          alt={recipient?.name || "avatar"}
           src={recipient?.photoURL}
         />
       ) : (

@@ -919,11 +919,6 @@
     "@babel/helper-validator-identifier" "^7.14.8"
     to-fast-properties "^2.0.0"
 
-"@bradgarropy/next-seo@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@bradgarropy/next-seo/-/next-seo-1.0.0.tgz"
-  integrity sha512-N0fEAzZj7ww2YqcBvcoD/PHq7YtwAuxkmqEkc7Thvba6JVcdss3xilT44j4xVfGfooLJvpZ3VOpBrvpoKag8eg==
-
 "@clerk/clerk-react@^1.19.0":
   version "1.19.0"
   resolved "https://registry.npmjs.org/@clerk/clerk-react/-/clerk-react-1.19.0.tgz"
@@ -4050,6 +4045,11 @@ next-pwa@^5.3.1:
     terser-webpack-plugin "^5.1.4"
     workbox-webpack-plugin "^6.2.4"
     workbox-window "^6.2.4"
+
+next-seo@^4.26.0:
+  version "4.26.0"
+  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-4.26.0.tgz#4218cfae5651fdc2e330dcdf1cc1b34ce199d41c"
+  integrity sha512-5TqywQ3XAwqdmEU1AyNZjR7WdDKFTkDD8aBtgQelPvzBUEy8i0mTjtiw+09jhiHFNik6FqS8uPKCaYcY6jRgSQ==
 
 next@latest:
   version "11.1.2"
