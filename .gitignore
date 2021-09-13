@@ -25,6 +25,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
 .env.local
 .env.development.local
 .env.test.local
@@ -40,4 +41,7 @@ package-lock.json
 **/public/sw.js
 **/public/workbox-*.js.map
 **/public/sw.js.map
-**/publ
+**/public/fallback-*.js
+**/public/fallback-*.js.map
+public/fallback-development.js
+public/worker-development.js

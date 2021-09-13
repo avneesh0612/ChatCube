@@ -13,23 +13,23 @@ import { toast } from "react-toastify";
 import Fade from "react-reveal/Fade";
 import { useKeyPress } from "../hooks/useKeyPress";
 
-const Sidebar: React.FC<any> = () => {
+const Sidebar = () => {
   const router = useRouter();
-  const user = window.Clerk.user;
+  const user = window?.Clerk?.user;
   const [users, setUsers] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
 
   const slashpress = useKeyPress("/");
   const escpress = useKeyPress("Escape");
-  const inputFocusRef = useRef<HTMLInputElement>();
+  const inputFocusRef = useRef(null);
 
   useEffect(() => {
-    slashpress && inputFocusRef.current.focus();
+    slashpress && inputFocusRef?.current?.focus();
   }, [slashpress]);
 
   useEffect(() => {
-    escpress && inputFocusRef.current.blur();
+    escpress && inputFocusRef?.current?.blur();
   }, [escpress]);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const Sidebar: React.FC<any> = () => {
 
   const userChatsRef = db
     .collection("chats")
-    .where("users", "array-contains", user.primaryEmailAddress.emailAddress);
+    .where("users", "array-contains", user?.primaryEmailAddress?.emailAddress);
   const [chatsSnapshot] = useCollection(userChatsRef);
 
   const createChat = (input) => {
@@ -59,10 +59,10 @@ const Sidebar: React.FC<any> = () => {
     if (
       EmailValidator.validate(input) &&
       !chatAlreadyExist(input) &&
-      input !== user.primaryEmailAddress.emailAddress
+      input !== user?.primaryEmailAddress?.emailAddress
     ) {
       db.collection("chats").add({
-        users: [user.primaryEmailAddress.emailAddress, input],
+        users: [user?.primaryEmailAddress?.emailAddress, input],
       });
     }
     setIsOpen(false);
@@ -84,17 +84,17 @@ const Sidebar: React.FC<any> = () => {
     setIsOpen(false);
   }
 
-  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const onChange = (e) => {
     const userInput = e.currentTarget.value;
     const filteredSuggestions = users.filter(
       (user) =>
-        user.data.name?.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+        user?.data?.name?.toLowerCase().indexOf(userInput.toLowerCase()) > -1
     );
     setFilteredSuggestions(filteredSuggestions.slice(0, 10));
     setInputValue(e.currentTarget.value);
   };
 
-  const filterChats = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const filterChats = (e) => {
     let sidebarChat = document.getElementsByClassName("sidebarChat");
 
     let inputValLowerCase = e.target.value.toLowerCase();
@@ -110,9 +110,9 @@ const Sidebar: React.FC<any> = () => {
         element.getElementsByClassName("recipientName")[0].textContent;
 
       if (
-        NameHd.includes(inputValLowerCase) ||
-        NameHd.includes(inputValCaps) ||
-        NameHd.includes(e.target.value.toUpperCase())
+        NameHd?.includes(inputValLowerCase) ||
+        NameHd?.includes(inputValCaps) ||
+        NameHd?.includes(e.target.value.toUpperCase())
       ) {
         element.classList.add("flex");
         element.classList.remove("hidden");
@@ -127,15 +127,17 @@ const Sidebar: React.FC<any> = () => {
     <Fade left>
       <div className="border-[1px] w-full m-4 md:w-[30vw] border-darkblue dark:border-gray-700 h-[80vh] md:m-1 md:ml-5 mt-0 mb-0 min-w-[300px] overflow-y-scroll hidescrollbar rounded-xl">
         <div className="flex sticky top-0 justify-between items-center p-4 h-20 bg-lightblue dark:bg-indigo-700 border-b-[1px] border-darkblue dark:border-gray-700 z-10">
-          <Image
-            width={64}
-            height={64}
-            objectFit="cover"
-            className="rounded-full cursor-pointer hover:opacity-80"
-            onClick={() => router.push("/user")}
-            src={user.profileImageUrl}
-            alt={user.fullName}
-          />
+          {user?.profileImageUrl && user?.firstName && (
+            <Image
+              width={64}
+              height={64}
+              objectFit="cover"
+              className="rounded-full cursor-pointer hover:opacity-80"
+              onClick={() => router.push("/user")}
+              src={user?.profileImageUrl}
+              alt={user?.firstName}
+            />
+          )}
         </div>
 
         <div className="flex items-center justify-center bg-lightblue dark:bg-indigo-700 p-3 border-b-[1px] border-darkblue dark:border-gray-700">
@@ -216,7 +218,7 @@ const Sidebar: React.FC<any> = () => {
                             toast.success("Chat created successfully");
                           }}
                         >
-                          {email === user.primaryEmailAddress.emailAddress ? (
+                          {email === user?.primaryEmailAddress?.emailAddress ? (
                             <div></div>
                           ) : (
                             <div className="flex items-center cursor-pointer p-4 break-words bg-lightblue dark:bg-indigo-700 hover:bg-indigo-400 border-b-[1px] border-darkblue dark:border-gray-700 dark:hover:bg-gray-900 mx-2 dark:text-white rounded-xl my-1">

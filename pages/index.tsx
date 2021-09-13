@@ -14,10 +14,10 @@ export default function Home() {
   useEffect(() => {
     if (window.Clerk?.user) {
       db.collection("users")
-        .doc(window.Clerk.user.primaryEmailAddress.emailAddress)
+        .doc(window?.Clerk.user?.primaryEmailAddress?.emailAddress)
         .set(
           {
-            email: window.Clerk.user.primaryEmailAddress.emailAddress,
+            email: window.Clerk.user.primaryEmailAddress?.emailAddress,
             name: window.Clerk.user.fullName,
             lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
             photoURL: window.Clerk.user.profileImageUrl,
@@ -26,7 +26,6 @@ export default function Home() {
           { merge: true }
         );
     }
-    console.log(window.Clerk?.user);
 
     router.prefetch("/chat/[id]");
   });

@@ -3,33 +3,38 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@bradgarropy/next-seo": "^1.0.0",
-    "@clerk/clerk-react": "^1.16.1",
-    "@headlessui/react": "^1.4.0",
-    "@heroicons/react": "^1.0.3",
+    "@clerk/clerk-react": "^1.19.0",
+    "@headlessui/react": "^1.4.1",
+    "@heroicons/react": "^1.0.4",
     "email-validator": "^2.0.4",
     "emoji-mart": "^3.0.1",
     "firebase": "^8.9.1",
     "moment": "^2.29.1",
     "next": "latest",
-    "next-pwa": "^5.2.24",
+    "next-pwa": "^5.3.1",
     "nextjs-progressbar": "^0.0.11",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-firebase-hooks": "^3.0.4",
     "react-linkify": "^1.0.0-alpha",
     "react-reveal": "^1.2.2",
-    "react-toastify": "^7.0.4",
+    "react-toastify": "^8.0.2",
     "timeago-react": "^3.0.3"
   },
   "devDependencies": {
-    "@types/react": "^17.0.17",
-    "autoprefixer": "^10.3.1",
+    "@types/emoji-mart": "^3.0.5",
+    "@types/react": "^17.0.20",
+    "@types/react-linkify": "^1.0.1",
+    "autoprefixer": "^10.3.4",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2",
     "postcss": "^8.3.6",
-    "tailwindcss": "^2.2.7",
-    "typescript": "^4.3.5"
+    "tailwindcss": "^2.2.15",
+    "typescript": "^4.4.3"
   }
 }

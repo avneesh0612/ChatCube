@@ -16,17 +16,17 @@ import { Menu } from "@headlessui/react";
 type MessageProps = {
   message: MessageType;
   creatorEmail: string;
-  id: any;
+  id: string;
 };
 
 const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
-  const userLoggedIn = (window as any).Clerk.user.primaryEmailAddress
-    .emailAddress;
+  const userLoggedIn = (window as Window)?.Clerk?.user?.primaryEmailAddress
+    ?.emailAddress;
   const TypeOfMessage = creatorEmail === userLoggedIn ? "Sender" : "Reciever";
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
 
-  const editedMessage = useRef<HTMLInputElement>();
+  const editedMessage = useRef<HTMLInputElement>(null);
 
   function closeModal() {
     setShowModal(false);
@@ -36,7 +36,7 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
     setShowModal(true);
   }
 
-  const editMessage = (e) => {
+  const editMessage = (e: any) => {
     e.preventDefault();
 
     db.collection("chats")
@@ -45,7 +45,7 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
       .doc(id)
       .set(
         {
-          message: editedMessage.current.value,
+          message: editedMessage?.current?.value,
           edited: true,
         },
         { merge: true }

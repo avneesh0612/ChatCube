@@ -15,25 +15,27 @@ function Header() {
     <Fade top>
       <header className="flex items-center justify-between px-5 m-4 bg-white dark:bg-indigo-700 dark:text-gray-300 rounded-xl">
         <Link passHref href="/">
-          {colorTheme !== "dark" ? (
-            <Image
-              src="https://res.cloudinary.com/dssvrf9oz/image/upload/v1626881694/Aman-removebg-preview_pwjggi.png"
-              alt="chatCube"
-              width={100}
-              height={100}
-              objectFit="contain"
-              className="cursor-pointer"
-            />
-          ) : (
-            <Image
-              src="https://res.cloudinary.com/dssvrf9oz/image/upload/v1626881465/Logo_challenge-removebg-preview_adfynp.png"
-              alt="chatCube"
-              width={100}
-              height={100}
-              className="cursor-pointer"
-              objectFit="contain"
-            />
-          )}
+          <a>
+            {colorTheme !== "dark" ? (
+              <Image
+                src="https://res.cloudinary.com/dssvrf9oz/image/upload/v1626881694/Aman-removebg-preview_pwjggi.png"
+                alt="chatCube"
+                width={100}
+                height={100}
+                objectFit="contain"
+                className="cursor-pointer"
+              />
+            ) : (
+              <Image
+                src="https://res.cloudinary.com/dssvrf9oz/image/upload/v1626881465/Logo_challenge-removebg-preview_adfynp.png"
+                alt="chatCube"
+                width={100}
+                height={100}
+                className="cursor-pointer"
+                objectFit="contain"
+              />
+            )}
+          </a>
         </Link>
         <div className="flex items-center w-1/3 h-full justify-evenly">
           <Link passHref href="/">

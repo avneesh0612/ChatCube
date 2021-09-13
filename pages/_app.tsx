@@ -27,10 +27,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
     if (window.Clerk?.user) {
       db.collection("users")
-        .doc(window.Clerk.user.primaryEmailAddress.emailAddress)
+        .doc(window.Clerk.user.primaryEmailAddress?.emailAddress)
         .set(
           {
-            email: window.Clerk.user.primaryEmailAddress.emailAddress,
+            email: window.Clerk.user.primaryEmailAddress?.emailAddress,
             name: window.Clerk.user.fullName,
             lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
             photoURL: window.Clerk.user.profileImageUrl,
@@ -39,7 +39,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           { merge: true }
         );
     }
-    console.log(window.Clerk?.user);
   });
 
   return (

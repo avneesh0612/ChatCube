@@ -1,25 +1,31 @@
-import React from "react";
-import { db } from "../../firebase";
-import Sidebar from "../../components/Sidebar";
-import ChatScreen from "../../components/ChatScreen";
-import Head from "next/head";
-import Header from "../../components/Header";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
-import Footer from "../../components/Footer";
+import React, { useEffect } from "react";
+import ChatScreen from "../../components/ChatScreen";
+import Header from "../../components/Header";
+import Sidebar from "../../components/Sidebar";
+import { db } from "../../firebase";
+import { UserType } from "../../types/UserType";
 
-function Chat({ chat, messages, users }) {
+// interface ChatProps {
+//   chat: {
+//     users: [string];
+//     id: string;
+//   };
+//   messages: string;
+//   users: [UserType];
+// }
+
+const Chat = ({ chat, messages, users }) => {
   const router = useRouter();
   useEffect(() => {
     if (
       chat.users.includes(
-        window.Clerk.user.primaryEmailAddress.emailAddress
+        window?.Clerk?.user?.primaryEmailAddress?.emailAddress
       ) === false
     ) {
       router.push("/");
     }
   });
-
   return (
     <div className="flex shadow-md flex-col h-screen">
       <Header />
@@ -33,7 +39,7 @@ function Chat({ chat, messages, users }) {
       </div>
     </div>
   );
-}
+};
 
 export default Chat;
 
@@ -53,7 +59,7 @@ export async function getServerSideProps(context) {
     }))
     .map((messages) => ({
       ...messages,
-      timestamp: (messages as any).timestamp.toDate().getTime(),
+      timestamp: messages.timestamp.toDate().getTime(),
     }));
 
   const users = allusers.docs.map((user) => ({

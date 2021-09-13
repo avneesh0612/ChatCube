@@ -1,7 +1,6 @@
 import SEO from "@bradgarropy/next-seo";
 import { UserProfile } from "@clerk/clerk-react";
 import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 
 export default function UserProfilePage() {
   return (

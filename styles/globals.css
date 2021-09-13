@@ -39,7 +39,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 0.8vw;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {

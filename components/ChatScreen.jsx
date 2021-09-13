@@ -1,9 +1,10 @@
+import SEO from "@bradgarropy/next-seo";
 import {
   ArrowLeftIcon,
   EmojiHappyIcon,
-  PaperClipIcon,
   MicrophoneIcon,
   PaperAirplaneIcon,
+  PaperClipIcon,
 } from "@heroicons/react/outline";
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
@@ -12,37 +13,27 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
+import Fade from "react-reveal/Fade";
 import { toast } from "react-toastify";
 import TimeAgo from "timeago-react";
 import { db, storage } from "../firebase";
 import useComponentVisible from "../hooks/useComponentVisible";
 import getRecipientEmail from "../utils/getRecipientEmail";
 import Message from "./Message";
-import Fade from "react-reveal/Fade";
-import Head from "next/head";
-import SEO from "@bradgarropy/next-seo";
 
-type ChatScreenProps = {
-  chat: {
-    id: string;
-    users: [string];
-  };
-  messages: string;
-};
-
-const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
+const ChatScreen = ({ chat, messages }) => {
   const user = window.Clerk.user;
   const router = useRouter();
   const endOfMessagesRef = useRef(null);
   const [input, setInput] = useState("");
-  const focusRef = useRef<HTMLInputElement>();
+  const focusRef = useRef();
   const [imageToPost, setImageToPost] = useState(null);
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible();
   const [hearing, setHearing] = useState(false);
 
   const SpeechRecognition =
-    window.SpeechRecognition || (window as any).webkitSpeechRecognition;
+    window?.SpeechRecognition || window?.webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
 
   var final_transcript = "";
@@ -51,7 +42,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
   const [messagesSnapshot] = useCollection(
     db
       .collection("chats")
-      .doc(router.query.id as string)
+      .doc(router.query.id)
       .collection("messages")
       .orderBy("timestamp", "asc")
   );
@@ -91,11 +82,15 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
                }
               `}
             >
-              <img
-                alt={message.data().user}
-                className="w-80 rounded-xl object-contain"
-                src={message.data().image}
-              />
+              <div className="w-80 h-80 relative rounded-xl">
+                <Image
+                  objectFit="contain"
+                  layout="fill"
+                  alt={message.data().user}
+                  className="w-80 rounded-xl object-contain"
+                  src={message.data().image}
+                />
+              </div>
             </div>
           ) : (
             <></>
@@ -103,12 +98,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
           <Message
             key={message.id}
             creatorEmail={message.data().user}
-            message={
-              {
-                ...message.data(),
-                timestamp: message.data().timestamp?.toDate().getTime(),
-              } as any
-            }
+            message={{
+              ...message.data(),
+              timestamp: message.data().timestamp?.toDate().getTime(),
+            }}
             id={message.id}
           />
         </div>
@@ -187,7 +180,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
       );
 
     db.collection("chats")
-      .doc(router.query.id as string)
+      .doc(router.query.id)
       .collection("messages")
       .add({
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -217,7 +210,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
                 .getDownloadURL()
                 .then((url) => {
                   db.collection("chats")
-                    .doc(router.query.id as string)
+                    .doc(router.query.id)
                     .collection("messages")
                     .doc(doc.id)
                     .set(
@@ -368,11 +361,15 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ chat, messages }) => {
               onClick={removeImage}
               className="flex flex-col transition duration-150 transform cursor-pointer filter hover:brightness-110 hover:scale-105"
             >
-              <img
-                alt={recipient?.name}
-                className="object-contain h-10 "
-                src={imageToPost}
-              />
+              <div className="h-10 w-10 relative object-contain">
+                <Image
+                  objectFit="contain"
+                  layout="fill"
+                  alt={recipient?.name}
+                  className="object-contain h-10 "
+                  src={imageToPost}
+                />
+              </div>
               <p className="text-xs text-center text-red-500">Remove</p>
             </div>
           )}

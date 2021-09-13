@@ -12,14 +12,14 @@ type ChatProps = {
 
 const Chat: React.FC<ChatProps> = ({ id, users }) => {
   const router = useRouter();
-  const user = (window as any).Clerk.user;
+  const user = (window as Window)?.Clerk?.user;
   const [recipientSnapshot] = useCollection(
     db
       .collection("users")
       .where(
         "email",
         "==",
-        getRecipientEmail(users, user.primaryEmailAddress.emailAddress)
+        getRecipientEmail(users, user?.primaryEmailAddress?.emailAddress)
       )
   );
 
@@ -30,7 +30,7 @@ const Chat: React.FC<ChatProps> = ({ id, users }) => {
   const recipient = recipientSnapshot?.docs?.[0]?.data();
   const recipientEmail = getRecipientEmail(
     users,
-    user.primaryEmailAddress.emailAddress
+    user?.primaryEmailAddress?.emailAddress
   );
 
   return (
