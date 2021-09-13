@@ -22,7 +22,7 @@ import getRecipientEmail from "../utils/getRecipientEmail";
 import Message from "./Message";
 
 const ChatScreen = ({ chat, messages }) => {
-  const user = window.Clerk.user;
+  const user = window?.Clerk?.user;
   const router = useRouter();
   const endOfMessagesRef = useRef(null);
   const [input, setInput] = useState("");
