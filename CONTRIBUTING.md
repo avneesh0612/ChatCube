@@ -1,3 +1,5 @@
+## Contributing to ChatCube
+
 We are going to create a pr. You need to know basic git and github commands to make a pr. If you don't know about it, check my [Git and Github crash course](https://avneesh0612.hashnode.dev/git-and-github-crash-course "Git and Github crash course")
 
 Click on fork in the top left corner of your screen. Clone the repo you have been redirected to
