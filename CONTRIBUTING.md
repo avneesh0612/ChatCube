@@ -1,4 +1,6 @@
-We are going to create a pr. You need to know basic git and github commands to make a pr. If you don't know about it, check my [Git and Github crash course](https://medium.com/geekculture/git-and-github-crash-course-b44f4885ff66 "Git and Github crash course")
+## Contributing to ChatCube
+
+We are going to create a pr. You need to know basic git and github commands to make a pr. If you don't know about it, check my [Git and Github crash course](https://avneesh0612.hashnode.dev/git-and-github-crash-course "Git and Github crash course")
 
 Click on fork in the top left corner of your screen. Clone the repo you have been redirected to
 
@@ -66,7 +68,7 @@ FIREBASE_MEASUREMENT_ID=G-10TQ6211LD
   
 ### Configuring Clerk
 
-Checkout [this](https://medium.com/geekculture/mastering-clerk-authentication-with-the-next-js-standard-setup-c66b97bac724) article to configure Clerk
+Checkout [this](https://avneesh0612.hashnode.dev/mastering-clerk-authentication-with-the-nextjs-standard-setup) article to configure Clerk
 
 ### Setting up firebase
 
@@ -148,7 +150,7 @@ You can use some accounts to test your features.
 
 ## Creating a PR
 
-Checkout [this](https://medium.com/weekly-webtips/how-to-contribute-to-an-open-source-project-and-make-a-pr-cc92f6c9831d) article to make a PR
+Checkout [this](https://avneesh0612.hashnode.dev/how-to-contribute-to-an-open-source-project) article to make a PR
 
 You have successfully created a pull request and I will review and merge it soon.
 
