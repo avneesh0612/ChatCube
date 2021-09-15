@@ -4,7 +4,6 @@ import ChatScreen from "../../components/ChatScreen";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import { db } from "../../firebase";
-import { UserType } from "../../types/UserType";
 
 // interface ChatProps {
 //   chat: {

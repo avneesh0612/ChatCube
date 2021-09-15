@@ -1,17 +1,14 @@
-import moment from "moment";
-import React, { useRef } from "react";
-import { MessageType } from "../types/MessageType";
-import Linkify from "react-linkify";
+import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
-  PencilIcon,
-  TrashIcon,
-  DotsVerticalIcon,
+  DotsVerticalIcon, PencilIcon,
+  TrashIcon
 } from "@heroicons/react/outline";
-import { db } from "../firebase";
+import moment from "moment";
 import { useRouter } from "next/router";
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
-import { Menu } from "@headlessui/react";
+import React, { Fragment, useRef, useState } from "react";
+import Linkify from "react-linkify";
+import { db } from "../firebase";
+import { MessageType } from "../types/MessageType";
 
 type MessageProps = {
   message: MessageType;
@@ -24,7 +21,7 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
     ?.emailAddress;
   const TypeOfMessage = creatorEmail === userLoggedIn ? "Sender" : "Reciever";
   const router = useRouter();
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const editedMessage = useRef<HTMLInputElement>(null);
 

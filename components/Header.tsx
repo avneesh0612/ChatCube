@@ -1,10 +1,10 @@
-import Link from "next/link";
-import Image from "next/image";
 import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 import { LightBulbIcon, MoonIcon } from "@heroicons/react/outline";
-import useDarkMode from "../hooks/useDarkMode";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import Fade from "react-reveal/Fade";
+import useDarkMode from "../hooks/useDarkMode";
 
 function Header() {
   const [colorTheme, setTheme] = useDarkMode();
