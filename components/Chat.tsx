@@ -48,7 +48,7 @@ const Chat: React.FC<ChatProps> = ({ id, users }) => {
         />
       ) : (
         <p className="text-center flex items-center justify-center z-0 w-14 h-14 rounded-full bg-gray-300 text-black text-xl capitalize">
-          {recipientEmail[0]}
+          {recipientEmail && recipientEmail[0]}
         </p>
       )}
       <div className="ml-2">
