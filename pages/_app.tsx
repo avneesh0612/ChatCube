@@ -8,7 +8,8 @@ import {
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { db } from "../firebase";
-import firebase from "firebase";
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
 import { ToastContainer } from "react-toastify";
 import { NextSeo } from "next-seo";
 import { AppProps } from "next/app";

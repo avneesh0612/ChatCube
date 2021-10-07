@@ -132,7 +132,7 @@ const Sidebar = () => {
               width={64}
               height={64}
               objectFit="cover"
-              className="rounded-full cursor-pointer hover:opacity-80"
+              className="rounded-full cursor-pointer hover:animate-pulse"
               onClick={() => router.push("/user")}
               src={user?.profileImageUrl}
               alt={user?.firstName}

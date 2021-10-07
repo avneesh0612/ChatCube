@@ -39,11 +39,11 @@ function Header() {
         </Link>
         <div className="flex items-center w-1/3 h-full justify-evenly">
           <a
-            target="blank"
+            target="_blank"
             rel="noreferrer"
             href="https://avneesh0612.hashnode.dev/how-i-built-chatcube-with-nextjs-tailwindcss-clerk-and-firebase-and-a-walkthrough-of-the-app"
             className="text-lg font-medium
-                text-gray-900 dark:text-gray-300 sm:inline-flex hidden
+                text-gray-900 dark:text-gray-300 sm:inline-flex hidden hover:animate-pulse
              duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl no-underline hover:underline"
           >
             About Project
@@ -57,11 +57,11 @@ function Header() {
           </div>
 
           <a
-            target="blank"
+            target="_blank"
             href="https://github.com/avneesh0612/ChatCube"
             className="text-lg font-medium
                 text-gray-900 dark:text-gray-300 sm:inline-flex hidden
-             duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl no-underline hover:underline"
+             duration-75 delay-75 dark:hover:text-white cursor-pointer hover:text-xl hover:animate-pulse no-underline hover:underline"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -88,9 +88,12 @@ function Header() {
               </a>
             </Link>
           </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
+
+          <div className="hover:animate-pulse">
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
         </div>
       </header>
     </Fade>
