@@ -1,5 +1,6 @@
-import firebase from "firebase";
-import "firebase/storage";
+import firebase from "firebase/compat/app";
+import "firebase/compat/storage";
+import "firebase/compat/firestore";
 
 export const firebaseConfig = {
   apiKey: process.env.firebase_config_api_key,
