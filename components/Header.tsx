@@ -39,7 +39,7 @@ function Header() {
         </Link>
         <div className="flex items-center w-1/3 h-full justify-evenly">
           <a
-            target="_blank"
+            target="blank"
             rel="noreferrer"
             href="https://avneesh0612.hashnode.dev/how-i-built-chatcube-with-nextjs-tailwindcss-clerk-and-firebase-and-a-walkthrough-of-the-app"
             className="text-lg font-medium
@@ -57,7 +57,7 @@ function Header() {
           </div>
 
           <a
-            target="_blank"
+            target="blank"
             href="https://github.com/avneesh0612/ChatCube"
             className="text-lg font-medium
                 text-gray-900 dark:text-gray-300 sm:inline-flex hidden
