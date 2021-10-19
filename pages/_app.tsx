@@ -22,6 +22,8 @@ const clerkFrontendApi = process.env.NEXT_PUBLIC_CLERK_FRONTEND_API;
 const publicPages = ["/sign-in/[[...index]]", "/sign-up/[[...index]]"];
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
+  if (typeof window === "undefined") return "";
+  
   const router = useRouter();
   const [colorTheme, setTheme] = useDarkMode();
 
