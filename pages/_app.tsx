@@ -23,7 +23,6 @@ const publicPages = ["/sign-in/[[...index]]", "/sign-up/[[...index]]"];
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
-  const [colorTheme, setTheme] = useDarkMode();
 
   useEffect(() => {
     if (window.Clerk?.user) {
