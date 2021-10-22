@@ -258,8 +258,8 @@ const ChatScreen = ({ chat, messages }) => {
       ) : (
         <NextSeo title={`Chat with ${recipient?.firstName}`} />
       )}
-      <div className="flex m-4 flex-col md:w-[63vw] h-[80vh] md:m-1 md:ml-16 mt-0 mb-0 rounded-xl  bg-lightblue dark:bg-indigo-700 w-[93vw]">
-        <div className="sticky rounded-t-xl  bg-lightblue dark:bg-indigo-700 z-30 top-0 flex p-4 h-20 items-center">
+      <div className="flex flex-col bg-[#3736AA] h-full min-w-full">
+        <div className="sticky rounded-t-xl bg-[#3736AA] z-30 top-0 flex p-4 h-20 items-center">
           <ArrowLeftIcon
             onClick={() => router.push("/")}
             className="md:!hidden focus:outline-none cursor-pointer h-6 w-6 text-gray-50 mr-2"
@@ -273,13 +273,13 @@ const ChatScreen = ({ chat, messages }) => {
               src={recipient?.photoURL}
             />
           ) : (
-            <p className="z-0 flex items-center justify-center text-xl text-center text-black capitalize bg-gray-300 rounded-full w-14 h-14">
+            <p className="z-0 flex items-center justify-center text-xl text-center capitalize bg-gray-300 rounded-full w-14 h-14">
               {recipientEmail[0]}
             </p>
           )}
 
           <div className="flex-1 ml-4">
-            <h3 className="mb-1 dark:text-white">
+            <h3 className="mb-1 text-white">
               {recipient?.name ? (
                 <p>{recipient?.name}</p>
               ) : (
@@ -287,7 +287,7 @@ const ChatScreen = ({ chat, messages }) => {
               )}
             </h3>
             {recipientSnapshot ? (
-              <p className="text-sm dark:text-gray-100">
+              <p className="text-sm text-gray-100">
                 Last active:{` `}
                 {recipient?.lastSeen?.toDate() ? (
                   <TimeAgo datetime={recipient?.lastSeen?.toDate()} />
@@ -296,22 +296,22 @@ const ChatScreen = ({ chat, messages }) => {
                 )}
               </p>
             ) : (
-              <p className="mb-1 dark:text-white">Loading Last active...</p>
+              <p className="mb-1 text-white">Loading Last active...</p>
             )}
           </div>
         </div>
 
-        <div className="p-8 h-[66vh] border-t-[1px] border-indigo-500 dark:border-gray-700 overflow-scroll hidescrollbar">
+        <div className="p-8 h-[66vh] border-t-[1px] border-indigo-500 overflow-scroll hidescrollbar">
           {showMessages()}
           <div className="" ref={endOfMessagesRef} />
         </div>
 
-        <form className="flex items-center p-3 sticky rounded-b-xl border-t-[1px] border-indigo-500 dark:border-gray-700  bg-lightblue dark:bg-indigo-700 z-50">
+        <form className="flex items-center p-3 sticky rounded-b-x l border-t-[1px] border-indigo-500 bg-[#3736AA] z-50">
           <div
             onClick={() => filepickerRef.current.click()}
             className="inputIcon"
           >
-            <PaperClipIcon className="text-black dark:text-gray-100 h-6 w-6 cursor-pointer mr-2" />
+            <PaperClipIcon className="text-gray-100 h-6 w-6 cursor-pointer mr-2" />
             <input
               onChange={addImageToPost}
               ref={filepickerRef}
@@ -323,7 +323,7 @@ const ChatScreen = ({ chat, messages }) => {
           <EmojiHappyIcon
             ref={ref}
             onClick={() => setIsComponentVisible(!isComponentVisible)}
-            className="text-black dark:text-gray-100 h-7 w-7 md:h-6 md:w-6 cursor-pointer mr-2"
+            className="text-gray-100 h-7 w-7 md:h-6 md:w-6 cursor-pointer mr-2"
           />
           {isComponentVisible && (
             <span ref={ref} className="absolute z-50 mb-[500px]">
@@ -333,11 +333,11 @@ const ChatScreen = ({ chat, messages }) => {
           <MicrophoneIcon
             onClick={textToSpeech}
             className={`${
-              hearing && "text-red-500 dark:text-red-500"
-            } text-black dark:text-white h-7 w-7 md:h-6 md:w-6 cursor-pointer`}
+              hearing && "text-red-500"
+            }     text-white h-7 w-7 md:h-6 md:w-6 cursor-pointer`}
           />
           <input
-            className="w-full p-5 md:mx-4 bg-white border-none rounded-xl outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 dark:text-white ml-2"
+            className="w-full p-4 md:mx-4 mx-2 bg-white border-none rounded-lg outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10  text-white ml-2"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             ref={focusRef}
@@ -353,7 +353,7 @@ const ChatScreen = ({ chat, messages }) => {
               className={`${
                 !input || input[0] === " "
                   ? "text-gray-500 cursor-not-allowed"
-                  : "text-black dark:text-gray-100 cursor-pointer"
+                  : "text-gray-100 cursor-pointer"
               } rotate-90 h-7 w-7 md:h-6 md:w-6 mr-2`}
             />
           </button>

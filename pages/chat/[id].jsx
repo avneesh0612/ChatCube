@@ -26,13 +26,13 @@ const Chat = ({ chat, messages, users }) => {
     }
   });
   return (
-    <div className="flex shadow-md flex-col h-screen">
+    <div className="flex shadow-md flex-col h-full w-full pr-5">
       <Header />
       <div className="flex">
         <div className="md:flex hidden">
           <Sidebar users={users} />
         </div>
-        <div className="overflow-scroll hidescrollbar">
+        <div className="flex-1 overflow-scroll hidescrollbar">
           <ChatScreen chat={chat} messages={messages} />
         </div>
       </div>

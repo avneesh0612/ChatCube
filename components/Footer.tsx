@@ -1,16 +1,23 @@
 import Fade from "react-reveal/Fade";
+import router from "next/router";
 
-function Header() {
-  return (
-    <Fade bottom>
-      <footer className="flex items-center justify-between px-5 m-4 bg-white dark:bg-indigo-700  mb-5 dark:text-white rounded-xl">
-        <p className="text-center w-full py-3 text-lg font-medium">
-          Made with 💜 by{" "}
-          <a target="blank" href="https://avneesh-links.vercel.app/">Avneesh Agarwal</a>
-        </p>
-      </footer>
-    </Fade>
-  );
+function Footer() {
+  if (router.pathname.match("/")) {
+    return null;
+  }
+  else {
+    return (
+      <Fade bottom>
+        <footer className="flex items-center justify-between px-5 bg-white">
+          <p className="text-center w-full py-3 text-lg font-medium">
+            Made with 💜 by{" "}
+            <a target="blank" href="https://avneesh-links.vercel.app/">Avneesh Agarwal</a>
+            and re-designed by Aman Kaushik
+          </p>
+        </footer>
+      </Fade>
+    );
+  }
 }
 
-export default Header;
+export default Footer;
