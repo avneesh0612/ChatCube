@@ -35,7 +35,7 @@ const Chat: React.FC<ChatProps> = ({ id, users }) => {
 
   return (
     <div
-      className="sidebarChat flex items-center cursor-pointer p-4 break-words bg-lightblue dark:bg-indigo-700 hover:bg-darkblue border-b-[1px] border-indigo-500 dark:border-gray-700 dark:hover:bg-gray-900 dark:text-white"
+      className="sidebarChat flex items-center cursor-pointer p-4 break-words bg-darkblue border-b-[1px] border-indigo-500"
       onClick={enterChat}
     >
       {recipient ? (
@@ -51,7 +51,7 @@ const Chat: React.FC<ChatProps> = ({ id, users }) => {
           {recipientEmail && recipientEmail[0]}
         </p>
       )}
-      <div className="ml-2">
+      <div className="ml-5">
         {recipient?.firstname ? (
           <p className="recipientName">{recipient?.firstname}</p>
         ) : (
