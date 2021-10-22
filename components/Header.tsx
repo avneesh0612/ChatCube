@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import router from "next/router";
+import { useRouter } from "next/router";
 import Fade from "react-reveal/Fade";
 
 function Header() {
+  const router = useRouter();
   if (router.pathname.match("/")) {
     return null;
   } else {

@@ -1,7 +1,8 @@
 import Fade from "react-reveal/Fade";
-import router from "next/router";
+import { useRouter } from "next/router";
 
 function Footer() {
+  const router = useRouter();
   if (router.pathname.match("/")) {
     return null;
   }
