@@ -12,12 +12,17 @@ import { toast } from "react-toastify";
 import Fade from "react-reveal/Fade";
 import { useKeyPress } from "../hooks/useKeyPress";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { SignedIn, UserButton } from "@clerk/clerk-react";
+import useDarkMode from "../hooks/useDarkMode";
 
 const Sidebar = () => {
   const user = window?.Clerk?.user;
   const [users, setUsers] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const router = useRouter();
+  const [colorTheme, setTheme] = useDarkMode();
 
   const slashpress = useKeyPress("/");
   const escpress = useKeyPress("Escape");
@@ -270,39 +275,49 @@ const Sidebar = () => {
             </button>
           </div>
           <div className="bg-darkblue p-4 border-t-[1px] border-indigo-500 flex pl-6 flex-row gap-4 items-center">
-            <div>
-              {user?.profileImageUrl && user?.firstName && (
-                <Image
-                  width={50}
-                  height={50}
-                  objectFit="cover"
-                  className="rounded-full cursor-pointer hover:animate-pulse"
-                  onClick={() => router.push("/user")}
-                  src={user?.profileImageUrl}
-                  alt={user?.firstName}
-                />
-              )}{" "}
-            </div>{" "}
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
             <h1 className="font-semibold">
               {user?.data.first_name} {user?.data.last_name}
             </h1>
           </div>
         </div>
         <div className="flex flex-col-reverse p-5">
-          <div class="w-8 h-8 hover:w-9 hover:h-9 duration-75 delay-75 cursor-pointer flex items-center justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-              ></path>
-            </svg>
+          <div className="w-8 h-8 hover:w-9 hover:h-9 duration-75 delay-75 cursor-pointer flex items-center justify-center">
+            {colorTheme === "light" ? (
+              <svg
+                onClick={() => setTheme("light")}
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-10 w-10  text-gray-200"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                />
+              </svg>
+            ) : (
+              <svg
+                onClick={() => setTheme("dark")}
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-10 w-10"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                />
+              </svg>
+            )}
           </div>
         </div>
       </Fade>
