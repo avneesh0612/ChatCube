@@ -150,7 +150,7 @@ const Sidebar = () => {
               <SearchIcon className="text-white dark:text-gray-50 w-6 h-6" />
               <input
                 ref={inputFocusRef}
-                className="flex-1 ml-3 placeholder-white bg-transparent border-none outline-none"
+                className="flex-1 ml-3 placeholder-white text-white bg-transparent border-none outline-none"
                 placeholder="Search in chats"
                 type="text"
                 onChange={filterChats}
