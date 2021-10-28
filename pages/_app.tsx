@@ -1,21 +1,20 @@
-import "../styles/globals.css";
 import {
   ClerkProvider,
   RedirectToSignIn,
   SignedIn,
-  SignedOut,
+  SignedOut
 } from "@clerk/clerk-react";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { db } from "../firebase";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
-import { ToastContainer } from "react-toastify";
 import { NextSeo } from "next-seo";
 import { AppProps } from "next/app";
-import { UrlObject } from "url";
+import { useRouter } from "next/router";
 import NextNProgress from "nextjs-progressbar";
-import useDarkMode from "../hooks/useDarkMode";
+import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import { UrlObject } from "url";
+import { db } from "../firebase";
+import "../styles/globals.css";
 
 const clerkFrontendApi = process.env.NEXT_PUBLIC_CLERK_FRONTEND_API;
 
@@ -45,6 +44,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <ClerkProvider
       frontendApi={clerkFrontendApi}
       navigate={(to: string | UrlObject) => router.push(to)}
+      authVersion={2}
     >
       <NextSeo
         title="ChatCube"
@@ -72,7 +72,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       />
 
       <ToastContainer />
-      <NextNProgress color="#FE4098" />
+      <NextNProgress color="#FE4098" options={{ showSpinnner: false }} />
 
       {publicPages.includes(router.pathname) ? (
         <Component {...pageProps} />

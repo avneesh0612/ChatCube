@@ -7,6 +7,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import { useRouter } from "next/router";
 import Fade from "react-reveal/Fade";
+import Image from "next/image";
 
 export default function Home() {
   const router = useRouter();
@@ -40,7 +41,7 @@ export default function Home() {
       <div className="flex w-full">
         <Sidebar />
         <Fade right>
-          <div className="md:flex m-4 flex-col md:w-[63vw] hidden h-[80vh] md:m-1 md:ml-16 mt-0 mb-0 rounded-xl  bg-darkblue dark:bg-indigo-700 w-[93vw] items-center justify-center text-center dark:text-gray-100 text-black">
+          <div className="md:flex m-4 flex-col md:w-[63vw] hidden h-[80vh] md:m-1 md:ml-16 rounded-xl bg-bgprimary !mt-auto !mb-auto w-[93vw] items-center justify-center text-center dark:text-gray-100 text-black">
             <div className="w-[280px]">
               <h2 className="text-2xl font-semibold">
                 Click on a chat or create a new chat
@@ -48,6 +49,20 @@ export default function Home() {
             </div>
           </div>
         </Fade>
+        <a
+          href="https://github.com/avneesh0612/ChatCube"
+          target="_blank"
+          className="absolute top-0 right-0"
+          rel="noreferrer"
+        >
+          <Image
+            alt="github"
+            src="/github-corner.svg"
+            objectFit="contain"
+            width={100}
+            height={100}
+          />
+        </a>
       </div>
       <Footer />
     </div>

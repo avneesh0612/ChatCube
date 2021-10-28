@@ -4,7 +4,7 @@
 
 @layer components {
   body {
-    @apply dark:bg-gray-900 bg-darkblue;
+    @apply dark:bg-gray-900 bg-bglightprimary;
   }
 }
 
@@ -24,6 +24,14 @@
 
 .cl-component {
   z-index: 100;
+}
+
+.cl-component.cl-user-button-popup {
+  background-color: #3736aa !important;
+}
+
+.chatscreen-width {
+  width: calc(100vw - 450px);
 }
 
 .emoji-mart-title-label {

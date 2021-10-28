@@ -11,6 +11,8 @@ module.exports = {
         lightblue: "#B1ABFF",
         darkblue: "#3b30e0",
         strongblue: "#271dc0",
+        bglightprimary: "#3736AA",
+        bgprimary: "#2F2DB6",
       },
     },
   },

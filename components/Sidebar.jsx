@@ -128,10 +128,10 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex flex-row-reverse h-screen">
+    <div className="flex flex-row-reverse max-h-screen w-[450px] min-h-screen">
       <Fade left>
-        <div className="overflow-y-scroll hidescrollbar text-white">
-          <div className="bg-darkblue text-center pt-5">
+        <div className="max-h-screen bg-bgprimary w-[400px] min-h-screen text-white">
+          <div className=" text-center pt-5">
             <Link passHref href="/">
               <a>
                 <Image
@@ -145,8 +145,8 @@ const Sidebar = () => {
               </a>
             </Link>
           </div>
-          <div className="bg-darkblue flex items-center justify-center p-3 border-b-[1px] border-darkblue">
-            <div className="flex items-center justify-center p-3 text-black bg-white backdrop-filter backdrop-blur-2xl bg-opacity-10 rounded-xl w-80">
+          <div className="flex items-center justify-center p-3 border-b-[1px] border-darkblue ">
+            <div className="flex items-center justify-center p-3 text-black bg-white/10 backdrop-filter backdrop-blur-2xl rounded-xl w-80">
               <SearchIcon className="text-white dark:text-gray-50 w-6 h-6" />
               <input
                 ref={inputFocusRef}
@@ -207,7 +207,7 @@ const Sidebar = () => {
                       onChange={onChange}
                     />
 
-                    <div className="mt-2 h-[400px] overflow-y-scroll">
+                    <div className="mt-2 h-full overflow-y-scroll hidescrollbar">
                       {filteredSuggestions.map(
                         ({ id, data: { name, email, photoURL } }) => (
                           <div
@@ -221,7 +221,7 @@ const Sidebar = () => {
                             user?.primaryEmailAddress?.emailAddress ? (
                               <div></div>
                             ) : (
-                              <div className="flex items-center cursor-pointer p-4 break-words bg-darkblue text-white rounded-xl my-1">
+                              <div className="flex items-center cursor-pointer p-4 break-words  text-white rounded-xl my-1">
                                 <Image
                                   width={56}
                                   height={56}
@@ -254,35 +254,38 @@ const Sidebar = () => {
             </Dialog>
           </Transition>
           <div>
-            <div className="px-3 bg-darkblue pt-5">
+            <div className="px-3  pt-5">
               <p className="uppercase tracking-widest text-sm font-thin pb-5">
                 direct messages
               </p>
             </div>
-            <div className="bg-darkblue">
+            <div className="w-full">
               {chatsSnapshot?.docs.map((chat) => (
                 <Chat key={chat.id} id={chat.id} users={chat.data().users} />
               ))}
             </div>
           </div>
 
-          <div className="bg-darkblue w-full focus:outline-none border-b-[1px] py-2 px-8 border-darkblue pt-36">
-            <button
-              className="bg-[#1F1E5E] shadow-lg p-2 text-center font-semibold rounded-sm w-full"
-              onClick={openModal}
-            >
-              Start a new chat
-            </button>
-          </div>
-          <div className="bg-darkblue p-4 border-t-[1px] border-indigo-500 flex pl-6 flex-row gap-4 items-center">
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-            <h1 className="font-semibold">
-              {user?.data.first_name} {user?.data.last_name}
-            </h1>
+          <div className="flex fixed w-[400px] bottom-0 flex-col justify-between mt-auto">
+            <div className="w-full focus:outline-none border-b-[1px] py-2 px-8 border-darkblue">
+              <button
+                className="bg-[#1F1E5E] shadow-lg p-2 text-center font-semibold rounded-sm w-full"
+                onClick={openModal}
+              >
+                Start a new chat
+              </button>
+            </div>
+            <div className="p-4 border-t-[1px] border-indigo-500 flex pl-6 flex-row gap-4 items-center">
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+              <h1 className="font-semibold">
+                {user?.data.first_name} {user?.data.last_name}
+              </h1>
+            </div>
           </div>
         </div>
+
         <div className="flex flex-col-reverse p-5">
           <div className="w-8 h-8 hover:w-9 hover:h-9 duration-75 delay-75 cursor-pointer flex items-center justify-center">
             {colorTheme === "light" ? (
