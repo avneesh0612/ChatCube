@@ -41,6 +41,10 @@ See [Contribution.MD](https://github.com/avneesh0612/ChatCube/blob/main/CONTRIBU
 - Github: [@avneesh0612](https://github.com/avneesh0612)
 - LinkedIn: [@avneesh-agarwal-78312b20a](https://linkedin.com/in/avneesh-agarwal-78312b20a)
 
+
+## Join the Community 
+I just rolled out a discord server. Click this link to join now- https://discord.gg/XjMunmUfVN
+
 ## Show your support
 
 Give a ⭐️ if this project helped you!
