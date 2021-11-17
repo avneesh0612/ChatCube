@@ -42,12 +42,12 @@ const Chat: React.FC<ChatProps> = ({ id, users }) => {
         <Image
           width={56}
           height={56}
-          className="m-1 mr-4 z-0 rounded-full"
+          className="z-0 m-1 mr-4 rounded-full"
           alt={recipient?.name || "avatar"}
           src={recipient?.photoURL}
         />
       ) : (
-        <p className="text-center flex items-center justify-center z-0 w-14 h-14 rounded-full bg-gray-300 text-black text-xl capitalize">
+        <p className="z-0 flex items-center justify-center text-xl text-center text-black capitalize bg-gray-300 rounded-full w-14 h-14">
           {recipientEmail && recipientEmail[0]}
         </p>
       )}
