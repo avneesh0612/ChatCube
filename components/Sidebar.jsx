@@ -131,7 +131,7 @@ const Sidebar = () => {
     <div className="flex flex-row-reverse max-h-screen w-[450px] min-h-screen">
       <Fade left>
         <div className="max-h-screen bg-bgprimary w-[400px] min-h-screen text-white">
-          <div className=" text-center pt-5">
+          <div className="pt-5 text-center ">
             <Link passHref href="/">
               <a>
                 <Image
@@ -147,21 +147,21 @@ const Sidebar = () => {
           </div>
           <div className="flex items-center justify-center p-3 border-b-[1px] border-darkblue ">
             <div className="flex items-center justify-center p-3 text-black bg-white/10 backdrop-filter backdrop-blur-2xl rounded-xl w-80">
-              <SearchIcon className="text-white dark:text-gray-50 w-6 h-6" />
+              <SearchIcon className="w-6 h-6 text-white dark:text-gray-50" />
               <input
                 ref={inputFocusRef}
-                className="flex-1 ml-3 placeholder-white text-white bg-transparent border-none outline-none"
+                className="flex-1 ml-3 text-white placeholder-white bg-transparent border-none outline-none"
                 placeholder="Search in chats"
                 type="text"
                 onChange={filterChats}
               />
             </div>
           </div>
-          <hr className="bg-transparent text-transparent" />
+          <hr className="text-transparent bg-transparent" />
           <Transition appear show={isOpen} as={Fragment}>
             <Dialog
               as="div"
-              className=" bg-black backdrop-blur-sm bg-opacity-50 fixed inset-0 z-50 overflow-y-auto"
+              className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50 backdrop-blur-sm"
               onClose={closeModal}
             >
               <div className="min-h-screen px-4 text-center">
@@ -201,13 +201,13 @@ const Sidebar = () => {
                     </Dialog.Title>
                     <input
                       ref={inputFocusRef}
-                      className="w-full placeholder-gray-300 mt-3 p-4 rounded-md shadow-md outline-none focus-visible:ring-blue-500"
+                      className="w-full p-4 mt-3 placeholder-gray-300 rounded-md shadow-md outline-none focus-visible:ring-blue-500"
                       placeholder="Search for someone"
                       value={inputValue}
                       onChange={onChange}
                     />
 
-                    <div className="mt-2 h-full overflow-y-scroll hidescrollbar">
+                    <div className="h-full mt-2 overflow-y-scroll hidescrollbar">
                       {filteredSuggestions.map(
                         ({ id, data: { name, email, photoURL } }) => (
                           <div
@@ -221,15 +221,15 @@ const Sidebar = () => {
                             user?.primaryEmailAddress?.emailAddress ? (
                               <div></div>
                             ) : (
-                              <div className="flex items-center cursor-pointer p-4 break-words  text-white rounded-xl my-1">
+                              <div className="flex items-center p-4 my-1 text-white break-words cursor-pointer rounded-xl">
                                 <Image
                                   width={56}
                                   height={56}
                                   src={photoURL}
                                   alt={name}
-                                  className="cursor-pointer rounded-full hover:opacity-80"
+                                  className="rounded-full cursor-pointer hover:opacity-80"
                                 />
-                                <div className="flex cursor-pointer break-words flex-col ml-3">
+                                <div className="flex flex-col ml-3 break-words cursor-pointer">
                                   <p>{name}</p>
                                 </div>
                               </div>
@@ -254,8 +254,8 @@ const Sidebar = () => {
             </Dialog>
           </Transition>
           <div>
-            <div className="px-3  pt-5">
-              <p className="uppercase tracking-widest text-sm font-thin pb-5">
+            <div className="px-3 pt-5">
+              <p className="pb-5 text-sm font-thin tracking-widest uppercase">
                 direct messages
               </p>
             </div>
@@ -280,19 +280,19 @@ const Sidebar = () => {
                 <UserButton />
               </SignedIn>
               <h1 className="font-semibold">
-                {user?.data.first_name} {user?.data.last_name}
+                {user?.data?.first_name} {user?.data?.last_name}
               </h1>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col-reverse p-5">
-          <div className="w-8 h-8 hover:w-9 hover:h-9 duration-75 delay-75 cursor-pointer flex items-center justify-center">
+          <div className="flex items-center justify-center w-8 h-8 duration-75 delay-75 cursor-pointer hover:w-9 hover:h-9">
             {colorTheme === "light" ? (
               <svg
                 onClick={() => setTheme("light")}
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-10 w-10  text-gray-200"
+                className="w-10 h-10 text-gray-200"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -308,7 +308,7 @@ const Sidebar = () => {
               <svg
                 onClick={() => setTheme("dark")}
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-10 w-10"
+                className="w-10 h-10"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
