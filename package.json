@@ -9,7 +9,7 @@
     "lint": "eslint --fix '{components,pages,utils}/**/*.{js,jsx,ts,tsx}'",
     "lint:check": "eslint '{components,pages,utils}/**/*.{js,jsx,ts,tsx}'",
     "prepare": "husky install",
-    "pre-commit": "yarn run format && git add -A ."
+    "pre-commit": "yarn run format:check && git add -A ."
   },
   "dependencies": {
     "@clerk/clerk-react": "^2.0.6",

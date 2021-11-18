@@ -201,7 +201,7 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
         photoURL: user?.profileImageUrl,
         edited: false,
       })
-      .then((doc) => {
+      .then(doc => {
         if (imageToPost) {
           const uploadTask = storage
             .ref(`images/${doc.id}`)
@@ -212,7 +212,7 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
           uploadTask.on(
             "state_changed",
             null,
-            (error) => {
+            error => {
               toast.error(error);
             },
             () => {
@@ -220,7 +220,7 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
                 .ref("images")
                 .child(doc.id)
                 .getDownloadURL()
-                .then((url) => {
+                .then(url => {
                   db.collection("chats")
                     .doc(routerId)
                     .collection("messages")
@@ -315,7 +315,7 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
           <input
             className="w-full p-4 mx-2 ml-2 text-white bg-white border-none rounded-lg outline-none md:mx-4 backdrop-filter backdrop-blur-2xl bg-opacity-10"
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={e => setInput(e.target.value)}
             ref={focusRef}
             type="text"
           />
