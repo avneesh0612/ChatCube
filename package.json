@@ -4,7 +4,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "format": "prettier --write \"{components,content,docs,pages,styles,utils}/**/*.{js,jsx,ts,tsx,css,scss,json,yaml,md}\"",
+    "format:check": "prettier --check \"{components,content,docs,pages,styles,utils}/**/*.{js,jsx,ts,tsx,css,scss,json,yaml,md}\"",
+    "lint": "eslint --fix '{components,pages,utils}/**/*.{js,jsx,ts,tsx}'",
+    "lint:check": "eslint '{components,pages,utils}/**/*.{js,jsx,ts,tsx}'",
+    "prepare": "husky install",
+    "pre-commit": "npm run format && git add -A ."
   },
   "dependencies": {
     "@clerk/clerk-react": "^2.0.6",
@@ -31,9 +36,14 @@
     "@types/react": "^17.0.35",
     "@types/react-linkify": "^1.0.1",
     "autoprefixer": "^10.4.0",
-    "eslint": "7.32.0",
-    "eslint-config-next": "12.0.4",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "^11.1.2",
+    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-tailwind": "^0.2.1",
+    "husky": "^7.0.2",
     "postcss": "^8.3.11",
+    "prettier": "^2.4.1",
     "tailwindcss": "^2.2.19",
     "typescript": "^4.4.4"
   }
