@@ -5,15 +5,15 @@ function Footer() {
   const router = useRouter();
   if (router.pathname.match("/")) {
     return null;
-  }
-  else {
+  } else {
     return (
       <Fade bottom>
         <footer className="flex items-center justify-between px-5 bg-white">
-          <p className="text-center w-full py-3 text-lg font-medium">
+          <p className="w-full py-3 text-lg font-medium text-center">
             Made with 💜 by{" "}
-            <a target="blank" href="https://avneesh-links.vercel.app/">Avneesh Agarwal</a>
-            and re-designed by Aman Kaushik
+            <a target="blank" href="https://avneesh-links.vercel.app/">
+              Avneesh Agarwal
+            </a>
           </p>
         </footer>
       </Fade>

@@ -11,27 +11,9 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { db } from "../firebase";
 import { useKeyPress } from "../hooks/useKeyPress";
+import { UsersType, UserType } from "../types/UserType";
 import Chat from "./Chat";
 import ThemeToggler from "./ThemeToggler";
-
-interface UserType {
-  id: string;
-  username: string;
-  primaryEmailAddress: {
-    emailAddress: string;
-  };
-  firstName: string;
-  lastName: string;
-  fullName: string;
-  name?: string;
-  email?: string;
-  photoURL?: string;
-}
-
-interface UsersType {
-  id: string;
-  data: UserType;
-}
 
 const Sidebar = () => {
   const user: UserType = window?.Clerk?.user as UserType;

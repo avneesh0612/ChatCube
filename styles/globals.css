@@ -30,9 +30,6 @@
   background-color: #3736aa !important;
 }
 
-.chatscreen-width {
-  width: calc(100vw - 450px);
-}
 
 .emoji-mart-title-label {
   display: none;

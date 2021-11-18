@@ -21,17 +21,27 @@ import { db, storage } from "../firebase";
 import useComponentVisible from "../hooks/useComponentVisible";
 import getRecipientEmail from "../utils/getRecipientEmail";
 import Message from "./Message";
+import { UserType } from "../types/UserType";
 
-const ChatScreen = ({ chat, messages }) => {
-  const user = window?.Clerk?.user;
+declare global {
+  interface Window {
+    SpeechRecognition: any;
+    webkitSpeechRecognition: any;
+  }
+}
+
+const ChatScreen: React.FC<any> = ({ chat, messages }) => {
+  const user = window?.Clerk?.user as UserType;
   const router = useRouter();
-  const endOfMessagesRef = useRef(null);
+  const endOfMessagesRef = useRef<any>(null);
   const [input, setInput] = useState("");
-  const focusRef = useRef();
+  const focusRef = useRef<HTMLInputElement>(null);
   const [imageToPost, setImageToPost] = useState(null);
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible();
   const [hearing, setHearing] = useState(false);
+
+  const routerId = router.query.id as string;
 
   const SpeechRecognition =
     window?.SpeechRecognition || window?.webkitSpeechRecognition;
@@ -43,33 +53,33 @@ const ChatScreen = ({ chat, messages }) => {
   const [messagesSnapshot] = useCollection(
     db
       .collection("chats")
-      .doc(router.query.id)
+      .doc(routerId)
       .collection("messages")
       .orderBy("timestamp", "asc")
   );
-  const userLoggedIn = window.Clerk.user.primaryEmailAddress.emailAddress;
+  const userLoggedIn = window?.Clerk?.user?.primaryEmailAddress?.emailAddress;
 
   const [recipientSnapshot] = useCollection(
     db
       .collection("users")
       .where("email", "==", getRecipientEmail(chat.users, userLoggedIn))
   );
-  const filepickerRef = useRef(null);
+  const filepickerRef = useRef<any>(null);
 
   const recipient = recipientSnapshot?.docs?.[0]?.data();
-  const addEmoji = (e) => {
+  const addEmoji = (e: any) => {
     let sym = e.unified.split("-");
-    let codesArray = [];
-    sym.forEach((el) => codesArray.push("0x" + el));
+    let codesArray: any[] = [];
+    sym.forEach((el: any) => codesArray.push("0x" + el));
     let emoji = String.fromCodePoint(...codesArray);
     setInput(input + emoji);
     setIsComponentVisible(false);
-    focusRef.current.focus();
+    focusRef?.current?.focus();
   };
 
   const showMessages = () => {
     if (messagesSnapshot) {
-      return messagesSnapshot.docs.map((message) => (
+      return messagesSnapshot.docs.map((message: any) => (
         <div key={message.id}>
           {message.data().image ? (
             <div
@@ -83,12 +93,12 @@ const ChatScreen = ({ chat, messages }) => {
                }
               `}
             >
-              <div className="w-80 h-80 relative rounded-xl">
+              <div className="relative w-80 h-80 rounded-xl">
                 <Image
                   objectFit="contain"
                   layout="fill"
                   alt={message.data().user}
-                  className="w-80 rounded-xl object-contain"
+                  className="object-contain w-80 rounded-xl"
                   src={message.data().image}
                 />
               </div>
@@ -108,7 +118,7 @@ const ChatScreen = ({ chat, messages }) => {
         </div>
       ));
     } else {
-      return JSON.parse(messages).map((message) => (
+      return JSON.parse(messages).map((message: any) => (
         <Message
           key={message.id}
           creatorEmail={message.user}
@@ -120,7 +130,7 @@ const ChatScreen = ({ chat, messages }) => {
   };
 
   const textToSpeech = () => {
-    function onResult(event) {
+    function onResult(event: { resultIndex: any; results: string | any[] }) {
       var interim_transcript = "";
       for (var i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
@@ -147,10 +157,10 @@ const ChatScreen = ({ chat, messages }) => {
 
       recognition.addEventListener("end", () => {
         setHearing(false);
-        focusRef.current.focus();
+        focusRef?.current?.focus();
       });
 
-      recognition.addEventListener("error", function (event) {
+      recognition.addEventListener("error", function (event: { error: any }) {
         setHearing(false);
         alert(event.error);
       });
@@ -160,19 +170,19 @@ const ChatScreen = ({ chat, messages }) => {
   };
 
   const ScrollToBottom = () => {
-    endOfMessagesRef.current.scrollIntoView({
+    endOfMessagesRef?.current?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
   };
 
-  const sendMessage = (e) => {
+  const sendMessage = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     if (!input || input[0] === " ") return toast.error("Please add a text");
 
     db.collection("users")
-      .doc(window.Clerk.user.primaryEmailAddress.emailAddress)
+      .doc(window?.Clerk?.user?.primaryEmailAddress?.emailAddress)
       .set(
         {
           lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
@@ -181,13 +191,13 @@ const ChatScreen = ({ chat, messages }) => {
       );
 
     db.collection("chats")
-      .doc(router.query.id)
+      .doc(routerId)
       .collection("messages")
       .add({
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         message: input,
-        user: user.primaryEmailAddress.emailAddress,
-        photoURL: user.profileImageUrl,
+        user: user?.primaryEmailAddress?.emailAddress,
+        photoURL: user?.profileImageUrl,
         edited: false,
       })
       .then((doc) => {
@@ -211,7 +221,7 @@ const ChatScreen = ({ chat, messages }) => {
                 .getDownloadURL()
                 .then((url) => {
                   db.collection("chats")
-                    .doc(router.query.id)
+                    .doc(routerId)
                     .collection("messages")
                     .doc(doc.id)
                     .set(
@@ -231,13 +241,13 @@ const ChatScreen = ({ chat, messages }) => {
     ScrollToBottom();
   };
 
-  const addImageToPost = (e) => {
+  const addImageToPost = (e: any) => {
     const reader = new FileReader();
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
     }
 
-    reader.onload = (readerEvent) => {
+    reader.onload = (readerEvent: any) => {
       setImageToPost(readerEvent.target.result);
     };
   };
@@ -251,6 +261,7 @@ const ChatScreen = ({ chat, messages }) => {
   });
 
   const recipientEmail = getRecipientEmail(chat.users, user);
+
   return (
     <Fade right>
       {recipient?.name ? (
@@ -258,7 +269,7 @@ const ChatScreen = ({ chat, messages }) => {
       ) : (
         <NextSeo title={`Chat with ${recipient?.firstName}`} />
       )}
-      <div className="flex flex-col bg-[#3736AA] h-screen chatscreen-width">
+      <div className="flex flex-col bg-[#3736AA] h-screen">
         <div className="sticky rounded-t-xl bg-[#3736AA] z-30 top-0 flex p-4 h-20 items-center">
           <ArrowLeftIcon
             onClick={() => router.push("/")}
@@ -274,7 +285,7 @@ const ChatScreen = ({ chat, messages }) => {
             />
           ) : (
             <p className="z-0 flex items-center justify-center text-xl text-center capitalize bg-gray-300 rounded-full w-14 h-14">
-              {recipientEmail[0]}
+              {recipientEmail && recipientEmail[0]}
             </p>
           )}
 
@@ -306,12 +317,12 @@ const ChatScreen = ({ chat, messages }) => {
           <div ref={endOfMessagesRef} />
         </div>
 
-        <form className="flex items-center p-3 fixed bottom-0 rounded-b-xl chatscreen-width border-t-[1px] border-indigo-500 bg-[#3736AA] z-50">
+        <form className="flex items-center p-3 fixed bottom-0 rounded-b-xl border-t-[1px] border-indigo-500 bg-[#3736AA] z-50">
           <div
-            onClick={() => filepickerRef.current.click()}
+            onClick={() => filepickerRef?.current?.click()}
             className="inputIcon"
           >
-            <PaperClipIcon className="text-gray-100 h-6 w-6 cursor-pointer mr-2" />
+            <PaperClipIcon className="w-6 h-6 mr-2 text-gray-100 cursor-pointer" />
             <input
               onChange={addImageToPost}
               ref={filepickerRef}
@@ -323,7 +334,7 @@ const ChatScreen = ({ chat, messages }) => {
           <EmojiHappyIcon
             ref={ref}
             onClick={() => setIsComponentVisible(!isComponentVisible)}
-            className="text-gray-100 h-7 w-7 md:h-6 md:w-6 cursor-pointer mr-2"
+            className="mr-2 text-gray-100 cursor-pointer h-7 w-7 md:h-6 md:w-6"
           />
           {isComponentVisible && (
             <span ref={ref} className="absolute z-50 mb-[500px]">
@@ -337,7 +348,7 @@ const ChatScreen = ({ chat, messages }) => {
             }     text-white h-7 w-7 md:h-6 md:w-6 cursor-pointer`}
           />
           <input
-            className="w-full p-4 md:mx-4 mx-2 bg-white border-none rounded-lg outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10  text-white ml-2"
+            className="w-full p-4 mx-2 ml-2 text-white bg-white border-none rounded-lg outline-none md:mx-4 backdrop-filter backdrop-blur-2xl bg-opacity-10"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             ref={focusRef}
@@ -362,7 +373,7 @@ const ChatScreen = ({ chat, messages }) => {
               onClick={removeImage}
               className="flex flex-col transition duration-150 transform cursor-pointer filter hover:brightness-110 hover:scale-105"
             >
-              <div className="h-10 w-10 relative object-contain">
+              <div className="relative object-contain w-10 h-10">
                 <Image
                   objectFit="contain"
                   layout="fill"

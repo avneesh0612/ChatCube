@@ -15,6 +15,7 @@ If you use yarn then run
 ```bash
 yarn install
 ```
+
 This project is using yarn so stick to yarn
 
 ### Creating a new branch
@@ -28,7 +29,6 @@ git checkout -b new-feature
 ```bash
 yarn dev
 ```
-
 
 ## Environment Variables
 
@@ -44,7 +44,7 @@ To run this project, you will need to add the following environment variables to
 
 `FIREBASE_STORAGE_BUCKET`
 
-`FIREBASE_MESSAGEING_SENDER_ID`
+`FIREBASE_MESSAGING_SENDER_ID`
 
 `FIREBASE_APP_ID`
 
@@ -54,18 +54,17 @@ To run this project, you will need to add the following environment variables to
 
 ```
 NEXT_PUBLIC_CLERK_FRONTEND_API=clerk.vws38.ep6hq.lcl.dev
-FIREBASE_CONFIG_API_KEY=AIzaSyDWsDYYrSxJ8xcH_DZPRZp7zIk1Hlgr-tE 
+FIREBASE_CONFIG_API_KEY=AIzaSyDWsDYYrSxJ8xcH_DZPRZp7zIk1Hlgr-tE
 FIREBASE_AUTH_DOMAIN=chat-app-489ee.firebaseapp.com
 FIREBASE_PROJECT_ID=chat-app-489ee
 FIREBASE_STORAGE_BUCKET=chat-app-489ee.appspot.com
-FIREBASE_MESSAGEING_SENDER_ID=620872866119
+FIREBASE_MESSAGING_SENDER_ID=620872866119
 FIREBASE_APP_ID=1:620872866119:web:a02c63f5db95893b9f5462
 FIREBASE_MEASUREMENT_ID=G-10TQ6211LD
 ```
 
-## 2. If you want to configure the credentials follow the steps given below 
+## 2. If you want to configure the credentials follow the steps given below
 
-  
 ### Configuring Clerk
 
 Checkout [this](https://avneesh0612.hashnode.dev/mastering-clerk-authentication-with-the-nextjs-standard-setup) article to configure Clerk
@@ -98,17 +97,18 @@ After this is done click on the web app with the name you gave and then click on
 
 - Create a file .env.local and add this
   ![Env](https://res.cloudinary.com/dssvrf9oz/image/upload/v1624364193/carbon_1_h0keul.png)
+
 ```FIREBASE_CONFIG_API_KEY=AIzaSyDWsDYYrSxJ8xcH_DZPRZp7zIk1Hlgr-tE
 FIREBASE_AUTH_DOMAIN=chat-app-489ee.firebaseapp.com
 FIREBASE_PROJECT_ID=chat-app-489ee
 FIREBASE_STORAGE_BUCKET=chat-app-489ee.appspot.com
-FIREBASE_MESSAGEING_SENDER_ID=620872866119
+FIREBASE_MESSAGING_SENDER_ID=620872866119
 FIREBASE_APP_ID=1:620872866119:web:a02c63f5db95893b9f5462
 ```
+
 - Scroll down to config and
 
 - Replace the env variables with your keys as named.
-
 
 ### Setting up db
 
@@ -117,8 +117,10 @@ FIREBASE_APP_ID=1:620872866119:web:a02c63f5db95893b9f5462
   ![db](https://res.cloudinary.com/dssvrf9oz/image/upload/v1624366539/Screenshot_2021-06-22_175144_gcfvyi.png)
 
 ### Setting up storage
+
 - Go to stiarge tab in the sidebar
 - and change the rules to allow read and write
+
 ```
 rules_version = '2';
 service firebase.storage {
@@ -130,7 +132,6 @@ service firebase.storage {
 }
 ```
 
-
 ## Restart the server
 
 - Kill the current server and start a new server
@@ -138,6 +139,7 @@ service firebase.storage {
 ```bash
 yarn dev
 ```
+
 ## 🛡️ License
 
 This project is licensed under the MIT License - see the [`LICENSE`](LICENSE) file for details.

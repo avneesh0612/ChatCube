@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,11 +22,19 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/ChatScreen.jsx",
+    "components/ChatScreen.tsx",
     "pages/_app.tsx",
     "hooks/useComponentVisible.ts",
-    "worker/index.ts"
-, "components/Sidebar.tsx", "pages/chat/[id].tsx"  ],
-  "exclude": ["node_modules"],
-  "typeRoots": ["../node_modules/@types", "../@types"]
+    "worker/index.ts",
+    "components/Sidebar.tsx",
+    "pages/chat/[id].tsx",
+    "next.config.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "typeRoots": [
+    "../node_modules/@types",
+    "../@types"
+  ]
 }
