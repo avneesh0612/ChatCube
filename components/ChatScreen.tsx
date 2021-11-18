@@ -312,12 +312,12 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
           </div>
         </div>
 
-        <div className="p-8 pb-20 h-full max-w-full border-t-[1px] border-indigo-500 overflow-y-scroll overflow-x-hidden hidescrollbar">
+        <div className="p-8 pb-24 h-[97%] max-w-full border-t-[1px] border-indigo-500 overflow-y-scroll overflow-x-hidden hidescrollbar">
           {showMessages()}
           <div ref={endOfMessagesRef} />
         </div>
 
-        <form className="flex items-center p-3 fixed bottom-0 rounded-b-xl border-t-[1px] border-indigo-500 bg-[#3736AA] z-50">
+        <form className="flex items-center p-4 w-full fixed bottom-0 rounded-b-xl border-t-[1px] border-indigo-500 bg-[#3736AA] z-50">
           <div
             onClick={() => filepickerRef?.current?.click()}
             className="inputIcon"
@@ -358,11 +358,11 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
           <button
             type="submit"
             onClick={sendMessage}
-            disabled={!input || input[0] === " "}
+            disabled={input.trim().length === 0}
           >
             <PaperAirplaneIcon
               className={`${
-                !input || input[0] === " "
+                input.trim().length === 0
                   ? "text-gray-500 cursor-not-allowed"
                   : "text-gray-100 cursor-pointer"
               } rotate-90 h-7 w-7 md:h-6 md:w-6 mr-2`}

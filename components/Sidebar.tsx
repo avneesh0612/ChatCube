@@ -280,11 +280,11 @@ const Sidebar = () => {
                 Start a new chat
               </button>
             </div>
-            <div className="p-4 border-t-[1px] border-indigo-500 flex pl-6 flex-row gap-4 items-center">
+            <div className="p-4 border-t-[1px] border-indigo-500 flex pl-6 flex-row items-center">
               <SignedIn>
                 <UserButton />
               </SignedIn>
-              <h1 className="font-semibold">{user?.fullName}</h1>
+              <h1 className="ml-4 font-semibold">{user?.fullName}</h1>
             </div>
           </div>
         </div>
