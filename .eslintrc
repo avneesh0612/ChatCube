@@ -9,7 +9,8 @@
         "plugin:tailwind/recommended"
     ],
     "plugins": [
-        "react"
+        "react",
+        "tailwindcss"
     ],
     "parserOptions": {
         "ecmaVersion": 2020,

@@ -2,6 +2,7 @@ import { ArrowLeftIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import TimeAgo from "timeago-react";
+import React from "react";
 
 const ChatScreenHeader: React.FC<any> = ({
   recipient,
@@ -10,10 +11,10 @@ const ChatScreenHeader: React.FC<any> = ({
 }) => {
   const router = useRouter();
   return (
-    <div className="sticky rounded-t-xl bg-[#3736AA] z-30 top-0 flex p-4 h-20 items-center">
+    <div className="sticky top-0 z-30 flex items-center h-20 p-4 rounded-t-xl bg-[#3736AA]">
       <ArrowLeftIcon
         onClick={() => router.push("/")}
-        className="md:!hidden focus:outline-none cursor-pointer h-6 w-6 text-gray-50 mr-2"
+        className="w-6 h-6 mr-2 cursor-pointer md:!hidden focus:outline-none text-gray-50"
       />
       {recipient ? (
         <Image
