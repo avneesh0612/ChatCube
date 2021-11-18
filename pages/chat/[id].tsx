@@ -51,7 +51,7 @@ export async function getServerSideProps(context: any) {
     .get();
 
   const messages = messagesRes.docs
-    .map((doc) => ({
+    .map(doc => ({
       id: doc.id,
       ...doc.data(),
     }))
@@ -60,7 +60,7 @@ export async function getServerSideProps(context: any) {
       timestamp: messages.timestamp.toDate().getTime(),
     }));
 
-  const users = allusers.docs.map((user) => ({
+  const users = allusers.docs.map(user => ({
     id: user.id,
     ...user.data(),
     lastSeen: null,

@@ -42,9 +42,9 @@ const Sidebar = () => {
   useEffect(() => {
     db.collection("users")
       .orderBy("name")
-      .onSnapshot((snapshot) =>
+      .onSnapshot(snapshot =>
         setUsers(
-          snapshot.docs.map((doc) => ({
+          snapshot.docs.map(doc => ({
             id: doc.id,
             data: doc.data(),
           }))
@@ -110,7 +110,7 @@ const Sidebar = () => {
 
     let inputValCaps = capitalizeFirstLetter(e.target.value);
 
-    Array.from(sidebarChat).forEach((element) => {
+    Array.from(sidebarChat).forEach(element => {
       let NameHd =
         element.getElementsByClassName("recipientName")[0].textContent;
 
