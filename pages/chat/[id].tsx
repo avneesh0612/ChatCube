@@ -26,7 +26,7 @@ const Chat: React.FC<ChatProps> = ({ chat, messages, users }) => {
   });
   return (
     <div className="flex flex-col w-full h-full pr-5 shadow-md">
-      <Header />
+      {/* <Header /> */}
       <div className="flex">
         <div className="hidden md:flex">
           <Sidebar />

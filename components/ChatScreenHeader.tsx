@@ -1,0 +1,57 @@
+import { ArrowLeftIcon } from "@heroicons/react/outline";
+import { useRouter } from "next/router";
+import Image from "next/image";
+import TimeAgo from "timeago-react";
+
+const ChatScreenHeader: React.FC<any> = ({
+  recipient,
+  recipientEmail,
+  recipientSnapshot,
+}) => {
+  const router = useRouter();
+  return (
+    <div className="sticky rounded-t-xl bg-[#3736AA] z-30 top-0 flex p-4 h-20 items-center">
+      <ArrowLeftIcon
+        onClick={() => router.push("/")}
+        className="md:!hidden focus:outline-none cursor-pointer h-6 w-6 text-gray-50 mr-2"
+      />
+      {recipient ? (
+        <Image
+          width={56}
+          height={56}
+          className="z-0 m-1 mr-4 rounded-full"
+          alt={recipient?.name}
+          src={recipient?.photoURL}
+        />
+      ) : (
+        <p className="z-0 flex items-center justify-center text-xl text-center capitalize bg-gray-300 rounded-full w-14 h-14">
+          {recipientEmail && recipientEmail[0]}
+        </p>
+      )}
+
+      <div className="flex-1 ml-4">
+        <h3 className="mb-1 text-white">
+          {recipient?.name ? (
+            <p>{recipient?.name}</p>
+          ) : (
+            <p>{recipient?.firstName}</p>
+          )}
+        </h3>
+        {recipientSnapshot ? (
+          <p className="text-sm text-gray-100">
+            Last active:{` `}
+            {recipient?.lastSeen?.toDate() ? (
+              <TimeAgo datetime={recipient?.lastSeen?.toDate()} />
+            ) : (
+              "Unavailable"
+            )}
+          </p>
+        ) : (
+          <p className="mb-1 text-white">Loading Last active...</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ChatScreenHeader;
