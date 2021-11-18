@@ -2,7 +2,7 @@ import {
   ClerkProvider,
   RedirectToSignIn,
   SignedIn,
-  SignedOut
+  SignedOut,
 } from "@clerk/clerk-react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";

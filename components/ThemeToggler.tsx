@@ -1,6 +1,5 @@
 import useDarkMode from "../hooks/useDarkMode";
 
-
 const ThemeToggler = () => {
   const [colorTheme, setTheme] = useDarkMode();
 
