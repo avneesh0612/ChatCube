@@ -1,11 +1,12 @@
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
-  DotsVerticalIcon, PencilIcon,
-  TrashIcon
+  DotsVerticalIcon,
+  PencilIcon,
+  TrashIcon,
 } from "@heroicons/react/outline";
 import moment from "moment";
 import { useRouter } from "next/router";
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, MouseEventHandler, useRef, useState } from "react";
 import Linkify from "react-linkify";
 import { db } from "../firebase";
 import { MessageType } from "../types/MessageType";
@@ -19,7 +20,7 @@ type MessageProps = {
 const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
   const userLoggedIn = (window as Window)?.Clerk?.user?.primaryEmailAddress
     ?.emailAddress;
-  const TypeOfMessage = creatorEmail === userLoggedIn ? "Sender" : "Reciever";
+  const TypeOfMessage = creatorEmail === userLoggedIn ? "Sender" : "Receiver";
   const router = useRouter();
   const [showModal, setShowModal] = useState<boolean>(false);
 
@@ -33,7 +34,7 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
     setShowModal(true);
   }
 
-  const editMessage = (e: any) => {
+  const editMessage = (e: React.MouseEvent) => {
     e.preventDefault();
 
     db.collection("chats")
@@ -71,7 +72,7 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
         <div>
           <Linkify>
             {message.message}{" "}
-            <span className="text-gray-400 text-sm">
+            <span className="text-sm text-gray-400">
               {message.edited && "(edited)"}
             </span>
           </Linkify>
@@ -138,7 +139,7 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block   w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-xl">
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-xl">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
@@ -148,7 +149,7 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
                 <form>
                   <div className="mt-2">
                     <input
-                      className="w-full p-5 text-blue-900 bg-blue-600 rounded-xl outline-none backdrop-filter backdrop-blur-2xl bg-opacity-10 focus-visible:ring-blue-500"
+                      className="w-full p-5 text-blue-900 bg-blue-600 outline-none rounded-xl backdrop-filter backdrop-blur-2xl bg-opacity-10 focus-visible:ring-blue-500"
                       placeholder="Your edited message"
                       ref={editedMessage}
                       defaultValue={message.message}
