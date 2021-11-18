@@ -4,33 +4,32 @@ import ChatScreen from "../../components/ChatScreen";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import { db } from "../../firebase";
+import { UserType } from "../../types/UserType";
 
-// interface ChatProps {
-//   chat: {
-//     users: [string];
-//     id: string;
-//   };
-//   messages: string;
-//   users: [UserType];
-// }
+interface ChatProps {
+  chat: {
+    users: [string];
+    id: string;
+  };
+  messages: string;
+  users: [UserType];
+}
 
-const Chat = ({ chat, messages, users }) => {
+const Chat: React.FC<ChatProps> = ({ chat, messages, users }) => {
   const router = useRouter();
+  const userEmail = window?.Clerk?.user?.primaryEmailAddress
+    ?.emailAddress as string;
   useEffect(() => {
-    if (
-      chat.users.includes(
-        window?.Clerk?.user?.primaryEmailAddress?.emailAddress
-      ) === false
-    ) {
+    if (chat.users.includes(userEmail) === false) {
       router.push("/");
     }
   });
   return (
-    <div className="flex shadow-md flex-col h-full w-full pr-5">
+    <div className="flex flex-col w-full h-full pr-5 shadow-md">
       <Header />
       <div className="flex">
-        <div className="md:flex hidden">
-          <Sidebar users={users} />
+        <div className="hidden md:flex">
+          <Sidebar />
         </div>
         <div className="flex-1 overflow-scroll hidescrollbar">
           <ChatScreen chat={chat} messages={messages} />
@@ -42,7 +41,7 @@ const Chat = ({ chat, messages, users }) => {
 
 export default Chat;
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: any) {
   const ref = db.collection("chats").doc(context.query.id);
   const allusers = await db.collection("users").get();
 
@@ -56,7 +55,7 @@ export async function getServerSideProps(context) {
       id: doc.id,
       ...doc.data(),
     }))
-    .map((messages) => ({
+    .map((messages: any) => ({
       ...messages,
       timestamp: messages.timestamp.toDate().getTime(),
     }));
