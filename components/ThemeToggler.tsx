@@ -9,7 +9,7 @@ const ThemeToggler = () => {
         <svg
           onClick={() => setTheme("light")}
           xmlns="http://www.w3.org/2000/svg"
-          className="w-10 h-10 text-gray-200 duration-100 hover:scale-110"
+          className="w-10 h-10 text-gray-200 duration-100 cursor-pointer hover:scale-110"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -25,7 +25,7 @@ const ThemeToggler = () => {
         <svg
           onClick={() => setTheme("dark")}
           xmlns="http://www.w3.org/2000/svg"
-          className="w-10 h-10 text-gray-200 duration-100 hover:scale-110"
+          className="w-10 h-10 text-gray-200 duration-100 cursor-pointer hover:scale-110"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

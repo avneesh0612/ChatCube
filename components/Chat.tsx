@@ -35,7 +35,7 @@ const Chat: React.FC<ChatProps> = ({ id, users }) => {
 
   return (
     <div
-      className="sidebarChat flex items-center cursor-pointer p-4 break-words bg-bgprimary border-b-[1px] border-indigo-500"
+      className="sidebarChat flex items-center cursor-pointer p-4 break-words bg-transparent hover:bg-white/5 duration-100 transform transition-all border-b-[1px] border-indigo-500"
       onClick={enterChat}
     >
       {recipient ? (

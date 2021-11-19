@@ -133,7 +133,7 @@ const Sidebar = () => {
       <ThemeToggler />
 
       <Fade left>
-        <div className="max-h-screen bg-bgprimary w-[400px] min-h-screen text-white">
+        <div className="max-h-screen bg-white/[8%] backdrop-blur-lg w-[400px] min-h-screen text-white">
           <div className="pt-5 text-center ">
             <Link passHref href="/">
               <a>
@@ -150,7 +150,7 @@ const Sidebar = () => {
           </div>
           <div className="flex items-center justify-center p-3 border-b-[1px] border-darkblue ">
             <div className="flex items-center justify-center p-3 text-black bg-white/10 backdrop-filter backdrop-blur-2xl rounded-xl w-80">
-              <SearchIcon className="w-6 h-6 text-white dark:text-gray-50" />
+              <SearchIcon className="w-6 h-6 text-white " />
               <input
                 ref={inputFocusRef}
                 className="flex-1 ml-3 text-white placeholder-white bg-transparent border-none outline-none"
@@ -161,103 +161,7 @@ const Sidebar = () => {
             </div>
           </div>
           <hr className="text-transparent bg-transparent" />
-          <Transition appear show={isOpen} as={Fragment}>
-            <Dialog
-              as="div"
-              className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50 backdrop-blur-sm"
-              onClose={closeModal}
-            >
-              <div className="min-h-screen px-4 text-center">
-                <Transition.Child
-                  as={Fragment}
-                  enter="ease-out duration-300"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="ease-in duration-200"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <Dialog.Overlay className="fixed inset-0" />
-                </Transition.Child>
 
-                <span
-                  className="inline-block h-screen align-middle"
-                  aria-hidden="true"
-                >
-                  &#8203;
-                </span>
-                <Transition.Child
-                  as={Fragment}
-                  enter="ease-out duration-300"
-                  enterFrom="opacity-0 scale-95"
-                  enterTo="opacity-100 scale-100"
-                  leave="ease-in duration-200"
-                  leaveFrom="opacity-100 scale-100"
-                  leaveTo="opacity-0 scale-95"
-                >
-                  <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-xl">
-                    <Dialog.Title
-                      as="h3"
-                      className="text-lg font-semibold leading-6 text-gray-900"
-                    >
-                      Start a chat with others
-                    </Dialog.Title>
-                    <input
-                      ref={inputFocusRef}
-                      className="w-full p-4 mt-3 placeholder-gray-300 rounded-md shadow-md outline-none focus-visible:ring-blue-500"
-                      placeholder="Search for someone"
-                      value={inputValue}
-                      onChange={onChange}
-                    />
-
-                    <div className="h-full mt-2 overflow-y-scroll hidescrollbar">
-                      {filteredSuggestions.map(
-                        ({ id, data: { name, email, photoURL } }) => (
-                          <div
-                            key={id}
-                            onClick={() => {
-                              createChat(email);
-                              toast.success("Chat created successfully");
-                            }}
-                          >
-                            {email ===
-                            user?.primaryEmailAddress?.emailAddress ? (
-                              <div></div>
-                            ) : (
-                              <div className="flex items-center p-4 my-1 text-white break-words cursor-pointer rounded-xl">
-                                {photoURL && (
-                                  <Image
-                                    width={56}
-                                    height={56}
-                                    src={photoURL}
-                                    alt={name}
-                                    className="rounded-full cursor-pointer hover:opacity-80"
-                                  />
-                                )}
-                                <div className="flex flex-col ml-3 break-words cursor-pointer">
-                                  <p>{name}</p>
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        )
-                      )}
-                    </div>
-
-                    <div className="mt-4">
-                      <button
-                        type="button"
-                        className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-xl hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                        onClick={closeModal}
-                      >
-                        I will chat later!
-                      </button>
-                    </div>
-                  </div>
-                </Transition.Child>
-              </div>
-            </Dialog>
-          </Transition>
           <div>
             <div className="px-3 pt-5">
               <p className="pb-5 text-sm font-thin tracking-widest uppercase">
@@ -289,6 +193,102 @@ const Sidebar = () => {
           </div>
         </div>
       </Fade>
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog
+          as="div"
+          className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50 backdrop-blur-sm"
+          onClose={closeModal}
+        >
+          <div className="min-h-screen px-4 text-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Dialog.Overlay className="fixed inset-0" />
+            </Transition.Child>
+
+            <span
+              className="inline-block h-screen align-middle"
+              aria-hidden="true"
+            >
+              &#8203;
+            </span>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-xl">
+                <Dialog.Title
+                  as="h3"
+                  className="text-lg font-semibold leading-6 text-gray-900"
+                >
+                  Start a chat with others
+                </Dialog.Title>
+                <input
+                  ref={inputFocusRef}
+                  className="w-full p-4 mt-3 placeholder-gray-300 rounded-md shadow-md outline-none focus-visible:ring-blue-500"
+                  placeholder="Search for someone"
+                  value={inputValue}
+                  onChange={onChange}
+                />
+
+                <div className="h-full mt-2 overflow-y-scroll hidescrollbar">
+                  {filteredSuggestions.map(
+                    ({ id, data: { name, email, photoURL } }) => (
+                      <div
+                        key={id}
+                        onClick={() => {
+                          createChat(email);
+                          toast.success("Chat created successfully");
+                        }}
+                      >
+                        {email === user?.primaryEmailAddress?.emailAddress ? (
+                          <div></div>
+                        ) : (
+                          <div className="flex items-center p-4 my-1 text-white break-words cursor-pointer rounded-xl">
+                            {photoURL && (
+                              <Image
+                                width={56}
+                                height={56}
+                                src={photoURL}
+                                alt={name}
+                                className="rounded-full cursor-pointer hover:opacity-80"
+                              />
+                            )}
+                            <div className="flex flex-col ml-3 break-words cursor-pointer">
+                              <p>{name}</p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )
+                  )}
+                </div>
+
+                <div className="mt-4">
+                  <button
+                    type="button"
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-xl hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                    onClick={closeModal}
+                  >
+                    I will chat later!
+                  </button>
+                </div>
+              </div>
+            </Transition.Child>
+          </div>
+        </Dialog>
+      </Transition>
     </div>
   );
 };

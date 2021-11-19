@@ -5,7 +5,7 @@ import Header from "../../components/Header";
 
 export default function SignUpPage() {
   return (
-    <div className="bg-indigo-700 dark:bg-gray-900">
+    <div className="bg-indigo-700">
       <NextSeo title="Sign up to ChatCube" />
       <Header />
       <SignUp path="/sign-up" routing="path" />

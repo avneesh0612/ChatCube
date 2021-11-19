@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 
 export default function SignInPage() {
   return (
-    <div className="bg-indigo-700 dark:bg-gray-900">
+    <div className="bg-indigo-700">
       <NextSeo title="Sign in to ChatCube" />
 
       <Header />

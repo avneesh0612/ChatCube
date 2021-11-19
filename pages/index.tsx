@@ -41,7 +41,7 @@ export default function Home() {
       <div className="flex w-full">
         <Sidebar />
         <Fade right>
-          <div className="flex-col items-center justify-center hidden m-4 text-center text-black md:flex md:w-[63vw] h-[80vh] md:m-1 md:ml-16 rounded-xl bg-bgprimary !mt-auto !mb-auto w-[93vw] dark:text-gray-100">
+          <div className="flex-col items-center justify-center hidden m-4 text-center text-black md:flex md:w-[63vw] h-[80vh] md:m-1 md:ml-16 rounded-xl bg-bgprimary !mt-auto !mb-auto w-[93vw] ">
             <div className="w-[280px]">
               <h2 className="text-2xl font-semibold">
                 Click on a chat or create a new chat

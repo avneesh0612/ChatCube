@@ -5,7 +5,7 @@ import Fade from "react-reveal/Fade";
 function Header() {
   return (
     <Fade top>
-      <header className="px-5 m-4 text-center rounded-lg dark:bg-indigo-700">
+      <header className="px-5 m-4 text-center rounded-lg">
         <Link passHref href="/">
           <a>
             <Image

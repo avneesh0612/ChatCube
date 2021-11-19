@@ -108,7 +108,7 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
             <></>
           )}
           <Message
-            key={message.id}
+            key={message?.id}
             creatorEmail={message.data().user}
             message={{
               ...message.data(),
