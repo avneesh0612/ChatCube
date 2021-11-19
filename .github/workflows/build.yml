@@ -16,16 +16,16 @@ jobs:
       - name: Cache Node.js modules
         uses: actions/cache@v1
         with:
-          path: ~/.npm
+          path: ~/.yarn
           key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-node-
             ${{ runner.OS }}-
       - name: Install dependencies
-        run: npm install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: Linting
-        run: npm run lint:check
+        run: yarn run lint:check
 
   formatting:
     runs-on: ubuntu-latest
@@ -40,16 +40,16 @@ jobs:
       - name: Cache Node.js modules
         uses: actions/cache@v1
         with:
-          path: ~/.npm
+          path: ~/.yarn
           key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-node-
             ${{ runner.OS }}-
       - name: Install dependencies
-        run: npm install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: Formatting
-        run: npm run format:check
+        run: yarn run format:check
 
   build:
     runs-on: ubuntu-latest
@@ -64,13 +64,13 @@ jobs:
       - name: Cache Node.js modules
         uses: actions/cache@v1
         with:
-          path: ~/.npm
+          path: ~/.yarn
           key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-node-
             ${{ runner.OS }}-
       - name: Install dependencies
-        run: npm install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: Build
-        run: npm run build
+        run: yarn run build
