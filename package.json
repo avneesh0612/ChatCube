@@ -10,7 +10,7 @@
     "lint": "eslint --fix '{components,pages,utils}/**/*.{js,jsx,ts,tsx}'",
     "lint:check": "eslint '{components,pages,utils}/**/*.{js,jsx,ts,tsx}'",
     "prepare": "husky install",
-    "pre-commit": "yarn run format:check && git add -A .",
+    "pre-commit": "yarn run format && git add -A .",
     "release": "standard-version",
     "release:minor": "standard-version --release-as minor",
     "release:patch": "standard-version --release-as patch",
