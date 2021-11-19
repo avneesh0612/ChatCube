@@ -100,18 +100,18 @@ const Sidebar = () => {
   };
 
   const filterChats = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let sidebarChat = document.getElementsByClassName("sidebarChat");
+    const sidebarChat = document.getElementsByClassName("sidebarChat");
 
-    let inputValLowerCase = e.target.value.toLowerCase();
+    const inputValLowerCase = e.target.value.toLowerCase();
 
     function capitalizeFirstLetter(string: string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    let inputValCaps = capitalizeFirstLetter(e.target.value);
+    const inputValCaps = capitalizeFirstLetter(e.target.value);
 
     Array.from(sidebarChat).forEach(element => {
-      let NameHd =
+      const NameHd =
         element.getElementsByClassName("recipientName")[0].textContent;
 
       if (

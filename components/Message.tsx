@@ -6,7 +6,7 @@ import {
 } from "@heroicons/react/outline";
 import moment from "moment";
 import { useRouter } from "next/router";
-import React, { Fragment, MouseEventHandler, useRef, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import Linkify from "react-linkify";
 import { db } from "../firebase";
 import { MessageType } from "../types/MessageType";

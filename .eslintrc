@@ -1,31 +1,25 @@
 {
-    "env": {
-        "browser": true,
-        "node": true
-    },
-    "parser": "babel-eslint",
     "extends": [
-        "eslint:recommended",
-        "plugin:tailwind/recommended"
+        "next/core-web-vitals",
+        "google",
+        "prettier",
+        "eslint:recommended"
     ],
-    "plugins": [
-        "react",
-        "tailwindcss"
-    ],
-    "parserOptions": {
-        "ecmaVersion": 2020,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "modules": true,
-            "jsx": true
-        }
-    },
     "rules": {
-        "no-console": [
-            "warn"
+        "react/react-in-jsx-scope": "off",
+        "object-curly-spacing": [
+            2,
+            "always"
         ],
-        "no-nested-ternary": 0,
-        "react/jsx-uses-react": "error",
-        "react/jsx-uses-vars": "error"
+        "quotes": [
+            2,
+            "double",
+            {
+                "avoidEscape": true
+            }
+        ],
+        "no-undef": "off",
+        "require-jsdoc": "off",
+        "new-cap": "off"
     }
 }

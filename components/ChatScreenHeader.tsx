@@ -40,7 +40,7 @@ const ChatScreenHeader: React.FC<any> = ({
         </h3>
         {recipientSnapshot ? (
           <p className="text-sm text-gray-100">
-            Last active:{` `}
+            Last active:{" "}
             {recipient?.lastSeen?.toDate() ? (
               <TimeAgo datetime={recipient?.lastSeen?.toDate()} />
             ) : (

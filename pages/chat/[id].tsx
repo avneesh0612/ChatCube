@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import ChatScreen from "../../components/ChatScreen";
-import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import { db } from "../../firebase";
 import { UserType } from "../../types/UserType";
@@ -26,7 +25,6 @@ const Chat: React.FC<ChatProps> = ({ chat, messages, users }) => {
   });
   return (
     <div className="flex flex-col w-full h-full pr-5 shadow-md">
-      {/* <Header /> */}
       <div className="flex">
         <div className="hidden md:flex">
           <Sidebar />

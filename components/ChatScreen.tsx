@@ -1,6 +1,4 @@
-import { NextSeo } from "next-seo";
 import {
-  ArrowLeftIcon,
   EmojiHappyIcon,
   MicrophoneIcon,
   PaperAirplaneIcon,
@@ -10,21 +8,22 @@ import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
+import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import Fade from "react-reveal/Fade";
 import { toast } from "react-toastify";
-import TimeAgo from "timeago-react";
 import { db, storage } from "../firebase";
 import useComponentVisible from "../hooks/useComponentVisible";
-import getRecipientEmail from "../utils/getRecipientEmail";
-import Message from "./Message";
 import { UserType } from "../types/UserType";
+import getRecipientEmail from "../utils/getRecipientEmail";
 import ChatScreenHeader from "./ChatScreenHeader";
+import Message from "./Message";
 
 declare global {
+  // eslint-disable-next-line no-unused-vars
   interface Window {
     SpeechRecognition: any;
     webkitSpeechRecognition: any;
@@ -45,10 +44,11 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
   const routerId = router.query.id as string;
 
   const SpeechRecognition =
-    window?.SpeechRecognition || window?.webkitSpeechRecognition;
+    (window as Window)?.SpeechRecognition ||
+    (window as Window)?.webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
 
-  var final_transcript = "";
+  let finalTranscript = "";
   recognition.interimResults = true;
 
   const [messagesSnapshot] = useCollection(
@@ -69,10 +69,10 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
 
   const recipient = recipientSnapshot?.docs?.[0]?.data();
   const addEmoji = (e: any) => {
-    let sym = e.unified.split("-");
-    let codesArray: any[] = [];
+    const sym = e.unified.split("-");
+    const codesArray: any[] = [];
     sym.forEach((el: any) => codesArray.push("0x" + el));
-    let emoji = String.fromCodePoint(...codesArray);
+    const emoji = String.fromCodePoint(...codesArray);
     setInput(input + emoji);
     setIsComponentVisible(false);
     focusRef?.current?.focus();
@@ -132,14 +132,14 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
 
   const textToSpeech = () => {
     function onResult(event: { resultIndex: any; results: string | any[] }) {
-      var interim_transcript = "";
-      for (var i = event.resultIndex; i < event.results.length; ++i) {
+      let interTrimTranscript = "";
+      for (let i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
-          final_transcript += event.results[i][0].transcript;
-          setInput(final_transcript);
+          finalTranscript += event.results[i][0].transcript;
+          setInput(finalTranscript);
         } else {
-          interim_transcript += event.results[i][0].transcript;
-          setInput(interim_transcript);
+          interTrimTranscript += event.results[i][0].transcript;
+          setInput(interTrimTranscript);
         }
       }
     }
