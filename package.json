@@ -1,5 +1,6 @@
 {
   "private": true,
+  "version": "0.1.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,7 +10,11 @@
     "lint": "eslint --fix '{components,pages,utils}/**/*.{js,jsx,ts,tsx}'",
     "lint:check": "eslint '{components,pages,utils}/**/*.{js,jsx,ts,tsx}'",
     "prepare": "husky install",
-    "pre-commit": "yarn run format:check && git add -A ."
+    "pre-commit": "yarn run format:check && git add -A .",
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "release:major": "standard-version --release-as major"
   },
   "dependencies": {
     "@clerk/clerk-react": "^2.0.6",
@@ -32,6 +37,8 @@
     "timeago-react": "^3.0.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
     "@types/emoji-mart": "^3.0.8",
     "@types/react": "^17.0.35",
     "@types/react-linkify": "^1.0.1",
@@ -48,6 +55,7 @@
     "husky": "^7.0.2",
     "postcss": "^8.3.11",
     "prettier": "^2.4.1",
+    "standard-version": "^9.3.2",
     "tailwindcss": "^2.2.19",
     "typescript": "^4.4.4"
   }
