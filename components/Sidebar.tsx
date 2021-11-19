@@ -168,7 +168,7 @@ const Sidebar = () => {
                 direct messages
               </p>
             </div>
-            <div className="w-full max-h-[45vh] overflow-y-scroll">
+            <div className="w-full max-h-[48vh] overflow-y-scroll hidescrollbar">
               {chatsSnapshot?.docs.map((chat: any) => (
                 <Chat key={chat.id} id={chat.id} users={chat.data().users} />
               ))}
