@@ -1,4 +1,4 @@
-import { SignedIn, UserButton } from "@clerk/clerk-react";
+import { SignedIn, UserButton, useUser } from "@clerk/clerk-react";
 import { Dialog, Transition } from "@headlessui/react";
 import { SearchIcon } from "@heroicons/react/outline";
 import * as EmailValidator from "email-validator";
@@ -11,12 +11,12 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { db } from "../firebase";
 import { useKeyPress } from "../hooks/useKeyPress";
-import { UsersType, UserType } from "../types/UserType";
+import { UsersType } from "../types/UserType";
 import Chat from "./Chat";
 import ThemeToggler from "./ThemeToggler";
 
 const Sidebar = () => {
-  const user: UserType = window?.Clerk?.user as UserType;
+  const user = useUser();
   const [users, setUsers] = useState<any>([]);
   const [inputValue, setInputValue] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState<UsersType[]>(

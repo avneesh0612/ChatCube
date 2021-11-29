@@ -1,3 +1,4 @@
+import { useUser } from "@clerk/clerk-react";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import ChatScreen from "../../components/ChatScreen";
@@ -16,8 +17,8 @@ interface ChatProps {
 
 const Chat: React.FC<ChatProps> = ({ chat, messages, users }) => {
   const router = useRouter();
-  const userEmail = window?.Clerk?.user?.primaryEmailAddress
-    ?.emailAddress as string;
+  const user = useUser();
+  const userEmail = user?.primaryEmailAddress?.emailAddress as string;
   useEffect(() => {
     if (chat.users.includes(userEmail) === false) {
       router.push("/");

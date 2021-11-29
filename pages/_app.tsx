@@ -4,16 +4,13 @@ import {
   SignedIn,
   SignedOut,
 } from "@clerk/clerk-react";
-import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import { NextSeo } from "next-seo";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import NextNProgress from "nextjs-progressbar";
-import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { UrlObject } from "url";
-import { db } from "../firebase";
 import "../styles/globals.css";
 
 const clerkFrontendApi = process.env.NEXT_PUBLIC_CLERK_FRONTEND_API;
@@ -22,23 +19,6 @@ const publicPages = ["/sign-in/[[...index]]", "/sign-up/[[...index]]"];
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
-
-  useEffect(() => {
-    if (window.Clerk?.user) {
-      db.collection("users")
-        .doc(window.Clerk.user.primaryEmailAddress?.emailAddress)
-        .set(
-          {
-            email: window.Clerk.user.primaryEmailAddress?.emailAddress,
-            name: window.Clerk.user.fullName,
-            lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
-            photoURL: window.Clerk.user.profileImageUrl,
-            firstName: window.Clerk.user.firstName,
-          },
-          { merge: true }
-        );
-    }
-  });
 
   return (
     <ClerkProvider

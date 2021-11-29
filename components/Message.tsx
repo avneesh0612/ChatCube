@@ -1,3 +1,4 @@
+import { useUser } from "@clerk/clerk-react";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
   DotsVerticalIcon,
@@ -18,8 +19,8 @@ type MessageProps = {
 };
 
 const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
-  const userLoggedIn = (window as Window)?.Clerk?.user?.primaryEmailAddress
-    ?.emailAddress;
+  const user = useUser();
+  const userLoggedIn = user?.primaryEmailAddress?.emailAddress;
   const TypeOfMessage = creatorEmail === userLoggedIn ? "Sender" : "Receiver";
   const router = useRouter();
   const [showModal, setShowModal] = useState<boolean>(false);

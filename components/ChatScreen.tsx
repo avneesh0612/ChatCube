@@ -1,3 +1,4 @@
+import { useUser } from "@clerk/clerk-react";
 import {
   EmojiHappyIcon,
   MicrophoneIcon,
@@ -17,7 +18,6 @@ import Fade from "react-reveal/Fade";
 import { toast } from "react-toastify";
 import { db, storage } from "../firebase";
 import useComponentVisible from "../hooks/useComponentVisible";
-import { UserType } from "../types/UserType";
 import getRecipientEmail from "../utils/getRecipientEmail";
 import ChatScreenHeader from "./ChatScreenHeader";
 import Message from "./Message";
@@ -31,7 +31,7 @@ declare global {
 }
 
 const ChatScreen: React.FC<any> = ({ chat, messages }) => {
-  const user = window?.Clerk?.user as UserType;
+  const user = useUser();
   const router = useRouter();
   const endOfMessagesRef = useRef<any>(null);
   const [input, setInput] = useState("");
@@ -58,7 +58,7 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
       .collection("messages")
       .orderBy("timestamp", "asc")
   );
-  const userLoggedIn = window?.Clerk?.user?.primaryEmailAddress?.emailAddress;
+  const userLoggedIn = user.primaryEmailAddress?.emailAddress;
 
   const [recipientSnapshot] = useCollection(
     db
@@ -182,14 +182,12 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
 
     if (!input || input[0] === " ") return toast.error("Please add a text");
 
-    db.collection("users")
-      .doc(window?.Clerk?.user?.primaryEmailAddress?.emailAddress)
-      .set(
-        {
-          lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
-        },
-        { merge: true }
-      );
+    db.collection("users").doc(user.primaryEmailAddress?.emailAddress).set(
+      {
+        lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
+      },
+      { merge: true }
+    );
 
     db.collection("chats")
       .doc(routerId)
@@ -261,7 +259,10 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
     ScrollToBottom();
   });
 
-  const recipientEmail = getRecipientEmail(chat.users, user);
+  const recipientEmail = getRecipientEmail(
+    chat.users,
+    user.primaryEmailAddress?.emailAddress
+  );
 
   return (
     <Fade right>

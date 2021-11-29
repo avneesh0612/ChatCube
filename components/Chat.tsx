@@ -1,3 +1,4 @@
+import { useUser } from "@clerk/clerk-react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
@@ -12,7 +13,7 @@ type ChatProps = {
 
 const Chat: React.FC<ChatProps> = ({ id, users }) => {
   const router = useRouter();
-  const user = (window as Window)?.Clerk?.user;
+  const user = useUser();
   const [recipientSnapshot] = useCollection(
     db
       .collection("users")

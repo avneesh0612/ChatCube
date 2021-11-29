@@ -8,24 +8,24 @@ import "firebase/compat/firestore";
 import { useRouter } from "next/router";
 import Fade from "react-reveal/Fade";
 import Image from "next/image";
+import { useUser } from "@clerk/clerk-react";
 
 export default function Home() {
   const router = useRouter();
+  const user = useUser();
 
   useEffect(() => {
-    if (window.Clerk?.user) {
-      db.collection("users")
-        .doc(window?.Clerk.user?.primaryEmailAddress?.emailAddress)
-        .set(
-          {
-            email: window.Clerk.user.primaryEmailAddress?.emailAddress,
-            name: window.Clerk.user.fullName,
-            lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
-            photoURL: window.Clerk.user.profileImageUrl,
-            firstName: window.Clerk.user.firstName,
-          },
-          { merge: true }
-        );
+    if (user) {
+      db.collection("users").doc(user?.primaryEmailAddress?.emailAddress).set(
+        {
+          email: user.primaryEmailAddress?.emailAddress,
+          name: user.fullName,
+          lastSeen: firebase.firestore.FieldValue.serverTimestamp(),
+          photoURL: user.profileImageUrl,
+          firstName: user.firstName,
+        },
+        { merge: true }
+      );
     }
 
     router.prefetch("/chat/[id]");
@@ -41,12 +41,10 @@ export default function Home() {
       <div className="flex w-full">
         <Sidebar />
         <Fade right>
-          <div className="flex-col items-center justify-center hidden m-4 text-center text-black md:flex md:w-[63vw] h-[80vh] md:m-1 md:ml-16 rounded-xl bg-bgprimary !mt-auto !mb-auto w-[93vw] ">
-            <div className="w-[280px]">
-              <h2 className="text-2xl font-semibold">
-                Click on a chat or create a new chat
-              </h2>
-            </div>
+          <div className="flex-col items-center justify-center hidden m-4 text-center md:flex md:w-[63vw] h-[80vh] md:m-1 md:ml-16 rounded-xl !mt-auto !mb-auto w-[93vw] text-white">
+            <h2 className="text-2xl w-[280px] font-semibold">
+              Click on a chat or create a new chat
+            </h2>
           </div>
         </Fade>
         <a
