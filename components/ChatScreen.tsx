@@ -18,6 +18,7 @@ import Fade from "react-reveal/Fade";
 import { toast } from "react-toastify";
 import { db, storage } from "../firebase";
 import useComponentVisible from "../hooks/useComponentVisible";
+import { MessageType } from "../types/MessageType";
 import getRecipientEmail from "../utils/getRecipientEmail";
 import ChatScreenHeader from "./ChatScreenHeader";
 import Message from "./Message";
@@ -30,10 +31,23 @@ declare global {
   }
 }
 
-const ChatScreen: React.FC<any> = ({ chat, messages }) => {
+interface messageType {
+  data(): import("../types/MessageType").MessageType;
+  id: string;
+}
+
+interface Props {
+  chat: {
+    id: string;
+    users: [string];
+  };
+  messages: string;
+}
+
+const ChatScreen: React.FC<Props> = ({ chat, messages }) => {
   const user = useUser();
   const router = useRouter();
-  const endOfMessagesRef = useRef<any>(null);
+  const endOfMessagesRef = useRef<HTMLInputElement>(null);
   const [input, setInput] = useState("");
   const focusRef = useRef<HTMLInputElement>(null);
   const [imageToPost, setImageToPost] = useState(null);
@@ -65,7 +79,7 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
       .collection("users")
       .where("email", "==", getRecipientEmail(chat.users, userLoggedIn))
   );
-  const filepickerRef = useRef<any>(null);
+  const filepickerRef = useRef<HTMLInputElement>(null);
 
   const recipient = recipientSnapshot?.docs?.[0]?.data();
   const addEmoji = (e: any) => {
@@ -80,7 +94,7 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
 
   const showMessages = () => {
     if (messagesSnapshot) {
-      return messagesSnapshot.docs.map((message: any) => (
+      return messagesSnapshot.docs.map((message: messageType) => (
         <div key={message.id}>
           {message.data().image ? (
             <div
@@ -95,13 +109,15 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
               `}
             >
               <div className="relative w-80 h-80 rounded-xl">
-                <Image
-                  objectFit="contain"
-                  layout="fill"
-                  alt={message.data().user}
-                  className="object-contain w-80 rounded-xl"
-                  src={message.data().image}
-                />
+                {message.data().edited && (
+                  <Image
+                    objectFit="contain"
+                    layout="fill"
+                    alt={message.data().user}
+                    className="object-contain w-80 rounded-xl"
+                    src={message?.data()?.image}
+                  />
+                )}
               </div>
             </div>
           ) : (
@@ -119,7 +135,7 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
         </div>
       ));
     } else {
-      return JSON.parse(messages).map((message: any) => (
+      return JSON.parse(messages).map((message: MessageType) => (
         <Message
           key={message.id}
           creatorEmail={message.user}
@@ -131,7 +147,7 @@ const ChatScreen: React.FC<any> = ({ chat, messages }) => {
   };
 
   const textToSpeech = () => {
-    function onResult(event: { resultIndex: any; results: string | any[] }) {
+    function onResult(event: { resultIndex: number; results: any }) {
       let interTrimTranscript = "";
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {

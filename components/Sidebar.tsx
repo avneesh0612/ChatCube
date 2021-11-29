@@ -15,6 +15,17 @@ import { UsersType } from "../types/UserType";
 import Chat from "./Chat";
 import ThemeToggler from "./ThemeToggler";
 
+interface ChatType {
+  id: string;
+  data(): { users: [string] };
+}
+
+interface UserFilterType {
+  data: {
+    name: string;
+  };
+}
+
 const Sidebar = () => {
   const user = useUser();
   const [users, setUsers] = useState<any>([]);
@@ -58,7 +69,6 @@ const Sidebar = () => {
   const [chatsSnapshot] = useCollection(userChatsRef);
 
   const createChat = (input: string | undefined) => {
-    console.log(input);
     if (!input) return;
     if (
       EmailValidator.validate(input) &&
@@ -92,7 +102,7 @@ const Sidebar = () => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const userInput = e.currentTarget.value;
     const filteredSuggestions = users.filter(
-      (user: any) =>
+      (user: UserFilterType) =>
         user?.data?.name?.toLowerCase().indexOf(userInput.toLowerCase()) > -1
     );
     setFilteredSuggestions(filteredSuggestions.slice(0, 10));
@@ -169,7 +179,7 @@ const Sidebar = () => {
               </p>
             </div>
             <div className="w-full max-h-[48vh] overflow-y-scroll hidescrollbar">
-              {chatsSnapshot?.docs.map((chat: any) => (
+              {chatsSnapshot?.docs.map((chat: ChatType) => (
                 <Chat key={chat.id} id={chat.id} users={chat.data().users} />
               ))}
             </div>

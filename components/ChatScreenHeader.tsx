@@ -4,7 +4,20 @@ import Image from "next/image";
 import TimeAgo from "timeago-react";
 import React from "react";
 
-const ChatScreenHeader: React.FC<any> = ({
+interface Props {
+  recipient: {
+    name: string;
+    photoURL: string;
+    firstName: string;
+    lastSeen: {
+      toDate: () => Date;
+    };
+  };
+  recipientEmail: string | undefined;
+  recipientSnapshot: any;
+}
+
+const ChatScreenHeader: React.FC<Props> = ({
   recipient,
   recipientEmail,
   recipientSnapshot,
@@ -40,7 +53,7 @@ const ChatScreenHeader: React.FC<any> = ({
         </h3>
         {recipientSnapshot ? (
           <p className="text-sm text-gray-100">
-            Last active:{" "}
+            Last active:
             {recipient?.lastSeen?.toDate() ? (
               <TimeAgo datetime={recipient?.lastSeen?.toDate()} />
             ) : (

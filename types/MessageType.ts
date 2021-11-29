@@ -1,8 +1,9 @@
 export type MessageType = {
   user: string;
-  timestamp: number;
+  timestamp: any;
   photoURL: string;
-  image?: string;
+  image: string;
+  id: string;
   message: string;
   edited?: boolean;
 };
