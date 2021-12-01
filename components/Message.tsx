@@ -143,14 +143,14 @@ const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-blue-800 shadow-xl rounded-xl">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
+                  className="text-lg font-medium leading-6 text-white"
                 >
                   Edit your message
                 </Dialog.Title>
                 <form>
                   <div className="mt-2">
                     <input
-                      className="w-full p-5 text-blue-900 bg-blue-600 outline-none rounded-xl backdrop-filter backdrop-blur-2xl bg-opacity-10 focus-visible:ring-blue-500"
+                      className="w-full p-5 text-white outline-none bg-white/10 rounded-xl backdrop-filter backdrop-blur-2xl bg-opacity-10 focus-visible:ring-blue-500"
                       placeholder="Your edited message"
                       ref={editedMessage}
                       defaultValue={message.message}
