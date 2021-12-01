@@ -237,26 +237,27 @@ const Sidebar = () => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-xl">
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-blue-800 shadow-xl rounded-xl">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-semibold leading-6 text-gray-900"
+                  className="text-lg font-semibold leading-6 text-white"
                 >
                   Start a chat with others
                 </Dialog.Title>
                 <input
                   ref={inputFocusRef}
-                  className="w-full p-4 mt-3 placeholder-gray-300 rounded-md shadow-md outline-none focus-visible:ring-blue-500"
+                  className="w-full p-4 mt-3 text-white placeholder-gray-300 rounded-md shadow-md outline-none bg-white/10 backdrop-blur-lg focus-visible:ring-blue-500"
                   placeholder="Search for someone"
                   value={inputValue}
                   onChange={onChange}
                 />
 
-                <div className="h-full mt-2 overflow-y-scroll hidescrollbar">
+                <div className="h-full mt-2 overflow-y-scroll max-h-[500px] pr-2 pt-5">
                   {filteredSuggestions.map(
                     ({ id, data: { name, email, photoURL } }) => (
                       <div
                         key={id}
+                        className="rounded-lg bg-white/10 backdrop-blur-lg"
                         onClick={() => {
                           createChat(email);
                           toast.success("Chat created successfully");
