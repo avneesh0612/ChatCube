@@ -9,6 +9,9 @@ module.exports = {
       },
       colors: {
         bglightprimary: "#3736AA",
+        Jaguar: "#1F1D2C",
+        Blackish:"#0E011E",
+        Purple:"#5E1492",
         blue: {
           800: "#18185A",
         },
