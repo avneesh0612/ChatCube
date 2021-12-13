@@ -28,12 +28,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     >
       <NextSeo
         title="ChatCube"
-        description="This is a 1:1 chatting app."
-        canonical="https://www.chatcube.me/"
+        titleTemplate="ChatCube"
+        defaultTitle="ChatCube"
+        description="A 1:1 chatting app"
+        canonical="https://www.chatcube.me"
         openGraph={{
-          url: "https://www.chatcube.me/",
+          url: "https://www.chatcube.me",
           title: "ChatCube",
-          description: "This is a 1:1 chatting app.",
+          description: "A 1:1 chatting app",
           images: [
             {
               url: "/Logo.png",
@@ -42,7 +44,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
               alt: "ChatCube",
             },
           ],
-          site_name: "ChatCube",
+          profile: {
+            firstName: "Avneesh",
+            gender: "Male",
+            lastName: "Agarwal",
+            username: "avneesh0612",
+          },
         }}
         twitter={{
           handle: "@avneesh0612",
