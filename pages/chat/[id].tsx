@@ -25,14 +25,12 @@ const Chat: React.FC<ChatProps> = ({ chat, messages, users }) => {
     }
   });
   return (
-    <div className="flex flex-col w-full h-full pr-5 shadow-md">
-      <div className="flex">
-        <div className="hidden md:flex">
-          <Sidebar />
-        </div>
-        <div className="flex-1 overflow-scroll hidescrollbar">
-          <ChatScreen chat={chat} messages={messages} />
-        </div>
+    <div className="flex w-screen h-screen pr-5 shadow-md">
+      <div className="hidden w-[30vw] md:flex">
+        <Sidebar />
+      </div>
+      <div className="w-[70vw] hidescrollbar">
+        <ChatScreen chat={chat} messages={messages} />
       </div>
     </div>
   );

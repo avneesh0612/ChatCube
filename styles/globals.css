@@ -4,7 +4,7 @@
 
 @layer components {
   body {
-    @apply bg-blue-800;
+    @apply dark:bg-blue-800 bg-[#4F72C2];
   }
 }
 
@@ -27,7 +27,7 @@
 }
 
 .cl-component.cl-user-button-popup {
-  background-color: #3736aa !important;
+  background-color: #4f72c2 !important;
 }
 
 .emoji-mart-title-label {
@@ -53,7 +53,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #4338c9;
+  background-color: #4f72c2;
 }
 
 ::-webkit-scrollbar-thumb:hover {

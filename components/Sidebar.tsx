@@ -139,11 +139,11 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex w-[30vw]">
       <ThemeToggler />
 
       <Fade left>
-        <div className="max-h-screen bg-white/[8%] backdrop-blur-lg w-[400px] min-h-screen text-white">
+        <div className="max-h-screen bg-[#89A6FB] dark:bg-white/[8%] backdrop-blur-lg w-[400px] min-h-screen text-black dark:text-white">
           <div className="pt-5 text-center ">
             <Link passHref href="/">
               <a>
@@ -158,12 +158,12 @@ const Sidebar = () => {
               </a>
             </Link>
           </div>
-          <div className="flex items-center justify-center p-3 border-b-[1px] border-darkblue ">
+          <div className="flex items-center justify-center p-3 border-b-[1px] border-indigo-900">
             <div className="flex items-center justify-center p-3 text-black bg-white/10 backdrop-filter backdrop-blur-2xl rounded-xl w-80">
-              <SearchIcon className="w-6 h-6 text-white " />
+              <SearchIcon className="w-6 h-6 dark:text-white  text-black" />
               <input
                 ref={inputFocusRef}
-                className="flex-1 ml-3 text-white placeholder-white bg-transparent border-none outline-none"
+                className="flex-1 ml-3 text-black placeholder-black  dark:text-white dark:placeholder-white bg-transparent border-none outline-none"
                 placeholder="Search in chats"
                 type="text"
                 onChange={filterChats}
@@ -174,7 +174,7 @@ const Sidebar = () => {
 
           <div>
             <div className="px-3 pt-5">
-              <p className="pb-5 text-sm font-thin tracking-widest uppercase">
+              <p className="pb-5 text-sm font-medium tracking-widest uppercase">
                 direct messages
               </p>
             </div>
@@ -186,15 +186,15 @@ const Sidebar = () => {
           </div>
 
           <div className="flex fixed w-[400px] bottom-0 flex-col justify-between mt-auto">
-            <div className="w-full focus:outline-none border-b-[1px] py-2 px-8 border-darkblue">
+            <div className="w-full focus:outline-none py-2 px-8">
               <button
-                className="bg-[#1F1E5E] shadow-lg p-2 text-center font-semibold rounded-sm w-full"
+                className="bg-[#1F1E5E] text-white shadow-lg p-2 text-center font-semibold rounded-sm w-full"
                 onClick={openModal}
               >
                 Start a new chat
               </button>
             </div>
-            <div className="p-4 border-t-[1px] border-indigo-500 flex pl-6 flex-row items-center">
+            <div className="p-4 border-t-[1px] border-indigo-900 flex pl-6 flex-row items-center">
               <SignedIn>
                 <UserButton />
               </SignedIn>
@@ -240,13 +240,13 @@ const Sidebar = () => {
               <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-blue-800 shadow-xl rounded-xl">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-semibold leading-6 text-white"
+                  className="text-lg font-semibold leading-6 text-black dark:text-white"
                 >
                   Start a chat with others
                 </Dialog.Title>
                 <input
                   ref={inputFocusRef}
-                  className="w-full p-4 mt-3 text-white placeholder-gray-300 rounded-md shadow-md outline-none bg-white/10 backdrop-blur-lg focus-visible:ring-blue-500"
+                  className="w-full p-4 mt-3 text-black dark:text-white placeholder-gray-300 rounded-md shadow-md outline-none bg-white/10 backdrop-blur-lg focus-visible:ring-blue-500"
                   placeholder="Search for someone"
                   value={inputValue}
                   onChange={onChange}
@@ -266,7 +266,7 @@ const Sidebar = () => {
                         {email === user?.primaryEmailAddress?.emailAddress ? (
                           <div></div>
                         ) : (
-                          <div className="flex items-center p-4 my-1 text-white break-words cursor-pointer rounded-xl">
+                          <div className="flex items-center p-4 my-1 text-black dark:text-white break-words cursor-pointer rounded-xl">
                             {photoURL && (
                               <Image
                                 width={56}
