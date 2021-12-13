@@ -15,7 +15,7 @@ import "../styles/globals.css";
 
 const clerkFrontendApi = process.env.NEXT_PUBLIC_CLERK_FRONTEND_API;
 
-const publicPages = ["/sign-in/[[...index]]", "/sign-up/[[...index]]"];
+const publicPages = ["/sign-in/[[...index]]", "/sign-up/[[...index]]", "/"];
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
@@ -52,7 +52,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       />
 
       <ToastContainer />
-      <NextNProgress color="#FE4098" options={{ showSpinnner: false }} />
+      <NextNProgress color="#00d9ff" options={{ showSpinnner: false }} />
 
       {publicPages.includes(router.pathname) ? (
         <Component {...pageProps} />

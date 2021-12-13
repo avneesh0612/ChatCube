@@ -95,6 +95,7 @@ const ChatScreen: React.FC<Props> = ({ chat, messages }) => {
     if (messagesSnapshot) {
       return messagesSnapshot.docs.map((message: messageType) => (
         <div key={message.id}>
+          {console.log(message.data())}
           {message.data().image ? (
             <div
               className={`
@@ -108,15 +109,13 @@ const ChatScreen: React.FC<Props> = ({ chat, messages }) => {
               `}
             >
               <div className="relative w-80 h-80 rounded-xl">
-                {message.data().edited && (
-                  <Image
-                    objectFit="contain"
-                    layout="fill"
-                    alt={message.data().user}
-                    className="object-contain w-80 rounded-xl"
-                    src={message?.data()?.image}
-                  />
-                )}
+                <Image
+                  objectFit="contain"
+                  layout="fill"
+                  alt={message.data().user}
+                  className="object-contain rounded-xl"
+                  src={message?.data()?.image}
+                />
               </div>
             </div>
           ) : (
@@ -292,12 +291,12 @@ const ChatScreen: React.FC<Props> = ({ chat, messages }) => {
         recipientSnapshot={recipientSnapshot}
       />
 
-      <div className="p-8 pb-24 h-[97%] w-full border-t-[1px] border-indigo-900 overflow-y-scroll overflow-x-hidden hidescrollbar">
+      <div className="p-8 pb-24 max-h-[97vh] w-full border-t-[1px] border-indigo-900 overflow-y-scroll overflow-x-hidden hidescrollbar">
         {showMessages()}
         <div ref={endOfMessagesRef} />
       </div>
 
-      <form className="flex items-center p-4 w-full fixed bottom-0 rounded-b-xl border-t-[1px] border-indigo-900 z-50">
+      <form className="flex items-center p-4 w-full dark:bg-blue-800 bg-blue-300 fixed bottom-0 rounded-b-xl border-t-[1px] border-indigo-900 z-50">
         <div
           onClick={() => filepickerRef?.current?.click()}
           className="inputIcon"
