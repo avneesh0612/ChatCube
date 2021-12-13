@@ -143,7 +143,7 @@ const Sidebar = () => {
       <ThemeToggler />
 
       <Fade left>
-        <div className="max-h-screen bg-[#89A6FB] dark:bg-white/[8%] backdrop-blur-lg w-[400px] min-h-screen text-black dark:text-white">
+        <div className="max-h-screen bg-blue-400 dark:bg-white/[8%] backdrop-blur-lg w-[400px] min-h-screen text-black dark:text-white">
           <div className="pt-5 text-center ">
             <Link passHref href="/">
               <a>
@@ -188,7 +188,7 @@ const Sidebar = () => {
           <div className="flex fixed w-[400px] bottom-0 flex-col justify-between mt-auto">
             <div className="w-full focus:outline-none py-2 px-8">
               <button
-                className="bg-[#1F1E5E] text-white shadow-lg p-2 text-center font-semibold rounded-sm w-full"
+                className="bg-blue-700 text-white shadow-lg p-2 text-center font-semibold rounded-sm w-full"
                 onClick={openModal}
               >
                 Start a new chat

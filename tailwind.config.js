@@ -7,8 +7,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        bglightprimary: "#3736AA",
         blue: {
+          300: "#4F72C2",
+          400: "#89A6FB",
+          700: "#1F1E5E",
           800: "#18185A",
         },
       },
