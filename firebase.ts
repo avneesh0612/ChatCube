@@ -2,7 +2,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
 import "firebase/compat/firestore";
 
-export const firebaseConfig = {
+export const firebaseApp = {
   apiKey: process.env.firebase_config_api_key,
   authDomain: process.env.firebase_authDomain,
   projectId: process.env.firebase_projectId,
@@ -13,7 +13,7 @@ export const firebaseConfig = {
 };
 
 const app = !firebase.apps.length
-  ? firebase.initializeApp(firebaseConfig)
+  ? firebase.initializeApp(firebaseApp)
   : firebase.app();
 
 const db = app.firestore();

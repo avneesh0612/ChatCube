@@ -5,13 +5,11 @@ import Sidebar from "../components/Sidebar";
 import { db } from "../firebase";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
-import { useRouter } from "next/router";
 import Fade from "react-reveal/Fade";
 import Image from "next/image";
 import { useUser } from "@clerk/clerk-react";
 
 export default function Home() {
-  const router = useRouter();
   const user = useUser();
 
   useEffect(() => {
@@ -27,8 +25,6 @@ export default function Home() {
         { merge: true }
       );
     }
-
-    router.prefetch("/chat/[id]");
   });
 
   return (

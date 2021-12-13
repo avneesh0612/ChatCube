@@ -24,7 +24,7 @@ const ChatScreenHeader: React.FC<Props> = ({
 }) => {
   const router = useRouter();
   return (
-    <div className="sticky top-0 z-30 flex items-center h-20 p-4 rounded-t-xl bg-[#3736AA]">
+    <div className="sticky top-0 z-30 flex items-center h-20 p-4">
       <ArrowLeftIcon
         onClick={() => router.push("/")}
         className="w-6 h-6 mr-2 cursor-pointer md:!hidden focus:outline-none text-gray-50"
@@ -53,7 +53,7 @@ const ChatScreenHeader: React.FC<Props> = ({
         </h3>
         {recipientSnapshot ? (
           <p className="text-sm text-gray-100">
-            Last active:
+            Last active: {""}
             {recipient?.lastSeen?.toDate() ? (
               <TimeAgo datetime={recipient?.lastSeen?.toDate()} />
             ) : (
