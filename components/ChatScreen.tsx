@@ -21,6 +21,7 @@ import { MessageType } from "../types/MessageType";
 import getRecipientEmail from "../utils/getRecipientEmail";
 import ChatScreenHeader from "./ChatScreenHeader";
 import Message from "./Message";
+import { NextComponentType, NextPageContext } from "next";
 
 declare global {
   // eslint-disable-next-line no-unused-vars
@@ -43,7 +44,7 @@ interface Props {
   messages: string;
 }
 
-const ChatScreen: React.FC<Props> = ({ chat, messages }) => {
+const ChatScreen: NextComponentType<NextPageContext, {}, Props> = ({ chat, messages }) => {
   const user = useUser();
   const router = useRouter();
   const endOfMessagesRef = useRef<HTMLInputElement>(null);

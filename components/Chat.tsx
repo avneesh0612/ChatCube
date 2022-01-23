@@ -1,17 +1,17 @@
 import { useUser } from "@clerk/clerk-react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../firebase";
 import getRecipientEmail from "../utils/getRecipientEmail";
+import { NextComponentType, NextPageContext } from "next";
 
 type ChatProps = {
   id: string;
   users: [string];
 };
 
-const Chat: React.FC<ChatProps> = ({ id, users }) => {
+const Chat: NextComponentType<NextPageContext, {}, ChatProps> = ({ id, users }) => {
   const router = useRouter();
   const user = useUser();
   const [recipientSnapshot] = useCollection(

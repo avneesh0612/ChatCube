@@ -14,6 +14,7 @@ import { useKeyPress } from "../hooks/useKeyPress";
 import { UsersType } from "../types/UserType";
 import Chat from "./Chat";
 import ThemeToggler from "./ThemeToggler";
+import { NextComponentType } from "next";
 
 interface ChatType {
   id: string;
@@ -26,7 +27,7 @@ interface UserFilterType {
   };
 }
 
-const Sidebar = () => {
+const Sidebar: NextComponentType = () => {
   const user = useUser();
   const [users, setUsers] = useState<any>([]);
   const [inputValue, setInputValue] = useState("");

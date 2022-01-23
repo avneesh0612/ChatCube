@@ -1,6 +1,7 @@
 import useDarkMode from "../hooks/useDarkMode";
+import { NextComponentType } from "next";
 
-const ThemeToggler = () => {
+const ThemeToggler: NextComponentType = () => {
   const [colorTheme, setTheme] = useDarkMode();
 
   return (
