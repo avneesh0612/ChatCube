@@ -1,10 +1,11 @@
 import { useUser } from "@clerk/clerk-react";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import ChatScreen from "../../components/ChatScreen";
 import Sidebar from "../../components/Sidebar";
 import { db } from "../../firebase";
 import { UserType } from "../../types/UserType";
+import type { GetServerSideProps, NextPage } from "next";
 
 interface ChatProps {
   chat: {
@@ -15,7 +16,7 @@ interface ChatProps {
   users: [UserType];
 }
 
-const Chat: React.FC<ChatProps> = ({ chat, messages, users }) => {
+const Chat: NextPage<ChatProps> = ({ chat, messages, users }) => {
   const router = useRouter();
   const user = useUser();
   const userEmail = user?.primaryEmailAddress?.emailAddress as string;
@@ -38,7 +39,7 @@ const Chat: React.FC<ChatProps> = ({ chat, messages, users }) => {
 
 export default Chat;
 
-export async function getServerSideProps(context: any) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const ref = db.collection("chats").doc(context.query.id);
   const allusers = await db.collection("users").get();
 

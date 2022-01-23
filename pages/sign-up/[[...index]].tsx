@@ -2,8 +2,9 @@ import { NextSeo } from "next-seo";
 import { SignUp } from "@clerk/clerk-react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import type { NextPage } from "next";
 
-export default function SignUpPage() {
+const SignUpPage: NextPage = () => {
   return (
     <div className="bg-indigo-700">
       <NextSeo title="Sign up to ChatCube" />
@@ -13,3 +14,5 @@ export default function SignUpPage() {
     </div>
   );
 }
+
+export default SignUpPage

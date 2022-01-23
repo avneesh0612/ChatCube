@@ -8,8 +8,9 @@ import "firebase/compat/firestore";
 import Fade from "react-reveal/Fade";
 import Image from "next/image";
 import { useUser } from "@clerk/clerk-react";
+import type { NextPage } from "next";
 
-export default function Home() {
+const Home: NextPage = () => {
   const user = useUser();
 
   useEffect(() => {
@@ -62,3 +63,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home

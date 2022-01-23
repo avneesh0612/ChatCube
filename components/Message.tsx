@@ -11,6 +11,7 @@ import React, { Fragment, useRef, useState } from "react";
 import Linkify from "react-linkify";
 import { db } from "../firebase";
 import { MessageType } from "../types/MessageType";
+import { NextComponentType, NextPageContext } from "next";
 
 type MessageProps = {
   message: MessageType;
@@ -18,7 +19,12 @@ type MessageProps = {
   id: string;
 };
 
-const Message: React.FC<MessageProps> = ({ message, creatorEmail, id }) => {
+ 
+const Message: NextComponentType<NextPageContext, {}, MessageProps> = ({
+  message,
+  creatorEmail,
+  id,
+}) => {
   const user = useUser();
   const userLoggedIn = user?.primaryEmailAddress?.emailAddress;
   const TypeOfMessage = creatorEmail === userLoggedIn ? "Sender" : "Receiver";

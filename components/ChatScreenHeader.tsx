@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import TimeAgo from "timeago-react";
 import React from "react";
+import { NextComponentType, NextPageContext } from "next";
 
 interface Props {
   recipient: {
@@ -17,7 +18,7 @@ interface Props {
   recipientSnapshot: any;
 }
 
-const ChatScreenHeader: React.FC<Props> = ({
+const ChatScreenHeader: NextComponentType<NextPageContext, {}, Props> = ({
   recipient,
   recipientEmail,
   recipientSnapshot,

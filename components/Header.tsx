@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import Fade from "react-reveal/Fade";
+import { NextComponentType } from "next";
 
-function Header() {
+const Header: NextComponentType = () => {
   return (
     <Fade top>
       <header className="px-5 m-4 text-center rounded-lg">

@@ -1,8 +1,9 @@
 import { NextSeo } from "next-seo";
 import { UserProfile } from "@clerk/clerk-react";
 import Header from "../../components/Header";
+import type { NextPage } from "next";
 
-export default function UserProfilePage() {
+const UserProfilePage: NextPage = () => {
   return (
     <div className="bg-indigo-700">
       <NextSeo title="Your profile" />
@@ -11,3 +12,5 @@ export default function UserProfilePage() {
     </div>
   );
 }
+
+export default UserProfilePage
